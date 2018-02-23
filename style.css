@@ -1,1 +1,183 @@
-/* algemene stylesheet */
+/* algemeen */
+* {
+    font-family: "Segoe UI"; 
+    box-sizing: border-box;
+    
+    
+}
+
+header {
+    background-color: #494e61; 
+    display: grid;
+    grid-template-columns: 200px 200px;
+    
+    
+}
+
+.logo {
+    background-image: url(img/logo.svg); 
+    background-repeat: no-repeat;
+    background-size: contain; 
+    width: 300px;
+    height: 50px; 
+}
+
+.logo span {
+    color: #fff; 
+}
+
+.account {
+    
+}
+
+.account p {
+    color: #fff;
+    opacity: 0.7; 
+    margin: 0px; 
+}
+
+.account a {
+    color: #ee9d9d; 
+}
+
+.account img {
+    width: 50px;
+    height: 50px; 
+    border-radius: 10%; 
+}
+
+
+@media (min-width: 40em){
+    
+    .account {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 150px 100px;
+        grid-template-rows: 1fr 1fr;
+        /* why doesnt this work? :o */
+        justify-content: end;
+        
+    }
+
+    .account p {
+        margin: 0;
+        grid-column: 1 / 2;
+        grid-row: 1 / span 1;
+        align-self: end;
+        text-align: right; 
+    }
+
+    .account a {
+        align-self: start;
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+        margin: 0; 
+        text-align: right; 
+    }
+
+    .account img {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        align-self: center;
+    }
+  
+}
+
+/* home.html */
+
+
+
+
+/* kweeni.html */
+
+#vraag {
+    display: block; 
+    background-color: #ffeef0;
+    text-align: center; 
+    padding: 20px; 
+}
+
+#vraag h1 {
+    color: #fa5b33; 
+    font-size: 40px; 
+    padding: 20px 60px;
+    margin: 0px; 
+}
+
+#vraag input {
+    border-color: #fa5b33;
+    width: 80%;
+    height: 70px; 
+    padding: 20px; 
+}
+
+#vraag button {
+    width: 250px;
+    height: 50px; 
+    background-color: #3b1cff; 
+    color: #e4e0ff; 
+    font-size: 25px; 
+    margin: 20px; 
+    border-radius: 12px; 
+}
+
+#topics {
+    padding: 30px; 
+}
+
+#topics h2 {
+    text-align: center; 
+}
+
+#topics .question {
+    display: grid;
+    grid-template-columns: 100px 3fr 2fr 30px;
+    align-items: center;
+    
+}
+
+#topics .question .likes {
+    background-color: #eeeeee;
+    width: 70px; 
+    height: 40px; 
+}
+
+#topics .question .likes img {
+    width: 20px; 
+}
+
+#topics .question .q {
+    justify-self: start;
+}
+
+#topics .question .author {
+    color: #e09583; 
+    justify-self: end;
+}
+
+#topics .question img {
+    width: 20px;
+    border-radius: 20%; 
+    justify-self: end;
+}
+
+#topics hr {
+    opacity: 0.5; 
+}
+
+#topics a {
+    display: block; 
+    margin: 50px; 
+    text-align: center; 
+}
+
+/* container */
+@media (min-width: 1000px){
+    .container {
+        width: 1200px;
+        margin: 0 auto; 
+    }
+    
+}
+
+/* watis.html */
