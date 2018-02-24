@@ -147,7 +147,7 @@ header {
 /* container */
 @media (min-width: 1000px){
     .container {
-        width: 1200px;
+        width: 1400px;
         margin: 0 auto; 
     }
     
@@ -158,7 +158,7 @@ header {
 {
     display: grid;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 230px 70px 90px; 
+    grid-template-rows: 100px 70px 90px; 
 }
 
 #head {
@@ -258,11 +258,12 @@ header {
 {
     max-width: 100%;
     width: 20px;
-    border-radius: 10%;
+    border-radius: 20%;
 }
 
 .comments_pic{
     width: 30px;
+    border-radius: 20%;
 }
 
 .comments
@@ -277,6 +278,10 @@ header {
 .comments a {
     text-decoration: none;
     color: gray;
+}
+
+.right {
+	text-align: right;
 }
 
 
