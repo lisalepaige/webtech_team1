@@ -10,12 +10,15 @@ header {
     grid-template-columns: 2fr 1fr;
 }
 
+
+
 .account
 {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 120px 50px;
     grid-template-rows: 1fr 1fr;
     margin: 20px;
+    justify-self: end;
 }
 
 #profile{
@@ -25,13 +28,11 @@ header {
 }
 
 .logo {
-    background-image: url(img/logo.svg); 
-    background-repeat: no-repeat;
-    background-size: contain; 
-    width: 200px;
-    height: 50px; 
-    margin-top: 20px;
-    margin-left: 20px;
+    align-self: center;
+}
+
+.logo img {
+    max-width: 200px;
 }
 
 .logo span {
@@ -48,6 +49,8 @@ header {
 
 .account a {
     color: #ee9d9d; 
+    justify-self: end;
+    padding-right: 10px; 
 }
 
 .account img {
@@ -67,13 +70,12 @@ header {
     display: block; 
     background-color: #ffeef0;
     text-align: center; 
-    padding: 20px; 
 }
 
 #vraag h1 {
     color: #fa5b33; 
     font-size: 40px; 
-    padding: 20px 60px;
+    padding: 20px 10px;
     margin: 0px; 
 }
 
@@ -82,6 +84,11 @@ header {
     width: 80%;
     height: 70px; 
     padding: 20px; 
+    max-width: 700px; 
+}
+
+#vraag .btn {
+    text-align: center;
 }
 
 #vraag button {
@@ -95,7 +102,6 @@ header {
 }
 
 #topics {
-    padding: 30px; 
 }
 
 #topics h2 {
@@ -104,20 +110,34 @@ header {
 
 #topics .question {
     display: grid;
-    grid-template-columns: 100px 3fr 2fr 30px;
+    grid-template-columns: 70px 3fr 2fr 20px;
     align-items: center;
+    
     
 }
 
-#topics .question .likes {
+#topics .question .question_likes {
     background-color: #eeeeee;
-    width: 70px; 
+    width: 60px; 
     height: 40px; 
+    align-items: center;
+    text-align: center; 
+
+    display: grid;
+    grid-template-columns: 20px 30px;
+    grid-column-gap: 5px;
+    justify-items: center;
+
+
 }
 
-#topics .question .likes img {
+#topics .question .question_likes img {
     width: 20px; 
 }
+
+#topics .question .question_likes span {
+}
+
 
 #topics .question .q {
     justify-self: start;
@@ -131,7 +151,7 @@ header {
 #topics .question img {
     width: 20px;
     border-radius: 20%; 
-    justify-self: end;
+    justify-self: start;
 }
 
 #topics hr {
@@ -144,14 +164,38 @@ header {
     text-align: center; 
 }
 
-/* container */
+@media (min-width: 700px){
+    /* more margin and padding */
+    #topics{
+        padding: 30px; 
+    }
+
+    .logo img {
+        margin-left: 20px;
+    }
+
+    #vraag {
+        padding: 20px; 
+    }
+
+    #vraag h1 {
+        padding: 20px 60px;
+        margin: 0px; 
+    }
+
+    #topics .question .author {
+        padding-right: 10px;
+    }
+}
+
+/* container 
 @media (min-width: 1000px){
     .container {
         width: 1400px;
         margin: 0 auto; 
     }
     
-}
+}*/
 
 /* watis.html */
 #main

@@ -15,7 +15,8 @@
         <h1>Iets kweeni hoe moeilijk? Stel hier je vraag.</h1>
     
         <input type="text" placeholder="Wat is expressjs?">
-        <button>NU VRAGEN</button>
+        <div class="btn"><button>NU VRAGEN</button></div>
+        
         </div>
     </section>
     
@@ -25,7 +26,7 @@
         <h2>Hot topics!</h2>
         
         <div class="question 1">
-            <div class="likes">
+            <div class="question_likes">
                 <img src="img/icon-cool.svg" alt="icon">
                 <span>x33</span>
             </div>
@@ -35,7 +36,7 @@
         </div>
         <hr>
         <div class="question 2">
-            <div class="likes">
+            <div class="question_likes">
                 <img src="img/icon-cool.svg" alt="icon">
                 <span>x28</span>
             </div>
@@ -45,7 +46,7 @@
         </div>
         <hr>
         <div class="question 1">
-            <div class="likes">
+            <div class="question_likes">
                 <img src="img/icon-cool.svg" alt="icon">
                 <span>x33</span>
             </div>
@@ -55,7 +56,7 @@
         </div>
         <hr>
         <div class="question 2">
-            <div class="likes">
+            <div class="question_likes">
                 <img src="img/icon-cool.svg" alt="icon">
                 <span>x28</span>
             </div>
