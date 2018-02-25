@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Kweeni</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="stylehome.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
@@ -17,13 +18,21 @@
                         
             <p>Eerste hulp bij design &amp; development hoofdpijn. Kweeni hoe handig.</p>
             
-            <a href="#" id="inloggen">></a>
+            <a href="#" id="inloggen"></a>
             
             <div id="userpictures">
+                
                 <?php foreach($users as $user): ?>
-                <div><img src="img/<?php echo $user; ?>"></div>
-      
+                
+                  <div class="userpicture" style="background-image:url(img/<?php echo $user; ?>)">?</div>
                 <?php endforeach; ?>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
             </div>
             
         </section>
