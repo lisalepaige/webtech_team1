@@ -1,20 +1,40 @@
-<!DOCTYPE html>
+<?php
+    include_once("data.inc.php");
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Kweeni</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="stylehome.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
     <body>
-        <section>
-            <img src="img/logo.svg" alt="logo">
-            <a href="#"><img src="img/inloggen.png"></a>
+        <section id="homeheader">
             
+                       
+            <a href="home.php" id="logoxl"></a>
+                        
             <p>Eerste hulp bij design &amp; development hoofdpijn. Kweeni hoe handig.</p>
             
-            <img src="" alt="user">
+            <a href="#" id="inloggen"></a>
+            
+            <div id="userpictures">
+                
+                <?php foreach($users as $key => $user): ?>
+                
+                  <div id="key<?php echo $key; ?>" class="userpicture" style="background-image:url(img/<?php echo $user; ?>)"></div>
+                <?php endforeach; ?>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+                <div class="filler"></div>
+            </div>
+            
         </section>
         
         <main>
