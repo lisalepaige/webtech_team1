@@ -22,9 +22,9 @@
             
             <div id="userpictures">
                 
-                <?php foreach($users as $user): ?>
+                <?php foreach($users as $key => $user): ?>
                 
-                  <div class="userpicture" style="background-image:url(img/<?php echo $user; ?>)">?</div>
+                  <div id="key<?php echo $key; ?>" class="userpicture" style="background-image:url(img/<?php echo $user; ?>)"></div>
                 <?php endforeach; ?>
                 <div class="filler"></div>
                 <div class="filler"></div>

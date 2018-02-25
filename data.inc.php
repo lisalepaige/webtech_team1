@@ -12,13 +12,6 @@
         "user10.png",
         "user11.png",
         "user12.png",
-        "user13.jpg",
-        "user14.jpg",
-        "user15.jpg",
-        "user16.jpg",
-        "user17.jpg",
-        "user18.jpg",
-        "user19.jpg",
-        "user20.jpg",
+       
     ]        
 ?>
