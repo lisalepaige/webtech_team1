@@ -1,0 +1,70 @@
+
+body{
+    margin:0;
+    padding:0;
+}
+
+/* home.html */
+
+#logoxl{
+    margin-top:50px;
+    display:block;
+    width:50%;
+    height:50px;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-image:url(img/logo-xl.svg);
+}
+
+#inloggen{
+    width:280px;
+    height:60px;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-image:url(img/inloggen.png);
+    margin-bottom:60px;
+}
+
+#homeheader{
+    background-color:#DBDBDB;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#homeheader p{
+    width:75%;
+}
+
+#userpictures{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+
+.userpicture{
+    flex:1 1 0;
+    width:0;
+    min-width:100px;
+    min-height:100px;
+    
+    
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.filler {
+    flex: 1 1 0;
+    height: 0px;
+    
+    /*style*/
+    margin: 0 0.5em; 
+    padding: 0 1em;
+}
+
+@media (min-width: 1000px){
+    body{
+        background-color:red;
+    }
+}
