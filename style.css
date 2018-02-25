@@ -147,7 +147,7 @@ header {
 /* container */
 @media (min-width: 1000px){
     .container {
-        width: 1200px;
+        width: 1400px;
         margin: 0 auto; 
     }
     
@@ -162,7 +162,6 @@ header {
 }
 
 #head {
-    display: block; 
     background-color: #FFF6F7;
     text-align: center; 
     padding: 20px; 
@@ -182,15 +181,13 @@ header {
 {
     color: #fa5b33;
     font-style: italic;
-    display: grid;
-    grid-template-columns: 1fr 50px;
-    grid-template-rows: 1fr 50px;
-    justify-items: end;
+    margin-right: 20px;
     background-color: #FFF6F7;
     display: grid;
+    grid-template-rows: 1fr 50px;
+    grid-template-columns: 1fr 50px;
     grid-column-start: span 3;
-    grid-template-rows: 2;
-    
+    justify-items: end;    
 }
 
 .auteur p
@@ -207,12 +204,13 @@ header {
 
 .auteur .avatar
 {
-    width: 30px;
+    width: 40px;
     border-radius: 10%;
     grid-column: 2 / span 1;
     grid-row: 1 / 3;
     align-self: start;
 }
+
 
 .likes
 {
@@ -258,11 +256,12 @@ header {
 {
     max-width: 100%;
     width: 20px;
-    border-radius: 10%;
+    border-radius: 20%;
 }
 
 .comments_pic{
     width: 30px;
+    border-radius: 20%;
 }
 
 .comments
@@ -279,6 +278,67 @@ header {
     color: gray;
 }
 
+.right {
+	text-align: right;
+}
+
+.comments.right
+{
+    width: 350px;
+}
+
+.place-comment
+{
+    border: 15px solid #DCDCDC;
+    width: 300px;
+}
+
+.place-comment input
+{
+    width: 100%;
+    padding: 5px;
+}
+
+.react
+{
+    border: 15px solid #494e61;
+    background-color: #494e61;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.react img
+{
+    width: 40px;
+}
+
+.react .text-input
+{
+    width: 80%;
+    height: 40px;
+    background-color: #DCDCDC;
+    margin-top: -20px;
+}
+
+.react .button-input
+{
+    background-color: #3B1CFF;
+    color: #DCDCDC;
+    text-transform: uppercase;
+    padding: 10px;
+    width: 250px;
+    font-size: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (min-width: 50em) {
+    
+}
 
 
 

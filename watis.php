@@ -84,11 +84,11 @@
                 <input type="text" placeholder="Plaats commentaar...">
             </div>
         
-        <div class="place-comment">
+        <div class="react">
             <form action="" method="post">
-                <img src="" alt="" class="user-avatar">
-                <input type="text" name="new-comment">
-                <input type="submit" value="reageren">
+                <img src="img/user12.png" alt="user12" class="user-avatar">
+                <input class="text-input" type="text" name="new-comment" value="Reageer hier op deze vraag">
+                <input class="button-input" type="submit" value="reageren">
             </form>
         </div>
     </section>
