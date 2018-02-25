@@ -158,7 +158,7 @@ header {
 {
     display: grid;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 230px 70px 90px; 
+    grid-template-rows: 100px 70px 90px; 
 }
 
 #head {
@@ -282,6 +282,7 @@ header {
 	text-align: right;
 }
 
+<<<<<<< HEAD
 .comments.right
 {
     width: 350px;
@@ -339,6 +340,8 @@ header {
 @media (min-width: 50em) {
     
 }
+=======
+>>>>>>> 2dd4df0395fc5ecd9c07b70b95e25e8ff2a991eb
 
 
 

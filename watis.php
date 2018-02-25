@@ -13,6 +13,8 @@
    
    <?php include_once("nav.inc.php"); ?>
     
+    	
+    
     <main id="main">
       
       <div id="head">
@@ -45,7 +47,7 @@
         </div>
         
     </main>
-    
+    <div class="container">
     <section>
             <article class="comments">
                 <p>
@@ -54,10 +56,10 @@
                 <img src="img/user10.png" alt="user10" class="comments_pic"> <a href="#">Jay Ba-Kend</a>
             </article>
             
-            <div id="right">
+            <div class="right">
             <article class="comments right">
                 <p>
-                    Thanks. Waar maarvoor dient dat eigenlijk? Frontend?
+                    Thanks. Maar maarvoor dient dat eigenlijk? Frontend?
                 </p>
                 <img src="img/user8.png" alt="user8" class="comments_pic right_pic"> <a href="#" class="author">Anneke Kodeur</a>
             </article>
@@ -92,5 +94,6 @@
             </form>
         </div>
     </section>
+    </div>
 </body>
 </html>
