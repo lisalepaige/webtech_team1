@@ -90,10 +90,10 @@
             </div>
         
         <div class="react">
-            <form action="" method="post">
-                <img src="img/user12.png" alt="user12" class="user-avatar">
+            <form action="" method="post" id="form">
+                <img src="img/user3.png" alt="user3" class="user-avatar">
                 <input class="text-input" type="text" name="new-comment" value="Reageer hier op deze vraag">
-                <input class="button-input" type="submit" value="reageren">
+                <a href="#">Reageren</a>
             </form>
         </div>
     </section>
