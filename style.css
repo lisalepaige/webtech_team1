@@ -1,12 +1,9 @@
 /* algemeen */
-* {
-    font-family: "Segoe UI"; 
-    box-sizing: border-box;    
-}
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
 
-body p
-{
-    font-family: 'Patua One', serif;
+* {
+    box-sizing: border-box;    
+    font-family: 'Patua One', cursive;
 }
 
 header {
