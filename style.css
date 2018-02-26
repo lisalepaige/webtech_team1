@@ -373,11 +373,14 @@ header {
 
 .right {
 	text-align: right;
+    margin-left: auto;
+    width: 350px;
 }
 
 .place-comment
 {
     border: 15px solid #DCDCDC;
+    margin-left: auto;
     width: 300px;
 }
 
@@ -429,6 +432,10 @@ header {
     .like img
     {
         margin-left: 30px;
+    }
+    
+    .right{
+        width: 500px;
     }
     
 }
