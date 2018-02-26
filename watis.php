@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Wat is  express.js</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="Patua_One/PatuaOne-Regular.ttf" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -21,6 +22,12 @@
        
        <h1>"Wat is express.js en waarvoor dient het?"</h1>
        
+        </div>
+        
+        <div class="auteur">
+           <p>12 minuten geleden gevraagd door</p>
+            <img src="img/user8.png" alt="active_user" class="avatar">
+            <span>Anneke Kodeur</span>
         </div>
        
         <div class="likes">
@@ -38,11 +45,7 @@
             <?php endforeach; ?>    
         </div>
 
-        <div class="auteur">
-           <p>12 minuten geleden gevraagd door</p>
-            <img src="img/user8.png" alt="active_user" class="avatar">
-            <span>Anneke Kodeur</span>
-        </div>
+
         
         
         

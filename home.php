@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Kweeni</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="Patua_One/PatuaOne-Regular.ttf" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="stylehome.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     

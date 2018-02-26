@@ -4,6 +4,11 @@
     box-sizing: border-box;    
 }
 
+body
+{
+    font-family: 'Patua One', serif;
+}
+
 header {
     background-color: #494e61; 
     display: grid;
@@ -200,14 +205,18 @@ header {
 /* watis.html */
 #main
 {
-    
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 230px 70px 90px;
 }
+
 
 #head {
     background-color: #FFF6F7;
     text-align: center; 
     padding: 20px; 
-    display: grid;    
+    display: grid; 
+    grid-column-start: span 3;
 }
 
 #head h1 {
@@ -216,6 +225,7 @@ header {
     padding: 20px;
     margin: 0px; 
     font-weight: bold;
+    font-family: 'Patua One';
 }
 
 
@@ -224,7 +234,9 @@ header {
     background-color:#F6E5E7;
     color: blue;
     font-weight: bold;
-
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 3 / span 4;
 }
 
 .like
@@ -276,7 +288,7 @@ header {
 {
     color: #fa5b33;
     font-style: italic;
-    background-color: #FFEEF0;
+    background-color: #FFF6F7;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 50px;
@@ -328,6 +340,14 @@ header {
     {
         margin-right: 5px; 
     }
+    
+    .auteur {
+
+        background-color: #FFEEF0;
+        display: grid;
+        order: 3;
+    }
+
 
 }
 
@@ -353,12 +373,6 @@ header {
 
 .right {
 	text-align: right;
-}
-
-<<<<<<< HEAD
-.comments.right
-{
-    width: 350px;
 }
 
 .place-comment
@@ -410,21 +424,14 @@ header {
 }
 
 
-@media (min-width: 50em) {
-    
-}
-=======
->>>>>>> 2dd4df0395fc5ecd9c07b70b95e25e8ff2a991eb
-
-
 @media (min-width: 700px){
     /* more margin and padding */
     .like img
     {
         margin-left: 30px;
     }
+    
 }
-
 
 
 
