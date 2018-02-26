@@ -2,6 +2,10 @@
 body{
     margin:0;
     padding:0;
+}
+
+body p
+{
     font-family: 'Patua One', serif;
 }
 
