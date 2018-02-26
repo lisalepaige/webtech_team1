@@ -13,13 +13,13 @@
     <body>
         <section id="homeheader">
             
-                       
+            <div class="grid">        
             <a href="home.php" id="logoxl"></a>
                         
-            <p>Eerste hulp bij design &amp; development hoofdpijn. Kweeni hoe handig.</p>
+            <h1>Eerste hulp bij design &amp; development hoofdpijn. Kweeni hoe handig.</h1>
             
             <a href="#" id="inloggen"></a>
-            
+            </div> 
             <div id="userpictures">
                 
                 <?php foreach($users as $key => $user): ?>
@@ -37,23 +37,29 @@
             
         </section>
         
-        <main>
-            <article>
-                <img src="img/icon-cool.svg" alt="smiley1">
-                <h1>Samen slimmer</h1>
-                <p>Iedereen kan een nieuw KWEENI-topic aanmaken en de link delen. Daarna kunnen vragen gesteld worden tijdens lessen, demo’s, …</p>
+        <main id="homemain">
+            <article id="firstarticle">
+                <div class="align">
+                    <img src="img/icon-cool.svg" alt="smiley1">
+                    <h2>Samen slimmer</h2>
+                </div>
+                <p>Iedereen kan een nieuw KWEENI-topic aanmaken en de link delen.</p><p>Daarna kunnen vragen gesteld worden tijdens lessen, demo’s, …</p>
             </article>
             
             <article>
-                <img src="img/icon-love.svg" alt="smiley2">
-                <h1>Kweeni coins</h1>
-                <p>Verdien KWEENI coins door anderen te helpen. Met je KWEENI coins kan je andere bedanken die je helpen. Da’s kweeni hoe handig.</p>
+                <div class="align">
+                    <img src="img/icon-love.svg" alt="smiley2">
+                    <h2>Kweeni coins</h2>
+                </div>
+                <p>Verdien KWEENI coins door anderen te helpen. Met je KWEENI coins kan je andere bedanken die je helpen.</p><p>Da’s kweeni hoe handig.</p>
             </article>
             
             <article>
-                <img src="img/icon-rainbow.svg" alt="smiley3">
-                <h1>Made by imd</h1>
-                <p>Een project van #WeAreIMD en GoodBytes.be/p>
+                <div class="align">
+                    <img src="img/icon-rainbow.svg" alt="smiley3">
+                    <h2>Made by imd</h2>
+                </div>
+                <p>Een project van #WeAreIMD en GoodBytes.be</p>
             </article>
         
         </main>
