@@ -10,12 +10,15 @@ header {
     grid-template-columns: 2fr 1fr;
 }
 
+
+
 .account
 {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 120px 50px;
     grid-template-rows: 1fr 1fr;
     margin: 20px;
+    justify-self: end;
 }
 
 #profile{
@@ -25,13 +28,11 @@ header {
 }
 
 .logo {
-    background-image: url(img/logo.svg); 
-    background-repeat: no-repeat;
-    background-size: contain; 
-    width: 200px;
-    height: 50px; 
-    margin-top: 20px;
-    margin-left: 20px;
+    align-self: center;
+}
+
+.logo img {
+    max-width: 200px;
 }
 
 .logo span {
@@ -48,6 +49,8 @@ header {
 
 .account a {
     color: #ee9d9d; 
+    justify-self: end;
+    padding-right: 10px; 
 }
 
 .account img {
@@ -67,13 +70,12 @@ header {
     display: block; 
     background-color: #ffeef0;
     text-align: center; 
-    padding: 20px; 
 }
 
 #vraag h1 {
     color: #fa5b33; 
     font-size: 40px; 
-    padding: 20px 60px;
+    padding: 20px 10px;
     margin: 0px; 
 }
 
@@ -82,6 +84,11 @@ header {
     width: 80%;
     height: 70px; 
     padding: 20px; 
+    max-width: 700px; 
+}
+
+#vraag .btn {
+    text-align: center;
 }
 
 #vraag button {
@@ -95,7 +102,6 @@ header {
 }
 
 #topics {
-    padding: 30px; 
 }
 
 #topics h2 {
@@ -104,20 +110,34 @@ header {
 
 #topics .question {
     display: grid;
-    grid-template-columns: 100px 3fr 2fr 30px;
+    grid-template-columns: 70px 3fr 2fr 20px;
     align-items: center;
+    
     
 }
 
-#topics .question .likes {
+#topics .question .question_likes {
     background-color: #eeeeee;
-    width: 70px; 
+    width: 60px; 
     height: 40px; 
+    align-items: center;
+    text-align: center; 
+
+    display: grid;
+    grid-template-columns: 20px 30px;
+    grid-column-gap: 5px;
+    justify-items: center;
+
+
 }
 
-#topics .question .likes img {
+#topics .question .question_likes img {
     width: 20px; 
 }
+
+#topics .question .question_likes span {
+}
+
 
 #topics .question .q {
     justify-self: start;
@@ -131,7 +151,7 @@ header {
 #topics .question img {
     width: 20px;
     border-radius: 20%; 
-    justify-self: end;
+    justify-self: start;
 }
 
 #topics hr {
@@ -144,21 +164,43 @@ header {
     text-align: center; 
 }
 
-/* container */
+@media (min-width: 700px){
+    /* more margin and padding */
+    #topics{
+        padding: 30px; 
+    }
+
+    .logo img {
+        margin-left: 20px;
+    }
+
+    #vraag {
+        padding: 20px; 
+    }
+
+    #vraag h1 {
+        padding: 20px 60px;
+        margin: 0px; 
+    }
+
+    #topics .question .author {
+        padding-right: 10px;
+    }
+}
+
+/* container 
 @media (min-width: 1000px){
     .container {
         width: 1400px;
         margin: 0 auto; 
     }
     
-}
+}*/
 
 /* watis.html */
 #main
 {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: 100px 70px 90px; 
+    
 }
 
 #head {
@@ -166,7 +208,6 @@ header {
     text-align: center; 
     padding: 20px; 
     display: grid;    
-    grid-column-start: span 3;
 }
 
 #head h1 {
@@ -177,74 +218,44 @@ header {
     font-weight: bold;
 }
 
-.auteur
-{
-    color: #fa5b33;
-    font-style: italic;
-    margin-right: 20px;
-    background-color: #FFF6F7;
-    display: grid;
-    grid-template-rows: 1fr 50px;
-    grid-template-columns: 1fr 50px;
-    grid-column-start: span 3;
-    justify-items: end;    
-}
-
-.auteur p
-{
-    margin: 0px;
-}
-
-.auteur span
-{
-    font-weight: bold;
-    font-style: normal;
-    margin: 0px;
-}
-
-.auteur .avatar
-{
-    width: 40px;
-    border-radius: 10%;
-    grid-column: 2 / span 1;
-    grid-row: 1 / 3;
-    align-self: start;
-}
-
 
 .likes
 {
     background-color:#F6E5E7;
     color: blue;
     font-weight: bold;
-    display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 3 / span 4;
+
 }
 
-.like img
-{
-    width: 30px;
-    margin-left: 30px;
-    margin-top: 15px; 
-}
+.like
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 5px;
+        justify-items: center;
+        align-items: center;
+    }
 
-#like_p
-{
-    font-size: 32px;
-    display: inline;
-    margin: 0px;
-    width: 80px;
-}
+    .like img
+    {
+        width: 30px;
+        justify-self: end;
+    }
 
-.like a
-{
-    display: inline-block;
-    font-weight: bold;
-    padding: 15px;
-    padding-top: 5px;
-    text-align: center;
-}
+    .like p
+    {
+        justify-self: start;
+    }
+
+    .like a
+    {
+        display: inline-block;
+        font-weight: bold;
+        padding: 15px;
+        padding-top: 5px;
+        text-align: center;
+        grid-column-start: span 3;
+    }
 
 .users
 {
@@ -258,6 +269,68 @@ header {
     width: 20px;
     border-radius: 20%;
 }
+
+
+
+.auteur
+{
+    color: #fa5b33;
+    font-style: italic;
+    background-color: #FFEEF0;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 50px;
+    grid-column-start: span 3;
+    justify-items: end;
+    align-items: center;    
+}
+
+.auteur p
+{
+    margin: 0px;
+    align-self: end;
+}
+
+.auteur span
+{
+    font-weight: bold;
+    font-style: normal;
+    margin: 0px;
+    align-self: start;
+}
+
+.auteur .avatar
+{
+    width: 40px;
+    border-radius: 10%;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 3;
+    align-self: center;
+}
+
+
+/* start grid layout */
+@media (min-width: 800px){
+
+    #main
+    {
+        display: grid;
+        grid-template-columns: 150px 1fr 1fr;
+        grid-template-rows: 150px 100px; 
+    }
+
+    #head {
+        display: grid;    
+        grid-column-start: span 6;
+    }
+
+    .auteur .avatar
+    {
+        margin-right: 5px; 
+    }
+
+}
+
 
 .comments_pic{
     width: 30px;
@@ -344,7 +417,13 @@ header {
 >>>>>>> 2dd4df0395fc5ecd9c07b70b95e25e8ff2a991eb
 
 
-
+@media (min-width: 700px){
+    /* more margin and padding */
+    .like img
+    {
+        margin-left: 30px;
+    }
+}
 
 
 

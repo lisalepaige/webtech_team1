@@ -23,14 +23,6 @@
        
         </div>
        
-       <div class="auteur">
-           <p>12 minuten geleden gevraagd door</p>
-            <img src="img/user8.png" alt="active_user" class="avatar">
-            <span>Anneke Kodeur</span>
-        </div>
-        
-       
-       
         <div class="likes">
            <div class="like">
             <img src="img/icon-cool.svg" alt="smiley_cool"> 
@@ -38,13 +30,21 @@
             <a href="#">like deze vraag</a>
             </div>
         </div>
-        
+
         <div class="users">
             <?php foreach ($users as $u): ?>
             
             <img id="users_pic" src="img/<?php echo $u ?>" />
             <?php endforeach; ?>    
         </div>
+
+        <div class="auteur">
+           <p>12 minuten geleden gevraagd door</p>
+            <img src="img/user8.png" alt="active_user" class="avatar">
+            <span>Anneke Kodeur</span>
+        </div>
+        
+        
         
     </main>
     <div class="container">
