@@ -12,5 +12,8 @@ router.get('/kweeni', function(req, res){
 });
 
 /* wat is */
+router.get('/watis', function(req, res){
+    res.send('welcome on the watis page!');
+});
 
 module.exports = router;
