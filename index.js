@@ -19,8 +19,6 @@ const app = express();
 app.set('view engine', 'pug');
 
 app.use(bodyParser.json() );
-app.use('/', require('./routes/home') );
-//app.use('/kweeni', require('./routes/kweeni') );
-//app.use('/watis', require('./routes/watis') );
+app.use('/', require('./routes/index') );
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
