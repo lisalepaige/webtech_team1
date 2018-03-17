@@ -8,7 +8,7 @@ router.get('/', function(req, res){
 
 /* kweeni */
 router.get('/kweeni', function(req, res){
-    res.send('weenie!');
+    res.render('./views/kweeni', {title: 'kweeni'}); 
 });
 
 /* wat is */
