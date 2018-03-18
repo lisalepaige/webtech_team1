@@ -15,9 +15,5 @@
   "bugs": {
     "url": "https://github.com/CarolineVG/webtech_team1/issues"
   },
-  "homepage": "https://github.com/CarolineVG/webtech_team1#readme",
-  "dependencies": {
-    "body-parser": "file:node_modules/body-parser",
-    "express": "^4.16.3"
-  }
+  "homepage": "https://github.com/CarolineVG/webtech_team1#readme"
 }

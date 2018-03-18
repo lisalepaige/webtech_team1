@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const pug = require('pug');
 
-app.engine('pug', require('pug')._express);
+app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.use(bodyParser.json() );
