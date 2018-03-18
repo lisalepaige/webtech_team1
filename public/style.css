@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Patua+One');
+body{
+    margin:0;
+}
 
 * {
     box-sizing: border-box;    
@@ -171,12 +174,14 @@ header {
         max-width:1000px;
         
     }
+
+    
     
     .userpicture{
         flex:none;
         width:auto;
         min-width:auto;
-        min-height:auto;
+        /*min-height:auto;*/
         background-repeat: no-repeat;
         background-size:cover;
     }

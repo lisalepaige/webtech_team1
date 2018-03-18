@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* home */
 router.get('/', function(req, res){
-    res.send('Hello Home!');
+    res.render('./home', {title: 'Home'}); 
 });
 
 /* kweeni */
