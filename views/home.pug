@@ -6,12 +6,12 @@ html(lang='en')
     link(href='Patua_One/PatuaOne-Regular.ttf', rel='stylesheet', type='text/css')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
   body
-    section#homeheader
+    section.homeheader
       .grid
-        a#logoxl(href='home.html')
+        a.homeheader__logoxl(href='home.html')
         h1 Eerste hulp bij design & development hoofdpijn. Kweeni hoe handig.
-        a#inloggen(href='#')
-      #userpictures
+        a.homeheader__inloggen(href='#')
+      .homeheader__userpictures
         #key0.userpicture(style='background-image:url(/img/user1.png)')
         #key1.userpicture(style='background-image:url(/img/user2.png)')
         #key2.userpicture(style='background-image:url(/img/user3.png)')
@@ -31,8 +31,8 @@ html(lang='en')
         .filler
         .filler
         .filler
-    main#homemain
-      article#firstarticle
+    main.homemain
+      article.homemain__firstarticle
         .align
           img(src='img/icon-cool.svg', alt='smiley1')
           h2 Samen slimmer

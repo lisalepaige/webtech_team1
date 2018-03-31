@@ -23,7 +23,7 @@ header {
     justify-self: end;
 }
 
-#profile{
+.profile{
     grid-column: 2 / span 1;
     grid-row: 1 / 3;
     align-self: center;
@@ -33,15 +33,12 @@ header {
     align-self: center;
 }
 
-.logo img {
+.logo__img {
     max-width: 200px;
+    margin-left: 5px;
 }
 
-.logo span {
-    color: #fff; 
-}
-
-.account p {
+.account__p {
     color: #fff;
     opacity: 0.7; 
     width: 120px;
@@ -49,7 +46,7 @@ header {
     margin-right: 20px; 
 }
 
-.account a {
+.account__a {
     color: #ee9d9d; 
     justify-self: end;
     padding-right: 10px; 
@@ -63,7 +60,7 @@ header {
 
 /* home.html */
 
-#logoxl{
+.homeheader__logoxl{
     margin-top:50px;
     display:block;
     width:50%;
@@ -73,7 +70,7 @@ header {
     background-image:url(img/logo-xl.svg);
 }
 
-#inloggen{
+.homeheader__inloggen{
     width:280px;
     height:60px;
     background-size:contain;
@@ -82,19 +79,19 @@ header {
     margin-bottom:60px;
 }
 
-#homeheader{
+.homeheader{
     background-color:#DBDBDB;
     display:flex;
     flex-direction: column;
     align-items: center;
 }
 
-#h1{
+h1{
     width:75%;
     font-size:1.5em;
 }
 
-#userpictures{
+.homeheader__userpictures{
     width:100%;
     display:flex;
     flex-wrap:wrap;
@@ -123,7 +120,7 @@ header {
     padding: 0 1em;
 }
 
-#homemain{
+.homemain{
     padding:40px;
 }
 
@@ -140,7 +137,7 @@ header {
 
 @media (min-width: 800px){
     
-    #logoxl{
+    .homeheader__logoxl{
         width:100%;
         height:100px;
         margin-top:0;
@@ -157,7 +154,7 @@ header {
         max-width:1200px;
     }
     
-    #inloggen{
+    .homeheader__inloggen{
         margin:0;
         grid-column:2 / 3;
         grid-row:1/2;
@@ -167,7 +164,7 @@ header {
         grid-column:1/2;
     }
     
-    #userpictures{
+    .homeheader__userpictures{
         display:grid;
         grid-template-columns:repeat(10, 1fr);
         justify-content:center;
@@ -235,7 +232,7 @@ header {
         grid-column: 3 / span 1;
     }
     
-    #homemain{
+    .homemain{
         display:grid;
         grid-template-columns:1fr 1fr;
         grid-template-rows:1fr 1fr;
@@ -249,7 +246,7 @@ header {
     
     
     
-    #firstarticle{
+    .homemain__firstarticle{
         grid-row:1/3;
         align-self: center;
     }
@@ -259,20 +256,23 @@ header {
 
 /* kweeni.html */
 
-#vraag {
+.vraag {
     display: block; 
     background-color: #ffeef0;
     text-align: center; 
 }
 
-#vraag h1 {
+.vraag__h1 {
     color: #fa5b33; 
     font-size: 40px; 
     padding: 20px 10px;
     margin: 0px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#vraag input {
+.vraag input {
     border-color: #fa5b33;
     width: 80%;
     height: 70px; 
@@ -280,11 +280,11 @@ header {
     max-width: 700px; 
 }
 
-#vraag .btn {
+.vraag__btn {
     text-align: center;
 }
 
-#vraag button {
+.vraag button {
     width: 250px;
     height: 50px; 
     background-color: #3b1cff; 
@@ -295,57 +295,55 @@ header {
     border-style: solid; 
 }
 
-#topics h2 {
+.topics__h2 {
     text-align: center; 
 }
 
-#topics .question {
+.topics__question {
     display: grid;
     grid-template-columns: 70px 3fr 2fr 20px;
-    align-items: center;
-    
-    
+    align-items: center;    
 }
 
-#topics .question .question_likes {
+.topics__question--likes {
     background-color: #eeeeee;
     width: 60px; 
     height: 40px; 
     align-items: center;
     text-align: center; 
-
+    margin-left: 5px;
     display: grid;
     grid-template-columns: 20px 30px;
     grid-column-gap: 5px;
     justify-items: center;
-
-
 }
 
-#topics .question .question_likes img {
+.topics__question--img {
     width: 20px; 
 }
 
-#topics .question .q {
+.topics__question--q {
     justify-self: start;
 }
 
-#topics .question .author {
+.topics__question--author {
     color: #e09583; 
     justify-self: end;
+    margin-right: 3px;
 }
 
-#topics .question img {
+.topics__question--img {
     width: 20px;
     border-radius: 20%; 
     justify-self: start;
+    margin-right: 5px;
 }
 
-#topics hr {
+.topics hr {
     opacity: 0.5; 
 }
 
-#topics a {
+.topics__a {
     display: block; 
     margin: 50px; 
     text-align: center; 
@@ -353,47 +351,37 @@ header {
 
 @media (min-width: 700px){
     /* more margin and padding */
-    #topics{
+    .topics{
         padding: 30px; 
     }
 
-    .logo img {
+    .logo__img {
         margin-left: 20px;
     }
 
-    #vraag {
+    .vraag {
         padding: 20px; 
     }
 
-    #vraag h1 {
+    .vraag__h1 {
         padding: 20px 60px;
         margin: 0px; 
     }
 
-    #topics .question .author {
+    .topics__question--author {
         padding-right: 10px;
     }
 }
 
-/* container 
-@media (min-width: 1000px){
-    .container {
-        width: 1400px;
-        margin: 0 auto; 
-    }
-    
-}*/
-
 /* watis.html */
-#main
+.main
 {
     display: grid;
     grid-template-columns: 150px 1fr;
     grid-template-rows: 230px 70px 90px;
 }
 
-
-#head {
+.head {
     background-color: #FFF6F7;
     text-align: center; 
     padding: 20px; 
@@ -401,15 +389,17 @@ header {
     grid-column-start: span 3;
 }
 
-#head h1 {
+.head__h1 {
     color: #fa5b33; 
     font-size: 40px; 
     padding: 20px;
     margin: 0px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: bold;
     font-family: 'Patua One';
 }
-
 
 .likes
 {
@@ -421,7 +411,7 @@ header {
     grid-template-rows: 3 / span 4;
 }
 
-.like
+.likes__like
     {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -430,18 +420,18 @@ header {
         align-items: center;
     }
 
-    .like img
+    .likes__like--img
     {
         width: 30px;
         justify-self: end;
     }
 
-    .like p
+    .likes__like--p
     {
         justify-self: start;
     }
 
-    .like a
+    .likes__like--a
     {
         display: inline-block;
         font-weight: bold;
@@ -458,14 +448,12 @@ header {
     padding: 25px;
 }
 
-#users_pic
+.users__pic
 {
     max-width: 100%;
     width: 20px;
     border-radius: 20%;
 }
-
-
 
 .auteur
 {
@@ -480,13 +468,13 @@ header {
     align-items: center;    
 }
 
-.auteur p
+.auteur__p
 {
     margin: 0px;
     align-self: end;
 }
 
-.auteur span
+.auteur__span
 {
     font-weight: bold;
     font-style: normal;
@@ -494,7 +482,7 @@ header {
     align-self: start;
 }
 
-.auteur .avatar
+.auteur__img
 {
     width: 40px;
     border-radius: 10%;
@@ -507,19 +495,19 @@ header {
 /* start grid layout */
 @media (min-width: 800px){
 
-    #main
+    .main
     {
         display: grid;
         grid-template-columns: 150px 1fr 1fr;
         grid-template-rows: 150px 100px; 
     }
 
-    #head {
+    .head {
         display: grid;    
         grid-column-start: span 6;
     }
 
-    .auteur .avatar
+    .auteur__img
     {
         margin-right: 5px; 
     }
@@ -534,10 +522,10 @@ header {
 
 }
 
-
-.comments_pic{
+.comments__pic{
     width: 30px;
     border-radius: 20%;
+    margin-right: 2px;
 }
 
 .comments
@@ -549,7 +537,7 @@ header {
     color: grey;
 }
 
-.comments a {
+.comments__a {
     text-decoration: none;
     color: gray;
     font-family: 'Patua One', serif;
@@ -561,7 +549,7 @@ header {
     width: 350px;
 }
 
-.place-comment
+.placeComment
 {
     border: 15px solid #DCDCDC;
     margin-left: auto;
@@ -569,7 +557,7 @@ header {
     margin-bottom: 5px;
 }
 
-.place-comment input
+.placeComment input
 {
     width: 100%;
     padding: 5px;
@@ -592,7 +580,7 @@ header {
     align-items: center;
 }
 
-.react #form
+.react__form
 {
     display: flex;
     flex-direction: row;
@@ -601,7 +589,7 @@ header {
     align-items: center;
 }
 
-.react .text-input
+.react .react__input
 {
     width: 300px;
     height: 40px;
@@ -610,7 +598,7 @@ header {
     padding: 10px;
 }
 
-.react a
+.react__a
 {
     background-color: #3B1CFF;
     color: #DCDCDC;
@@ -628,7 +616,7 @@ header {
 
 @media (min-width: 700px){
     /* more margin and padding */
-    .like img
+    .likes__like--img
     {
         margin-left: 30px;
     }
