@@ -272,7 +272,7 @@ h1{
     margin-right: auto;
 }
 
-.vraag input {
+.vraag__input {
     border-color: #fa5b33;
     width: 80%;
     height: 70px; 

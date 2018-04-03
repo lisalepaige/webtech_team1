@@ -17,9 +17,10 @@ html(lang='en')
         a.account__a(href='#') Uitloggen
     section.vraag
       .container
+       form(action="" method="post" )
         h1.vraag__h1 Iets kweeni hoe moeilijk? Stel hier je vraag.
-        input(type='text', placeholder='Wat is expressjs?')
-        .vraag_btn
+        input.vraag__input(type='text', placeholder='Wat is expressjs?')
+        .vraag__btn
           button NU VRAGEN
     .container
       section.topics
