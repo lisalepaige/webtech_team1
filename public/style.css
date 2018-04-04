@@ -262,14 +262,13 @@ h1{
     text-align: center; 
 }
 
-.vraag__h1 {
+.vraag .vraag__h1 {
     color: #fa5b33; 
     font-size: 40px; 
-    padding: 20px 10px;
-    margin: 0px; 
     display: block;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .vraag__input {
@@ -284,15 +283,17 @@ h1{
     text-align: center;
 }
 
-.vraag button {
+
+.vraag__btn--btn {
     width: 250px;
     height: 50px; 
-    background-color: #3b1cff; 
+    background-color: #3928aa; 
     color: #e4e0ff; 
     font-size: 25px; 
     margin: 20px; 
     border-radius: 12px; 
     border-style: solid; 
+    cursor: pointer;
 }
 
 .topics__h2 {
@@ -322,8 +323,9 @@ h1{
     width: 20px; 
 }
 
-.topics__question--q {
+.topics__question--a {
     justify-self: start;
+    color: black;
 }
 
 .topics__question--author {

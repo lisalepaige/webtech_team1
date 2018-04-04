@@ -20,8 +20,13 @@
   "dependencies": {
     "express": "^4.16.0",
     "nodemon": "^1.17.2",
+<<<<<<< HEAD
     "pug": "^2.0.3",
     "body-parser": "~1.13.2",
     "mongodb": "v3.6.3"
+=======
+    "passport-facebook": "^2.1.1",
+    "pug": "^2.0.3"
+>>>>>>> myBranchLisaL
   }
 }
