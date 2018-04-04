@@ -256,13 +256,13 @@ h1{
 
 /* kweeni.html */
 
-.vraag {
+.question {
     display: block; 
     background-color: #ffeef0;
     text-align: center; 
 }
 
-.vraag .vraag__h1 {
+.question .question {
     color: #fa5b33; 
     font-size: 40px; 
     display: block;
@@ -271,7 +271,7 @@ h1{
     text-align: center;
 }
 
-.vraag__input {
+.question {
     border-color: #fa5b33;
     width: 80%;
     height: 70px; 
@@ -279,12 +279,12 @@ h1{
     max-width: 700px; 
 }
 
-.vraag__btn {
+.question__btn {
     text-align: center;
 }
 
 
-.vraag__btn--btn {
+.question__btn--btn {
     width: 250px;
     height: 50px; 
     background-color: #3928aa; 
@@ -361,11 +361,11 @@ h1{
         margin-left: 20px;
     }
 
-    .vraag {
+    .question {
         padding: 20px; 
     }
 
-    .vraag__h1 {
+    .question {
         padding: 20px 60px;
         margin: 0px; 
     }
