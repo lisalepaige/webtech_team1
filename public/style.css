@@ -262,7 +262,7 @@ h1{
     text-align: center; 
 }
 
-.question .question {
+.question .question__h1 {
     color: #fa5b33; 
     font-size: 40px; 
     display: block;
@@ -271,7 +271,7 @@ h1{
     text-align: center;
 }
 
-.question {
+.question__input {
     border-color: #fa5b33;
     width: 80%;
     height: 70px; 
