@@ -72,6 +72,10 @@ html(lang="en")
           input(type="text" placeholder="Plaats commentaar...")
         .react
           form.react__form(action="" method="post")
-            img.user-avatar(src="img/user8.png" alt="user")
-            input.react__input(type="text" name="new-comment" value="Reageer hier op deze vraag")
-            a.react__a(href="#") Reageren
+            img.user-avatar.test(src="img/user8.png" alt="user")
+            input.react__input(type="text" name="new-comment" placeholder="Reageer hier op deze vraag")
+            input.react__a(type="submit" value="Reageren")
+
+script(src="/javascripts/primuslib.js")
+script(src="/javascripts/app.js")
+            

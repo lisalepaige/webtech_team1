@@ -29,10 +29,25 @@ router.get('/kweeni', function(req, res){
 
 });
 
+
+
+
+
+
 /* GET wat is */
 router.get('/watis', function(req, res){
     res.render('./watis', {title: 'watis'}); 
 });
+
+router.post('/watis', function(req, res){
+  
+});
+
+
+
+
+
+
 
 /* POST kweeni */
 router.post('/kweeni', function (req, res, next) {
