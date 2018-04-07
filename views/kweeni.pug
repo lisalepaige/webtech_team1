@@ -10,19 +10,18 @@ html(lang='en')
   body
     header
       .logo
-       a(href='/kweeni')
         img.logo__img(src='/img/logo.svg', alt='kweeni')
       .account
         p.account__p Anneke Kodeur
         img.profile(src='/img/user8.png', alt='profile pic')
-        a.account__a(href='/') Uitloggen
-    section.vraag
+        a.account__a(href='#') Uitloggen
+    section.question
       .container
        form(action="" method="post" )
-        h1.vraag__h1 Iets kweeni hoe moeilijk? Stel hier je vraag.
-        input(type='text', placeholder='Wat is expressjs?')
-        .vraag__btn
-          button.vraag__btn--btn(type='button') NU VRAGEN
+        h1.question__h1 Iets kweeni hoe moeilijk? Stel hier je vraag.
+        input.question__input(type='text', placeholder='Wat is expressjs?' name="question__input")
+        .question__btn
+          button.question__btn--btn(type='submit') NU VRAGEN
     .container
       section.topics
         h2.topics__h2 Hot topics!
@@ -30,7 +29,7 @@ html(lang='en')
           .topics__question--likes
             img.topics__question--img(src='img/icon-cool.svg', alt='icon')
             span x33
-          a.topics__question--a(href='/watis') Wat is ES6 en waarvoor dient het?
+          p.topics__question--p Wat is ES6 en waarvoor dient het?
           p.topics__question--author Yves Dehipster
           img.topics__question--img(src='img/user1.png', alt='Yves')
         hr
@@ -38,7 +37,7 @@ html(lang='en')
           .topics__question--likes
             img.topics__question--img(src='img/icon-cool.svg', alt='icon')
             span x28
-          a.topics__question--a(href='/watis') Wat is het verschil tussen let, var en const
+          p.topics__question--q Wat is het verschil tussen let, var en const
           p.topics__question--author Jerold Venard
           img.topics__question--img(src='img/user2.png', alt='Yves')
         hr
@@ -46,7 +45,7 @@ html(lang='en')
           .topics__question--likes
             img.topics__question--img(src='img/icon-cool.svg', alt='icon')
             span x33
-          a.topics__question--a(href='/watis') Wat is ES6 en waarvoor dient het?
+          p.topics__question--q Wat is ES6 en waarvoor dient het?
           p.topics__question--author Yves Dehipster
           img.topics__question--img(src='img/user3.png', alt='Yves')
         hr
@@ -54,7 +53,7 @@ html(lang='en')
           .topics__question--likes
             img.topics__question--img(src='img/icon-cool.svg', alt='icon')
             span x28
-          a.topics__question--a(href='/watis') Wat is het verschil tussen let, var en const
+          p.topics__question--q Wat is het verschil tussen let, var en const
           p.topics__question--author Jerold Venard
           img.topics__question--img(src='img/user7.png', alt='Yves')
         a.topics__a(href='#') Toon 10 extra topics

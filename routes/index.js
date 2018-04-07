@@ -10,23 +10,24 @@ var url = 'mongodb://localhost:27017/webtech';
 /* GET home */
 router.get('/', function(req, res){
  // test connection to database
- mongo.connect(url, function (err, db) {
-    assert.equal(null, err);
-    var cursor = db.db('webtech').collection('test').find();
-    cursor.forEach(function (doc, err) {
-      assert.equal(null, err);
-      console.log(doc); 
-    }, function () {
-      db.close();
-      res.render('./home', {title: 'Home'}); 
-    });
-  });
+
+ res.render('./home', {title: 'Home'}); 
 });
 
 /* GET kweeni */
 router.get('/kweeni', function(req, res){
-    res.render('./kweeni', {title: 'kweeni'}); 
 
+   /*mongo.connect(url, function (err, db) {
+    assert.equal(null, err);
+    var cursor = db.db('webtech').collection('question').find();
+    cursor.forEach(function (doc, err) {
+      assert.equal(null, err);
+      console.log(doc); 
+    }, function () {
+      db.close();*/
+      res.render('./kweeni', {title: 'Kweeni'}); 
+    /*});
+  });*/
 });
 
 
@@ -52,10 +53,10 @@ router.post('/watis', function(req, res){
 /* POST kweeni */
 router.post('/kweeni', function (req, res, next) {
     // create item
-    console.log(req.body.vraag__input);
+    console.log( req.body.question__input);
     var item = {
-      question: req.body.vraag__input, 
-      author: req.body
+      question: req.body.question__input, 
+      author: "tester"
     };
 
     console.log(item); 
@@ -74,5 +75,9 @@ router.post('/kweeni', function (req, res, next) {
     // redirect to home page
     res.redirect('/');
   });  
+
+
+
+
 
 module.exports = router;
