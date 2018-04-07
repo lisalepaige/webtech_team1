@@ -10,6 +10,6 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json() );
 // link to css and img
 app.use(express.static('./public'));
-app.use('/', require('./routes/index') );
+app.use('/', require('./routes/index'));
 
 app.listen(port, () => console.log('Example app listening on port 3000!')); 
