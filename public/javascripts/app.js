@@ -12,23 +12,51 @@ primus = Primus.connect(url, {
 
 document.querySelector(".react__a").addEventListener("click", function(e) {
     var reactie = document.querySelector(".react__input").innerHTML;
-    primus.write(reactie);
+    primus.write("reactie");
     console.log("clicked");
     
 });
+
+function addReaction(){
+    // create new article / give class 'comments'
+    var article = document.createElement("article");
+    article.classList.add('comments');
+
+    //create new paragraph / insert value from textfield into paragraph / append paragraph to article
+    var par = document.createElement("p"); 
+    par.innerHTML = document.querySelector(".react__input").value;
+    article.appendChild(par);
+
+    //create profile image / give image source / add class / append image to article
+    var profileimage = document.createElement("img");
+    profileimage.src = "img/user9.png";
+    profileimage.classList.add('comments__pic');
+    article.appendChild(profileimage);
+
+    //create new link (name of user) / add class / insert name of user / append to article
+    var usernameLink = document.createElement("a");
+    usernameLink.classList.add('.comments__a');
+    usernameLink.innerHTML = "Som Wan";
+    article.appendChild(usernameLink);
+
+    //add new article to comments
+    var container = document.getElementById("listcomments");
+    container.appendChild(article);
+}
 
 
 
 primus.on("data", function message(data) {
     
 
-    alert("data received");
-    
-    var reactie = data;
+    //alert("data received");
     
     
-    if( reactie ) {
-        percent(optie);
+    
+    
+    if( data == "reactie" ) {
+        addReaction();
+        console.log("Adding reaction");
         //title.innerHTML = optie;
     }
     

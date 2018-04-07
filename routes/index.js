@@ -75,7 +75,6 @@ router.get('/kweeni', function (req, res) {
 
 
       /*router.get('/kweeni', function (req, res) {
-
         mongo.connect(url, function (err, db) {
           assert.equal(null, err);
           db.db('webtech').collection('question').find().toArray(function(err, result){
