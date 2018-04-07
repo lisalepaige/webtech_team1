@@ -25,38 +25,14 @@ html(lang='en')
     .container
       section.topics
         h2.topics__h2 Hot topics!
-
-        .testclass
-
-        .topics__question
-          .topics__question--likes
-            img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-            span x33
-          p.topics__question--p Wat is ES6 en waarvoor dient het?
-          p.topics__question--author Yves Dehipster
-          img.topics__question--img(src='img/user1.png', alt='Yves')
-        hr
-        .topics__question
-          .topics__question--likes
-            img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-            span x28
-          p.topics__question--q Wat is het verschil tussen let, var en const
-          p.topics__question--author Jerold Venard
-          img.topics__question--img(src='img/user2.png', alt='Yves')
-        hr
-        .topics__question
-          .topics__question--likes
-            img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-            span x33
-          p.topics__question--q Wat is ES6 en waarvoor dient het?
-          p.topics__question--author Yves Dehipster
-          img.topics__question--img(src='img/user3.png', alt='Yves')
-        hr
-        .topics__question
-          .topics__question--likes
-            img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-            span x28
-          p.topics__question--q Wat is het verschil tussen let, var en const
-          p.topics__question--author Jerold Venard
-          img.topics__question--img(src='img/user7.png', alt='Yves')
+        each question, i in questionslist
+          .topics__question
+            .topics__question--likes
+              img.topics__question--img(src='img/icon-cool.svg', alt='icon')
+              span x33
+            p.topics__question--p #{question.text}
+            p.topics__question--author #{question.user_id}
+            img.topics__question--img(src='img/user1.png', alt='Yves')
+          hr
+          
         a.topics__a(href='#') Toon 10 extra topics

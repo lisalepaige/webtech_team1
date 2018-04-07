@@ -41,7 +41,7 @@ html(lang="en")
         img.users__pic(src="img/user11.png")
         img.users__pic(src="img/user12.png")
     .container
-      section
+      section#listcomments
         article.comments
           p
             | Op de site staat: Express is a minimal and flexible Node.js web application framework that provides a robust set of features
@@ -68,13 +68,13 @@ html(lang="en")
             | schrijven in nodejs. Een beetje zoals jQuery in frontend. Maar dan voor je back-end werk.
           img.comments__pic(src="img/user9.png" alt="user5")
           a.comments__a(href="#") Som Wan
-        .placeComment
-          input(type="text" placeholder="Plaats commentaar...")
-        .react
-          form.react__form(action="" method="post")
-            img.user-avatar.test(src="img/user8.png" alt="user")
-            input.react__input(type="text" name="new-comment" placeholder="Reageer hier op deze vraag")
-            input.react__a(type="submit" value="Reageren")
+      .placeComment
+        input(type="text" placeholder="Plaats commentaar...")
+      .react
+        form.react__form(action="" method="post")
+          img.user-avatar.test(src="img/user8.png" alt="user")
+          input.react__input(type="text" name="new-comment" placeholder="Reageer hier op deze vraag")
+          input.react__a(type="submit" value="Reageren")
 
 script(src="/javascripts/primuslib.js")
 script(src="/javascripts/app.js")
