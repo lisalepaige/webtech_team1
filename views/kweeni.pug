@@ -27,6 +27,9 @@ html(lang='en')
         h2.topics__h2 Hot topics!
 
         .testclass
+          each question, i in questionslist
+            p.topics__question--p #{question.text}
+            p.topics__question--author Yves Dehipster
 
         .topics__question
           .topics__question--likes

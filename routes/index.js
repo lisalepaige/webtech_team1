@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-
+var texttoshow = ""; 
 
 /* mongodb */
 var mongo = require('mongodb');
@@ -20,28 +20,20 @@ router.get('/', function (req, res) {
 
 /* GET kweeni */
 router.get('/kweeni', function (req, res) {
-
       mongo.connect(url, function (err, db) {
         assert.equal(null, err);
-        var cursor = db.db('webtech').collection('question').find();
-        cursor.forEach(function (doc, err) {
-          // show questions in testclass 
-          var texttoshow = `.topics__question--likes
-      img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-      span x33
-    p.topics__question--p Wat is ES6 en waarvoor dient het?
-    p.topics__question--author Yves Dehipster
-    img.topics__question--img(src='img/user1.png', alt='Yves')`;
-          assert.equal(null, err);
-          console.log(doc);
-        }, function () {
-          db.close();
-          res.render('./kweeni', {
-            title: 'Kweeni'
+        db.db('webtech').collection('question').find().toArray(function(err, result){
+          console.log(result); 
+          if (err){
+            res.send(err); 
+          } else if (result.lenght=!0){ // result is not empty
+            res.render('kweeni', {"questionslist": result});
+          } else {
+            res.send('no questions found'); 
+          }
           });
         });
       });
-    });
 
       /* GET wat is */
       router.get('/watis', function (req, res) {
@@ -80,5 +72,25 @@ router.get('/kweeni', function (req, res) {
         // redirect to home page
         res.redirect('/');
       });
+
+
+      /*router.get('/kweeni', function (req, res) {
+
+        mongo.connect(url, function (err, db) {
+          assert.equal(null, err);
+          db.db('webtech').collection('question').find().toArray(function(err, result){
+            console.log(result); 
+            if (err){
+              res.send(err); 
+            } else if (result.lenght=!0){ // result is not empty
+              res.render('kweeni', {"questionslist": result});
+            } else {
+              res.send('no questions found'); 
+            }
+            db.close();
+          });
+        });
+      });*/
+
 
       module.exports = router;
