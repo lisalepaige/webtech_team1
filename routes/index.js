@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
+
+
 /* mongodb */
 var mongo = require('mongodb');
 var assert = require('assert'); // for errors and validation
@@ -18,21 +20,18 @@ router.get('/', function (req, res) {
 
 /* GET kweeni */
 router.get('/kweeni', function (req, res) {
-      var test = document.querySelector('.testclass');
 
       mongo.connect(url, function (err, db) {
         assert.equal(null, err);
         var cursor = db.db('webtech').collection('question').find();
         cursor.forEach(function (doc, err) {
           // show questions in testclass 
-          var newQuestion = document.createElement('p');
-          newQuestion.innerHTML = `.topics__question--likes
+          var texttoshow = `.topics__question--likes
       img.topics__question--img(src='img/icon-cool.svg', alt='icon')
       span x33
     p.topics__question--p Wat is ES6 en waarvoor dient het?
     p.topics__question--author Yves Dehipster
     img.topics__question--img(src='img/user1.png', alt='Yves')`;
-          test.appendChild(newQuestion);
           assert.equal(null, err);
           console.log(doc);
         }, function () {
