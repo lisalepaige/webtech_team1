@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 
 var texttoshow = ""; 
+var passport = "";
 
 /* mongodb */
 var mongo = require('mongodb');
@@ -73,6 +74,7 @@ router.get('/kweeni', function (req, res) {
         res.redirect('/');
       });
 
+      
 
       /*router.get('/kweeni', function (req, res) {
         mongo.connect(url, function (err, db) {
