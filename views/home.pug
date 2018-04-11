@@ -1,12 +1,6 @@
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    title Kweeni
-    link(rel='stylesheet', href='../style.css')
-    link(href='Patua_One/PatuaOne-Regular.ttf', rel='stylesheet', type='text/css')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  body
-  
+extends layout
+
+block content
     section.homeheader
       .grid
         a.homeheader__logoxl(href='/')
@@ -52,6 +46,3 @@ html(lang='en')
           img(src='img/icon-rainbow.svg', alt='smiley3')
           h2 Made by imd
         p Een project van #WeAreIMD en GoodBytes.be
-
-script(src='http://connect.facebook.net/en_US/all.js')
-script(src="/javascripts/facebook.js")

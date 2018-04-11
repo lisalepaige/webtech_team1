@@ -1,12 +1,6 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    title Wat is express.js
-    link(rel="stylesheet" type="text/css" href="style.css")
-    link(href="Patua_One/PatuaOne-Regular.ttf" rel="stylesheet" type="text/css")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-  body
+extends layout
+
+block content
     header
       .logo
         a(href='/watis')
@@ -77,7 +71,3 @@ html(lang="en")
           input.react__a(type="submit" value="Reageren")
 
 
-    script(src='/javascripts/primuslib.js')
-    script(src='/javascripts/app.js')
-    script(src='/javascripts/facebook.js')
-            

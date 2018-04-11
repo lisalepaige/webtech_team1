@@ -1,13 +1,6 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    title Kweeni
-    link(rel='stylesheet', href='../style.css')
-    link(href='Patua_One/PatuaOne-Regular.ttf', rel='stylesheet', type='text/css')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    
-  body
+extends layout
+
+block content
     header
       .logo
         img.logo__img(src='/img/logo.svg', alt='kweeni')
@@ -38,6 +31,5 @@ html(lang='en')
         a.topics__a(href='#') Toon 10 extra topics
 
 
-    script(src='/javascripts/primuslib.js')
-    script(src='/javascripts/app.js')
-    script(src='/javascripts/facebook.js')
+    
+    
