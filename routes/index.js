@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
   });
 });
 
-/* GET kweeni */
+/* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
       mongo.connect(url, function (err, db) {
         assert.equal(null, err);
@@ -42,12 +42,13 @@ router.get('/kweeni', function (req, res) {
         });
       });
 
+      /* POST wat is */
       router.post('/watis', function (req, res) {
 
       });
 
 
-      /* POST kweeni */
+      /* POST kweeni + save data  */
       router.post('/kweeni', function (req, res, next) {
         // create item
         console.log(req.body.question__input);
