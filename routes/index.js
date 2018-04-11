@@ -12,8 +12,6 @@ var url = 'mongodb://localhost:27017/webtech';
 
 /* GET home */
 router.get('/', function (req, res) {
-  // test connection to database
-
   res.render('./home', {
     title: 'Home'
   });
@@ -29,6 +27,7 @@ router.get('/kweeni', function (req, res) {
             res.send(err); 
           } else if (result.lenght=!0){ // result is not empty
             res.render('kweeni', {"questionslist": result});
+            console.log(result); 
           } else {
             res.send('no questions found'); 
           }
