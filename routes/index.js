@@ -21,7 +21,9 @@ router.get('/', function (req, res) {
 router.get('/kweeni', function (req, res) {
   mongo.connect(url, function (err, db) {
     assert.equal(null, err);
-    db.db('webtech').collection('question').find().toArray(function (err, result) {
+
+    // order by date
+    db.db('webtech').collection('testje').find().sort({datefield: -1}).toArray(function (err, result) {
       console.log("_____________________________");
       if (err) {
         res.send(err);
@@ -64,7 +66,7 @@ router.post('/kweeni', function (req, res, next) {
   mongo.connect(url, function (err, db) {
     assert.equal(null, err);
     // acces database, use collection to insert item 
-    db.db('webtech').collection('question').insertOne(item, function (err, result) {
+    db.db('webtech').collection('testje').insertOne(item, function (err, result) {
       // callback (if no errors)
       assert.equal(null, err);
       console.log('Item inserted');

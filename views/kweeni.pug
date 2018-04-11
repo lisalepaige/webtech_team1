@@ -22,9 +22,9 @@ block content
           .topics__question
             .topics__question--likes
               img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-              span x33
+              span x #{question.likes} 
             p.topics__question--p #{question.text} 
-            p.topics__question--author #{question.user_id}
+            p.topics__question--author #{question.user.name}
             img.topics__question--img(src='img/user1.png', alt='Yves')
           hr
           
