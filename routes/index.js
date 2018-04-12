@@ -4,7 +4,7 @@ var passport = "";
 var mongoose = require('mongoose'); 
 
 // connection
-mongoose.connect('mongodb://localhost:27017/webtech')
+mongoose.connect('mongodb://localhost:27017/webtech', {autoIndex: false});
 var Schema = mongoose.Schema; 
 
 // blueprint (define layout)
@@ -48,6 +48,16 @@ router.get('/', function (req, res) {
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
+  
+/* count for id NOT USED */
+QuestionsData.count({}, function (error, result) {
+  if (error){
+    console.log(error);
+  } else {
+    count = result; 
+  }
+});
+
   QuestionsData.find().sort({datefield: -1})
     .then (function(result){
       console.log(result); 
@@ -57,9 +67,33 @@ router.get('/kweeni', function (req, res) {
 
 /* GET wat is */
 router.get('/watis', function (req, res) {
-  res.render('./watis', {
-    title: 'watis'
-  });
+  QuestionsData.findOne({_id: "5acf970d5c50916489a2937c"})
+    .then (function(result){
+      console.log(result); 
+      res.render('watis', {question: result}); 
+    });
+});
+
+/* GET specifieke vraag */
+router.get('/watis/1', function (req, res) {
+  /*QuestionsData.findOne({_id: "5acf970d5c50916489a2937c"})
+    .then (function(result){
+      console.log(result); 
+      res.render('watis', {question: result}); 
+    });*/
+    /* FETCH BY ID */
+    module.exports.fetchOne = (req, res) => {
+      console.log(req.params.id); 
+      res.render('watis', {}); 
+      /*if (student) {
+          res.status(200).json(student);
+      } else {
+          res.status(404).json({
+              error: 404,
+              message: 'Not Found'
+          });
+      }*/
+    };
 });
 
 /* POST wat is */
@@ -76,7 +110,7 @@ router.post('/kweeni', function (req, res, next) {
     user: {
       _id: 1,
       name: "Caroline",
-      img: "caro.jpg"
+      img: "https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg"
     }
   };
 
