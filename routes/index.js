@@ -10,8 +10,30 @@ var Schema = mongoose.Schema;
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
   text: {type: String, required: true},
-  likes: 0
-  //user: String
+  likes: {type: Number},
+  user: {
+    _id: {type: Number},
+    name: {type: String},
+    img: {type: String}
+  },
+  answers: [{
+    _id: {type: Number},
+    text: {type: String},
+    user: {
+      _id: {type: Number},
+      name: {type: String},
+      img: {type: String}
+    },
+    comments: [{
+      _id: {type: Number},
+      text: {type: String},
+      user: {
+        _id: {type: Number},
+        name: {type: String},
+        img: {type: String}
+      }
+    }]
+  }]
 }, {collection: 'testje'}); // stores data in collection
 
 // create model of that blueprint
@@ -28,6 +50,7 @@ router.get('/', function (req, res) {
 router.get('/kweeni', function (req, res) {
   QuestionsData.find().sort({datefield: -1})
     .then (function(result){
+      console.log(result); 
       res.render('kweeni', {questionslist: result}); 
     });
 });
@@ -49,7 +72,12 @@ router.post('/watis', function (req, res) {
 router.post('/kweeni', function (req, res, next) {
   var item = {
     text: req.body.question__input,
-    //user_id: 1
+    likes: 0,
+    user: {
+      _id: 1,
+      name: "Caroline",
+      img: "caro.jpg"
+    }
   };
 
   // create instance of model 
