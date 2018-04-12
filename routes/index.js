@@ -7,12 +7,14 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/webtech')
 var Schema = mongoose.Schema; 
 
+// blueprint (define layout)
+var userDataSchema = new Schema({
+  text: {type: String, required: true},
+  user: String
+}, {collection: 'testje'}); // stores data in collection
 
-/* mongodb */
-/*var mongo = require('mongodb');
-var assert = require('assert'); // for errors and validation
-
-var url = 'mongodb://localhost:27017/webtech';*/
+// create model of that blueprint
+var UserData = mongoose.model('UserData', userDataSchema) 
 
 /* GET home */
 router.get('/', function (req, res) {
