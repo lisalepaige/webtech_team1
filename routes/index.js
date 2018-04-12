@@ -10,8 +10,8 @@ var Schema = mongoose.Schema;
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
   text: {type: String, required: true},
-  likes: 0, 
-  user: String
+  likes: 0
+  //user: String
 }, {collection: 'testje'}); // stores data in collection
 
 // create model of that blueprint
@@ -47,28 +47,20 @@ router.post('/watis', function (req, res) {
 
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
-  // create item
-  //console.log(req.body.question__input);
   var item = {
     text: req.body.question__input,
-    user_id: 1
+    //user_id: 1
   };
 
-  console.log(item);
-  // connect to mongo db
-  mongo.connect(url, function (err, db) {
-    assert.equal(null, err);
-    // acces database, use collection to insert item 
-    db.db('webtech').collection('testje').insertOne(item, function (err, result) {
-      // callback (if no errors)
-      assert.equal(null, err);
-      console.log('Item inserted');
-      //console.log(item);
-      db.close();
-    });
-  });
-  // redirect to home page
+  // create instance of model 
+  var data = new QuestionsData(item); 
+  data.save(); 
   res.redirect('/kweeni');
+});
+
+/* UPDATE likes */
+router.post('/kweeni', function (req, res, next) {
+  // find by id? 
 });
 
 module.exports = router;
