@@ -1,12 +1,18 @@
 const express = require('express')
 const router = express.Router();
 var passport = "";
+var mongoose = require('mongoose'); 
+
+// connection
+mongoose.connect('mongodb://localhost:27017/webtech')
+var Schema = mongoose.Schema; 
+
 
 /* mongodb */
-var mongo = require('mongodb');
+/*var mongo = require('mongodb');
 var assert = require('assert'); // for errors and validation
 
-var url = 'mongodb://localhost:27017/webtech';
+var url = 'mongodb://localhost:27017/webtech';*/
 
 /* GET home */
 router.get('/', function (req, res) {
@@ -19,6 +25,16 @@ router.get('/', function (req, res) {
 router.get('/kweeni', function (req, res) {
   mongo.connect(url, function (err, db) {
     assert.equal(null, err);
+    
+    // get length of array
+    db.db('webtech').collection('testje').count({}, function(error, result){
+      if (error){
+        console.log(error); 
+      } else {
+      //console.log(result); 
+      aantal_id = result; 
+      }
+    });
 
     // order by date
     db.db('webtech').collection('testje').find().sort({datefield: -1}).toArray(function (err, result) {
