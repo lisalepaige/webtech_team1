@@ -89,13 +89,6 @@ router.get('/', function (req, res) {
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
-  // get date from objectId
-  console.log('------------------- GET MINUTES -------------------')
-  var dateFromObjectId = new Date(parseInt("5acf970d5c50916489a2937c".substring(0, 8), 16) * 1000);
-  console.log(dateFromObjectId); 
-  var minutes = dateFromObjectId.getMinutes(); 
-  console.log(minutes); 
-
   QuestionsData.find().sort({
       datefield: -1
     })
@@ -119,14 +112,11 @@ router.get('/kweeni/:id', function (req, res) {
           message: 'id not found'
         });
       } else {
-        var minutes = result.current_date.getMinutes(); 
-        console.log(minutes); 
-        /*console.log(result);
-        console.log(result.answers[0].text); */
-        //console.log(result.answers[0].comments); 
+        var minutes = result.current_date.getMinutes();
+        console.log(minutes);
         res.render('watis', {
           title: id,
-          question: result, 
+          question: result,
           question_min: minutes,
           answerlist: result.answers,
           commentlist: result.answers.comments
@@ -135,29 +125,8 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
-
-
-/* POST wat is */
-router.post('/watis', function (req, res) {
-
-});
-
-
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
-
-  // get date from objectId
-  console.log('------------------- GET MINUTES -------------------')
- 
-
-  function showMinutes(objectId){
-    var dateFromObjectId = new Date(parseInt(ObjectId.substring(0, 8), 16) * 1000);
-    console.log(dateFromObjectId); 
-    var minutes = dateFromObjectId.getMinutes(); 
-    console.log(minutes); 
-    return minutes; 
-  }
-
   var item = {
     text: req.body.question__input,
     likes: 0,
