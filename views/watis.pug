@@ -4,55 +4,55 @@ block content
     header
       .logo
         a(href='/watis')
-          img.logo__img(src='/img/logo.svg', alt='kweenilogo')
+          img.logo__img(src='../img/logo.svg', alt='kweenilogo')
       .account
         p.account__p Anneke Kodeur
-        img.profile(src='/img/user8.png', alt='profile pic')
+        img.profile(src='../img/user8.png', alt='profile pic')
         a.account__a(href='/') Uitloggen
     main.main
       .head
         h1.head__h1 #{question.text} 
       .auteur
         p.auteur__p 12 minuten geleden gevraagd door
-        img.auteur__img(src="img/user8.png" alt="active_user")
+        img.auteur__img(src="../img/user8.png" alt="active_user")
         span.auteur__span Anneke Kodeur
       .likes
         .likes__like
-          img.likes__like--img(src="img/icon-cool.svg" alt="smiley_cool")
+          img.likes__like--img(src="../img/icon-cool.svg" alt="smiley_cool")
           p.likes__like--p x20
           a.likes__like--a(href="#") like deze vraag
       .users
-        img.users__pic(src="img/user1.png")
-        img.users__pic(src="img/user2.png")
-        img.users__pic(src="img/user3.png")
-        img.users__pic(src="img/user4.png")
-        img.users__pic(src="img/user5.png")
-        img.users__pic(src="img/user6.png")
-        img.users__pic(src="img/user7.png")
-        img.users__pic(src="img/user8.png")
-        img.users__pic(src="img/user9.png")
-        img.users__pic(src="img/user10.png")
-        img.users__pic(src="img/user11.png")
-        img.users__pic(src="img/user12.png")
+        img.users__pic(src="../img/user1.png")
+        img.users__pic(src="../img/user2.png")
+        img.users__pic(src="../img/user3.png")
+        img.users__pic(src="../img/user4.png")
+        img.users__pic(src="../img/user5.png")
+        img.users__pic(src="../img/user6.png")
+        img.users__pic(src="../img/user7.png")
+        img.users__pic(src="../img/user8.png")
+        img.users__pic(src="../img/user9.png")
+        img.users__pic(src="../img/user10.png")
+        img.users__pic(src="../img/user11.png")
+        img.users__pic(src="../img/user12.png")
     .container
       section#listcomments
         article.comments
           p
             | Op de site staat: Express is a minimal and flexible Node.js web application framework that provides a robust set of features
             | for web and mobile applications.
-          img.comments__pic(src="img/user1.png" alt="user10")
+          img.comments__pic(src="../img/user1.png" alt="user10")
           a.comments__a(href="#") Jay Ba-Kend
         .right
           article.comments.right
             p
               | Thanks. Maar maarvoor dient dat eigenlijk? Frontend?
-            img.comments__pic.right_pic(src="img/user8.png" alt="user8")
+            img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
             a.comments__a(href="#") Anneke Kodeur
           article.comments.right
             p
               | Nee het is puur voor de backend. Vergelijk het met PHP. In je frontend kan je nog altijd gebruik maken van jQuery ofzo als
               | je dat wil.
-            img.comments__pic.right_pic(src="img/user3.png" alt="user20")
+            img.comments__pic.right_pic(src="../img/user3.png" alt="user20")
             a.comments__a(href="#") Jef Dev
         .placeComment
           input(type="text" placeholder="Plaats commentaar...")
@@ -60,13 +60,13 @@ block content
           p
             | Express.js is eigenlijk gewoon een soort van bibliotheek met een hele hoop functies die het makkelijker maken om app ste
             | schrijven in nodejs. Een beetje zoals jQuery in frontend. Maar dan voor je back-end werk.
-          img.comments__pic(src="img/user9.png" alt="user5")
+          img.comments__pic(src="../img/user9.png" alt="user5")
           a.comments__a(href="#") Som Wan
       .placeComment
         input(type="text" placeholder="Plaats commentaar...")
       .react
         form.react__form(action="" method="post")
-          img.user-avatar.test(src="img/user8.png" alt="user")
+          img.user-avatar.test(src="../img/user8.png" alt="user")
           input.react__input(type="text" name="new-comment" placeholder="Reageer hier op deze vraag")
           input.react__a(type="submit" value="Reageren")
 
