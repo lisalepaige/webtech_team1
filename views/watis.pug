@@ -37,17 +37,14 @@ block content
     .container
       section#listcomments
         article.comments
-          p
-            | Op de site staat: Express is a minimal and flexible Node.js web application framework that provides a robust set of features
-            | for web and mobile applications.
+          p #{question.answers[0].text} 
           img.comments__pic(src="../img/user1.png" alt="user10")
-          a.comments__a(href="#") Jay Ba-Kend
+          a.comments__a(href="#") #{question.answers[0].user.name} 
         .right
           article.comments.right
-            p
-              | Thanks. Maar maarvoor dient dat eigenlijk? Frontend?
+            p #{question.answers[0].comments[0].text} 
             img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
-            a.comments__a(href="#") Anneke Kodeur
+            a.comments__a(href="#") #{question.answers[0].comments[0].user.name} 
           article.comments.right
             p
               | Nee het is puur voor de backend. Vergelijk het met PHP. In je frontend kan je nog altijd gebruik maken van jQuery ofzo als

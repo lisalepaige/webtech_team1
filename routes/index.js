@@ -18,7 +18,7 @@ var questionsDataSchema = new Schema({
   likes: {
     type: Number
   },
-  search_term: {
+  search_name: {
     type: String
   },
   user: {
@@ -86,16 +86,6 @@ router.get('/', function (req, res) {
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
-
-  /* count for id NOT USED */
-  QuestionsData.count({}, function (error, result) {
-    if (error) {
-      console.log(error);
-    } else {
-      count = result;
-    }
-  });
-
   QuestionsData.find().sort({
       datefield: -1
     })
@@ -119,7 +109,8 @@ router.get('/kweeni/:id', function (req, res) {
           message: 'id not found'
         });
       } else {
-        console.log(result);
+        /*console.log(result);
+        console.log(result.answers[0].text); */
         res.render('watis', {
           title: id,
           question: result
@@ -141,7 +132,7 @@ router.post('/kweeni', function (req, res, next) {
   var item = {
     text: req.body.question__input,
     likes: 0,
-    search_term: req.body.question__input.split(" ").join("-"),
+    search_name: req.body.question__input.split(" ").join("-"),
     user: {
       _id: 1,
       name: "Caroline",
