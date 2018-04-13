@@ -111,9 +111,12 @@ router.get('/kweeni/:id', function (req, res) {
       } else {
         /*console.log(result);
         console.log(result.answers[0].text); */
+        console.log(result.answers[0].comments); 
         res.render('watis', {
           title: id,
-          question: result
+          question: result, 
+          answerlist: result.answers,
+          commentlist: result.answers.comments
         });
       }
     });

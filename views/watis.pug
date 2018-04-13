@@ -15,11 +15,11 @@ block content
       .auteur
         p.auteur__p 12 minuten geleden gevraagd door
         img.auteur__img(src="../img/user8.png" alt="active_user")
-        span.auteur__span Anneke Kodeur
+        span.auteur__span #{question.user.name} 
       .likes
         .likes__like
           img.likes__like--img(src="../img/icon-cool.svg" alt="smiley_cool")
-          p.likes__like--p x20
+          p.likes__like--p x #{question.likes} 
           a.likes__like--a(href="#") like deze vraag
       .users
         img.users__pic(src="../img/user1.png")
@@ -36,29 +36,17 @@ block content
         img.users__pic(src="../img/user12.png")
     .container
       section#listcomments
-        article.comments
-          p #{question.answers[0].text} 
-          img.comments__pic(src="../img/user1.png" alt="user10")
-          a.comments__a(href="#") #{question.answers[0].user.name} 
-        .right
-          article.comments.right
-            p #{question.answers[0].comments[0].text} 
-            img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
-            a.comments__a(href="#") #{question.answers[0].comments[0].user.name} 
-          article.comments.right
-            p
-              | Nee het is puur voor de backend. Vergelijk het met PHP. In je frontend kan je nog altijd gebruik maken van jQuery ofzo als
-              | je dat wil.
-            img.comments__pic.right_pic(src="../img/user3.png" alt="user20")
-            a.comments__a(href="#") Jef Dev
-        .placeComment
-          input(type="text" placeholder="Plaats commentaar...")
-        article.comments
-          p
-            | Express.js is eigenlijk gewoon een soort van bibliotheek met een hele hoop functies die het makkelijker maken om app ste
-            | schrijven in nodejs. Een beetje zoals jQuery in frontend. Maar dan voor je back-end werk.
-          img.comments__pic(src="../img/user9.png" alt="user5")
-          a.comments__a(href="#") Som Wan
+        each answer, i in answerlist
+          article.comments
+            p #{question.answers[i].text} 
+            img.comments__pic(src="../img/user1.png" alt="user10")
+            a.comments__a(href="#") #{question.answers[i].user.name} 
+          .right
+          each comment, j in answer.comments
+            article.comments.right
+              p #{question.answers[i].comments[j].text} 
+              img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
+              a.comments__a(href="#") #{question.answers[i].comments[j].user.name} 
       .placeComment
         input(type="text" placeholder="Plaats commentaar...")
       .react
