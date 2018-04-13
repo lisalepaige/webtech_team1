@@ -13,7 +13,7 @@ block content
       .head
         h1.head__h1 #{question.text} 
       .auteur
-        p.auteur__p 12 minuten geleden gevraagd door
+        p.auteur__p #{question_min}  minuten geleden gevraagd door
         img.auteur__img(src="../img/user8.png" alt="active_user")
         span.auteur__span #{question.user.name} 
       .likes

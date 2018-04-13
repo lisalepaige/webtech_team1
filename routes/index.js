@@ -21,6 +21,9 @@ var questionsDataSchema = new Schema({
   search_name: {
     type: String
   },
+  current_date: {
+    type: Date
+  },
   user: {
     _id: {
       type: Number
@@ -86,6 +89,13 @@ router.get('/', function (req, res) {
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
+  // get date from objectId
+  console.log('------------------- GET MINUTES -------------------')
+  var dateFromObjectId = new Date(parseInt("5acf970d5c50916489a2937c".substring(0, 8), 16) * 1000);
+  console.log(dateFromObjectId); 
+  var minutes = dateFromObjectId.getMinutes(); 
+  console.log(minutes); 
+
   QuestionsData.find().sort({
       datefield: -1
     })
@@ -109,12 +119,15 @@ router.get('/kweeni/:id', function (req, res) {
           message: 'id not found'
         });
       } else {
+        var minutes = result.current_date.getMinutes(); 
+        console.log(minutes); 
         /*console.log(result);
         console.log(result.answers[0].text); */
-        console.log(result.answers[0].comments); 
+        //console.log(result.answers[0].comments); 
         res.render('watis', {
           title: id,
           question: result, 
+          question_min: minutes,
           answerlist: result.answers,
           commentlist: result.answers.comments
         });
@@ -132,10 +145,24 @@ router.post('/watis', function (req, res) {
 
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
+
+  // get date from objectId
+  console.log('------------------- GET MINUTES -------------------')
+ 
+
+  function showMinutes(objectId){
+    var dateFromObjectId = new Date(parseInt(ObjectId.substring(0, 8), 16) * 1000);
+    console.log(dateFromObjectId); 
+    var minutes = dateFromObjectId.getMinutes(); 
+    console.log(minutes); 
+    return minutes; 
+  }
+
   var item = {
     text: req.body.question__input,
     likes: 0,
     search_name: req.body.question__input.split(" ").join("-"),
+    current_date: new Date(Date.now()).toLocaleString(),
     user: {
       _id: 1,
       name: "Caroline",
