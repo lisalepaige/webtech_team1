@@ -89,11 +89,12 @@ router.get('/', function (req, res) {
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
+  // sort by date
   QuestionsData.find().sort({
-      datefield: -1
+      current_date: -1
     })
     .then(function (result) {
-      console.log(result);
+      //console.log(result);
       res.render('kweeni', {
         questionslist: result
       });
