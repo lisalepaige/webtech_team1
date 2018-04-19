@@ -3,10 +3,22 @@ const router = express.Router();
 var passport = "";
 var mongoose = require('mongoose');
 
-// connection
-mongoose.connect('mongodb://localhost:27017/webtech', {
-  autoIndex: false
-});
+var local = "mongodb://localhost:27017/webtech";
+
+var MongoClient = require('mongodb').MongoClient;
+/*
+var uri = ";
+MongoClient.connect(uri, function(err, client) {
+   const collection = client.db("test").collection("devices");
+   // perform actions on the collection object
+   mongoose.connect(uri, {
+    autoIndex: false
+  });
+   client.close();
+});*/
+
+//connection
+mongoose.connect("mongodb+srv://Admin:4dm!n@gettingstarted-jbvu6.mongodb.net/", {dbName: "test"});
 var Schema = mongoose.Schema;
 
 // blueprint (define layout)
