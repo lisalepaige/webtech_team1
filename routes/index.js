@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router();
-var passport = "";
+var passport = require('passport');
 var mongoose = require('mongoose');
+var Strategy = require('passport-facebook').Strategy;
 
 var local = "mongodb://localhost:27017";
 
@@ -10,6 +11,30 @@ var online = "mongodb+srv://Admin:4dm!n@gettingstarted-jbvu6.mongodb.net/";
 //connection
 mongoose.connect(local, {dbName: "webtech"});
 var Schema = mongoose.Schema;
+
+
+//configure to fb strategy for use by passport
+passport.use(new Strategy({
+  clientID: 193031364810079,
+  clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
+  callbackURL: "https://cc19c6c1.ngrok.io/kweeni"
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
+// Configure Passport authenticated session persistence.
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
@@ -84,10 +109,18 @@ var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
 
 /* GET home */
 router.get('/', function (req, res) {
-  res.render('./home', {
-    title: 'Home'
-  });
+  res.render('./home', { title: 'Home', user: req.user });
 });
+
+//facebook
+router.get('/facebook',
+  passport.authenticate('facebook'));
+
+router.get('/facebook/return', 
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/kweeni');
+  });
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
