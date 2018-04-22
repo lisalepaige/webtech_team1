@@ -1,5 +1,4 @@
 node_modules/
-package-lock.json/
 acorn
 acorn.cmd
 atob
