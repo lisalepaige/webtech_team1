@@ -14,7 +14,7 @@ var Schema = mongoose.Schema;
 
 
 //configure to fb strategy for use by passport
-passport.use(new Strategy({
+/*passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://cc19c6c1.ngrok.io/kweeni"
@@ -34,7 +34,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
-
+*/
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
