@@ -9,7 +9,7 @@ var local = "mongodb://localhost:27017";
 var MongoClient = require('mongodb').MongoClient;
 var online = "mongodb+srv://Admin:4dm!n@gettingstarted-jbvu6.mongodb.net/";
 //connection
-mongoose.connect(local, {dbName: "webtech"});
+mongoose.connect(online, {dbName: "webtech"});
 var Schema = mongoose.Schema;
 
 
