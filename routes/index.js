@@ -7,9 +7,11 @@ var Strategy = require('passport-facebook').Strategy;
 var local = "mongodb://localhost:27017";
 
 var MongoClient = require('mongodb').MongoClient;
-var online = "mongodb+srv://Admin:4dm!n@gettingstarted-jbvu6.mongodb.net/";
+
 //connection
-mongoose.connect(online, {dbName: "webtech"});
+var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
+
+mongoose.connect(uri);
 var Schema = mongoose.Schema;
 
 
@@ -101,7 +103,7 @@ var questionsDataSchema = new Schema({
     }]
   }]
 }, {
-  collection: 'testje'
+  collection: 'questions'
 }); // stores data in collection
 
 // create model of that blueprint
@@ -113,14 +115,14 @@ router.get('/', function (req, res) {
 });
 
 //facebook
-router.get('/facebook',
+/*router.get('/facebook',
   passport.authenticate('facebook'));
 
 router.get('/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/kweeni');
-  });
+  });*/
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
