@@ -1,0 +1,38 @@
+.question__input {
+    border-color: $orange;
+    width: 80%;
+    height: 70px; 
+    padding: 20px; 
+    max-width: 700px; 
+}
+
+.question__btn {
+    text-align: center;
+}
+
+.question__btn--btn {
+    width: 250px;
+    height: 50px; 
+    background-color: $blue; 
+    color: #e4e0ff; 
+    font-size: 25px; 
+    margin: 20px; 
+    border-radius: 12px; 
+    border-style: solid; 
+    cursor: pointer;
+}
+
+.react__a
+{
+    background-color: $blue;
+    color: #DCDCDC;
+    text-transform: uppercase;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 250px;
+    font-size: 18px;
+    font-family: $font-primary, cursive;
+    text-decoration: none;
+    text-align: center;
+}
