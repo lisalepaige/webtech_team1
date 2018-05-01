@@ -25,14 +25,13 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
       if (oldUser) {
         console.log('Existing user: ' + oldUser.name + ' found and logged in!');
         cb(null, oldUser);
+        currentUser = "lisa"; 
       } else {
         var newUser = new QuestionsData(); 
         newUser.user.fbId = profile.id;
         newUser.user.name = profile.displayName;
         newUser.user.img = profile.picture.url;
         console.log(newUser); 
-
-        currentUser = "lisa"; 
 
         newUser.save(function (err) {
           if (err) {
