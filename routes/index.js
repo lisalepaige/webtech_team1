@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 var passport = require('passport');
+var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 
@@ -35,6 +36,13 @@ passport.serializeUser(function(user, cb) {
 
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
+});
+
+// blueprint user 
+var UserSchema = new mongoose.Schema({
+  name: String,
+  email: String, 
+  picture: String
 });
 
 
