@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 var passport = require('passport');
+var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var local = "mongodb://localhost:27017";
