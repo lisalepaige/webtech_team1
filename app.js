@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
-var session = require('express-session');
 var mongoose = require('mongoose');
+
+// require session and set secret
+var session = (require('express-session')({secret: 'sparkle'}));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,17 +31,10 @@ app.use('/users', usersRouter);
 
 var MongoClient = require('mongodb').MongoClient;
 var local = "mongodb://localhost:27017";
+
 //connection
 var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
 mongoose.connect(uri);
-
-
-// start session
-app.use(session({
-  secret: 'sparkle',
-  resave: false,
-  saveUninitialized: false
-}));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 // passport init
@@ -51,12 +46,13 @@ passport.serializeUser(function(user, done) {
   done(null, user.fbId);
 });
 
+// find user data by id 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err,user){
-       if(err) done(err);
-           done(null,user);
-       });
-  });
+  QuestionsData.findOne({"user.fbId": profile.id}, function(user, err){
+    if(err) done(err);
+    done(user, err); 
+  })
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

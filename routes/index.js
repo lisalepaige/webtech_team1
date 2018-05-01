@@ -7,6 +7,7 @@ var Strategy = require('passport-facebook').Strategy;
 var currentUser; 
 
 
+
 var Schema = mongoose.Schema;
 //configure to fb strategy for use by passport
 /*passport.use(new Strategy({
@@ -48,7 +49,7 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
 })); */
 
 // Configure Passport authenticated session persistence.
-passport.serializeUser(function(user, cb) {
+/*passport.serializeUser(function(user, cb) {
   // save to session req.session.passport.user 
   cb(null, user);
 });
@@ -56,7 +57,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
   // user object attaches to the request as req.user
-});
+});*/
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
