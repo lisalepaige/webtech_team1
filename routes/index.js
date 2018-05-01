@@ -6,11 +6,8 @@ var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var currentUser; 
 
-
-
-var Schema = mongoose.Schema;
 //configure to fb strategy for use by passport
-/*passport.use(new Strategy({
+passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
@@ -21,32 +18,9 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
     console.log("found fb data ");
     var query = QuestionsData.findOne({
       "user.fbId": profile.id
-    })
-    query.exec(function (err, oldUser) {
-      if (oldUser) {
-        console.log('Existing user: ' + oldUser.name + ' found and logged in!');
-        cb(null, oldUser);
-        currentUser = "lisa"; 
-      } else {
-        var newUser = new QuestionsData(); 
-        newUser.user.fbId = profile.id;
-        newUser.user.name = profile.displayName;
-        newUser.user.img = profile.picture.url;
-        console.log(newUser); 
-
-        currentUser = "Caroline"; 
-
-        newUser.save(function (err) {
-          if (err) {
-            return cb(err);
-          }
-          console.log('New user: ' + newUser.name + ' created and logged in!');
-          cb(null, newUser);
-        });
-      }
     });
   });
-})); */
+}));
 
 // Configure Passport authenticated session persistence.
 /*passport.serializeUser(function(user, cb) {
@@ -58,6 +32,11 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
   // user object attaches to the request as req.user
 });*/
+
+
+
+
+var Schema = mongoose.Schema;
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
