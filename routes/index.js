@@ -117,11 +117,11 @@ passport.use(new Strategy({
         }
       });
 
-      /*User.findOrCreate({
+      user.findOrCreate({
         facebookId: profile.id
       }, function (err, user) {
         return cb(err, user);
-      });*/
+      });
     });
   }
 ));
