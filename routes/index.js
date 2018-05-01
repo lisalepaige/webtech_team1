@@ -95,8 +95,8 @@ passport.use(new Strategy({
     console.log("in fb function"); 
     process.nextTick(function () {
       console.log("found fb data ");
-      var query = User.findOne({
-        "fbId": profile.id
+      var query = QuestionsData.findOne({
+        "user.fbId": profile.id
       });
       query.exec(function (err, oldUser) {
         if (oldUser) {
