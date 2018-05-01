@@ -15,16 +15,6 @@ var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27
 mongoose.connect(uri);
 var Schema = mongoose.Schema;
 
-// session
-router.use(session({
-  secret: 's3cr3t',
-  resave: true,
-  saveUninitialized: true
-}));
-router.use(passport.initialize());
-router.use(passport.session());
-
-
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
@@ -43,6 +33,9 @@ var questionsDataSchema = new Schema({
   },
   user: {
     _id: {
+      type: Number
+    },
+    _fbId: {
       type: Number
     },
     name: {
@@ -95,7 +88,7 @@ var questionsDataSchema = new Schema({
 }); // stores data in collection
 
 //configure to fb strategy for use by passport
-/*passport.use(new Strategy({
+passport.use(new Strategy({
     clientID: 193031364810079,
     clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
     callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
@@ -127,16 +120,16 @@ var questionsDataSchema = new Schema({
       });
     });
   }
-));*/
+));
 
 // Configure Passport authenticated session persistence.
-/*passport.serializeUser(function (user, cb) {
+passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
 passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
-});*/
+});
 
 // create model of that blueprint
 var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
@@ -153,13 +146,13 @@ router.get('/', function (req, res) {
 
 
 // facebook 
-/*router.get('/fbauth', passport.authenticate('facebook', {
+router.get('/fbauth', passport.authenticate('facebook', {
   scope: 'email'
 }));
 router.get('/fbauthed', passport.authenticate('facebook', {
   failureRedirect: '/'
 }), function (req, res) {});
-*/
+
 //facebook
 router.get('/facebook',
   passport.authenticate('facebook'));
