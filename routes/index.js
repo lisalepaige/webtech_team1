@@ -32,19 +32,20 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
     query.exec(function (err, oldUser) {
       if (oldUser) {
         console.log('Existing user: ' + oldUser.name + ' found and logged in!');
-        done(null, oldUser);
+        cb(null, oldUser);
       } else {
         var newUser = new QuestionsData(); 
         newUser.user.fbId = profile.id;
         newUser.user.name = profile.displayName;
         newUser.user.img = profile.picture.url;
+        console.log(newUser); 
 
         newUser.save(function (err) {
           if (err) {
-            return done(err);
+            return cb(err);
           }
           console.log('New user: ' + newUser.name + ' created and logged in!');
-          done(null, newUser);
+          cb(null, newUser);
         });
       }
     });
