@@ -5,9 +5,9 @@ block content
       .logo
         img.logo__img(src='/img/logo.svg', alt='kweeni')
       .account
-        p.account__p Anneke Kodeur
+        p.account__p #{question.user.name}
         img.profile(src='/img/user8.png', alt='profile pic')
-        a.account__a(href='/') Uitloggen
+        a.account__a(href='/logout') Uitloggen
     section.question
       .container
        form(action="" method="post" )
