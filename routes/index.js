@@ -143,15 +143,6 @@ router.get('/', function (req, res) {
 
 /* get facebook */
 
-
-// facebook 
-router.get('/fbauth', passport.authenticate('facebook', {
-  scope: 'email'
-}));
-router.get('/fbauthed', passport.authenticate('facebook', {
-  failureRedirect: '/'
-}), function (req, res) {});
-
 //facebook
 router.get('/facebook',
   passport.authenticate('facebook'));
