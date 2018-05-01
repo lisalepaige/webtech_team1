@@ -216,7 +216,7 @@ router.post('/kweeni', function (req, res, next) {
     current_date: new Date(Date.now()).toLocaleString(),
     user: {
       _id: 1,
-      name: "",
+      name: req.user,
       img: ""
     }
   };
