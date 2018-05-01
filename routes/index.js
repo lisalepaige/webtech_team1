@@ -37,6 +37,7 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
         var newUser = new QuestionsData(); 
         newUser.user.fbId = profile.id;
         newUser.user.name = profile.displayName;
+        newUser.user.img = profile.picture.url;
 
         newUser.save(function (err) {
           if (err) {
@@ -76,6 +77,9 @@ var questionsDataSchema = new Schema({
   },
   user: {
     _id: {
+      type: Number
+    },
+    _fbId: {
       type: Number
     },
     name: {
@@ -193,8 +197,8 @@ router.post('/kweeni', function (req, res, next) {
     current_date: new Date(Date.now()).toLocaleString(),
     user: {
       _id: 1,
-      name: "Caroline",
-      img: "https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg"
+      name: "",
+      img: ""
     }
   };
 

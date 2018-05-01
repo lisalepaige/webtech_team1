@@ -25,7 +25,7 @@ block content
               span x #{question.likes} 
             a(href="/kweeni/"+question.search_name).topics__question--p #{question.text} 
             p.topics__question--author #{question.user.name}
-            img.topics__question--img(src='#{question.user.img}', alt='Yves')
+            img.topics__question--img(src=question.user.img, alt='Yves')
           hr
           
         a.topics__a(href='#') Toon 10 extra topics
