@@ -153,21 +153,21 @@ router.get('/facebook/return',
 
 /* Verify user login. */
 router.post('/', function(req, res) {
-  console.log("in post function"); 
+  alert("in post function"); 
   passport.authenticate('facebook', function(err, user, info) {
       if (err) {
           console.log(err); 
       }
       if (!user) {
           var message = "Invalid credentials";
-          console.log("message " + info.message);
+          alert("message " + info.message);
       }
       request.logIn(user, function (err) {
           if (err) {
               console.log(err);
           }
           request.session.user = user;
-          console.log('login gelukt :D'); 
+          alert('login gelukt :D'); 
           response.redirect('/kweeni');
       });
   })(req, res);
