@@ -20,7 +20,7 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
     console.log("found fb data ");
     var query = QuestionsData.findOne({
       "user.fbId": profile.id
-    });
+    })
     query.exec(function (err, oldUser) {
       if (oldUser) {
         console.log('Existing user: ' + oldUser.name + ' found and logged in!');
@@ -32,6 +32,8 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
         newUser.user.name = profile.displayName;
         newUser.user.img = profile.picture.url;
         console.log(newUser); 
+
+        currentUser = "Caroline"; 
 
         newUser.save(function (err) {
           if (err) {
