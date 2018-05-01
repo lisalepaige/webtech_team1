@@ -32,6 +32,7 @@ passport.use(new Strategy({
 
 // Lets user information be stored and retrieved from session
 passport.serializeUser(function (user, done) {
+  // save to session req.session.passport.user 
   done(null, user.fbId);
 });
 
@@ -40,24 +41,11 @@ passport.deserializeUser(function (id, done) {
   QuestionsData.findOne({
     "user.fbId": profile.id
   }, function (user, err) {
+    // user object attaches to the request as req.user
     if (err) done(err);
     done(user, err);
   })
 });
-
-// Configure Passport authenticated session persistence.
-/*passport.serializeUser(function(user, cb) {
-  // save to session req.session.passport.user 
-  cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-  // user object attaches to the request as req.user
-});*/
-
-
-
 
 var Schema = mongoose.Schema;
 

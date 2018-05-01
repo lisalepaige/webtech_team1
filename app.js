@@ -14,6 +14,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Initialize Passport and restore authentication state, if any, from the session.
+// passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -27,32 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
-
 var MongoClient = require('mongodb').MongoClient;
 var local = "mongodb://localhost:27017";
 
 //connection
 var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
 mongoose.connect(uri);
-
-// Initialize Passport and restore authentication state, if any, from the session.
-// passport init
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Lets user information be stored and retrieved from session
-passport.serializeUser(function(user, done) {
-  done(null, user.fbId);
-});
-
-// find user data by id 
-passport.deserializeUser(function(id, done) {
-  QuestionsData.findOne({"user.fbId": profile.id}, function(user, err){
-    if(err) done(err);
-    done(user, err); 
-  })
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
