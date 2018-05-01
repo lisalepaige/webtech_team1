@@ -21,7 +21,7 @@ passport.use(new Strategy({
           alert(query); 
         });*/
       function (accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({
+        QuestionsData.user.findOrCreate({
               facebookId: profile.id
             }, function (err, user) {
               passport.serializeUser(function (user, cb) {
