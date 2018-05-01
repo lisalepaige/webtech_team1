@@ -15,28 +15,6 @@ mongoose.connect(uri);
 var Schema = mongoose.Schema;
 
 
-//configure to fb strategy for use by passport
-passport.use(new Strategy({
-  clientID: 193031364810079,
-  clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
-
-// Configure Passport authenticated session persistence.
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
-
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
@@ -106,21 +84,86 @@ var questionsDataSchema = new Schema({
   collection: 'questions'
 }); // stores data in collection
 
+
+//configure to fb strategy for use by passport
+passport.use(new Strategy({
+    clientID: 193031364810079,
+    clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
+    callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
+  },
+  function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
+    console.log("in fb function"); 
+    process.nextTick(function () {
+      console.log("found fb data ");
+      var query = QuestionsData.findOne({
+        "user.fbId": profile.id
+      });
+      query.exec(function (err, oldUser) {
+        if (oldUser) {
+          console.log('Existing user: ' + oldUser.name + ' found and logged in!');
+          done(null, oldUser);
+        } else {
+          var newUser = new QuestionsData();
+          newUser.user.fbId = profile.id;
+          newUser.user.name = profile.displayName;
+
+          newUser.save(function (err) {
+            if (err) {
+              return done(err);
+            }
+            console.log('New user: ' + newUser.name + ' created and logged in!');
+            done(null, newUser);
+          });
+        }
+      });
+
+      /*User.findOrCreate({
+        facebookId: profile.id
+      }, function (err, user) {
+        return cb(err, user);
+      });*/
+    });
+  }
+));
+
+// Configure Passport authenticated session persistence.
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
 // create model of that blueprint
 var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
 
 /* GET home */
 router.get('/', function (req, res) {
-  res.render('./home', { title: 'Home', user: req.user });
+  res.render('./home', {
+    title: 'Home',
+    user: req.user
+  });
 });
+
+
+// facebook 
+router.get('/fbauth', passport.authenticate('facebook', {
+  scope: 'email'
+}));
+router.get('/fbauthed', passport.authenticate('facebook', {
+  failureRedirect: '/'
+}), function (req, res) {});
 
 //facebook
 router.get('/facebook',
   passport.authenticate('facebook'));
 
-router.get('/facebook/return', 
-  passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
+router.get('/facebook/return',
+  passport.authenticate('facebook', {
+    failureRedirect: '/'
+  }),
+  function (req, res) {
     res.redirect('/kweeni');
   });
 
