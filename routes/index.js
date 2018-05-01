@@ -103,7 +103,7 @@ passport.use(new Strategy({
           console.log('Existing user: ' + oldUser.name + ' found and logged in!');
           done(null, oldUser);
         } else {
-          var newUser = new User(); 
+          var newUser = new QuestionsData(); 
           newUser.user.fbId = profile.id;
           newUser.user.name = profile.displayName;
 
