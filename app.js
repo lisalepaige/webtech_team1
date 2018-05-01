@@ -23,9 +23,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// start session
+app.use(session({
+  secret: 'sparkle',
+  resave: false,
+  saveUninitialized: false
+}));
+
 // Initialize Passport and restore authentication state, if any, from the session.
+// passport init
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Lets user information be stored and retrieved from session
+passport.serializeUser(function(user, done) {
+  done(null, user.facebook.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err,user){
+       if(err) done(err);
+           done(null,user);
+       });
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

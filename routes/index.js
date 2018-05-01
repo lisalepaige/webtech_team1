@@ -185,7 +185,8 @@ router.get('/kweeni', function (req, res) {
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
-        questionslist: result
+        questionslist: result,
+        user: req.user
       });
     });
 });
