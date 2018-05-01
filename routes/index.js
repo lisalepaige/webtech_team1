@@ -147,7 +147,9 @@ router.get('/facebook',
 router.get('/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
+    alert('request: ' + req); 
     res.redirect('/kweeni');
+    alert("kweeni!"); 
   });
 
 
