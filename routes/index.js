@@ -150,6 +150,30 @@ router.get('/facebook/return',
     res.redirect('/kweeni');
   });
 
+
+/* Verify user login. */
+router.post('/', function(req, res) {
+  console.log("in post function"); 
+  passport.authenticate('facebook', function(err, user, info) {
+      if (err) {
+          console.log(err); 
+      }
+      if (!user) {
+          var message = "Invalid credentials";
+          console.log("message " + info.message);
+      }
+      request.logIn(user, function (err) {
+          if (err) {
+              console.log(err);
+          }
+          request.session.user = user;
+          console.log('login gelukt :D'); 
+          response.redirect('/kweeni');
+      });
+  })(req, res);
+});
+
+
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
   // sort by date
