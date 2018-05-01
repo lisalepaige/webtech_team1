@@ -4,7 +4,7 @@ var passport = require('passport');
 var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
-var currentUser = "lisa"; 
+var currentUser; 
 
 
 var Schema = mongoose.Schema;
@@ -31,6 +31,8 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
         newUser.user.name = profile.displayName;
         newUser.user.img = profile.picture.url;
         console.log(newUser); 
+
+        currentUser = newUser.user.name; 
 
         newUser.save(function (err) {
           if (err) {
