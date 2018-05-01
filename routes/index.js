@@ -84,6 +84,11 @@ var questionsDataSchema = new Schema({
   collection: 'questions'
 }); // stores data in collection
 
+// user schema
+var userSchema = new mongoose.Schema({
+  fbId: String,
+  name: String
+});
 
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
@@ -95,15 +100,15 @@ passport.use(new Strategy({
     console.log("in fb function"); 
     process.nextTick(function () {
       console.log("found fb data ");
-      var query = QuestionsData.findOne({
-        "user.fbId": profile.id
+      var query = User.findOne({
+        "fbId": profile.id
       });
       query.exec(function (err, oldUser) {
         if (oldUser) {
           console.log('Existing user: ' + oldUser.name + ' found and logged in!');
           done(null, oldUser);
         } else {
-          var newUser = new QuestionsData();
+          var newUser = new User(); 
           newUser.user.fbId = profile.id;
           newUser.user.name = profile.displayName;
 
@@ -116,24 +121,18 @@ passport.use(new Strategy({
           });
         }
       });
-
-      user.findOrCreate({
-        facebookId: profile.id
-      }, function (err, user) {
-        return cb(err, user);
-      });
     });
   }
 ));
 
 // Configure Passport authenticated session persistence.
-passport.serializeUser(function (user, cb) {
+/*passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
 passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
-});
+});*/
 
 // create model of that blueprint
 var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
@@ -176,7 +175,8 @@ router.get('/kweeni', function (req, res) {
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
-        questionslist: result
+        questionslist: result,
+        
       });
     });
 });
