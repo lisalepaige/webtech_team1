@@ -16,10 +16,10 @@ var Schema = mongoose.Schema;
 
 
 //configure to fb strategy for use by passport
-/*passport.use(new Strategy({
+passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-  callbackURL: "https://cc19c6c1.ngrok.io/kweeni"
+  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
 },
 function(accessToken, refreshToken, profile, cb) {
   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
@@ -35,7 +35,7 @@ passport.serializeUser(function(user, cb) {
 
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
-});*/
+});
 
 
 // blueprint (define layout)
@@ -115,14 +115,14 @@ router.get('/', function (req, res) {
 });
 
 //facebook
-/*router.get('/facebook',
+router.get('/facebook',
   passport.authenticate('facebook'));
 
 router.get('/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/kweeni');
-  });*/
+  });
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
