@@ -168,7 +168,7 @@ router.post('/', function(req, res) {
           }
           request.session.user = user;
           alert('login gelukt :D'); 
-          response.redirect('/kweeni');
+          //response.redirect('/kweeni');
       });
   })(req, res);
 });
