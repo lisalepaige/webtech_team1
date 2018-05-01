@@ -22,12 +22,33 @@ passport.use(new Strategy({
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
 },
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    return cb(err, user);
+function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
+  console.log("in fb function"); 
+  process.nextTick(function () {
+    console.log("found fb data ");
+    var query = QuestionsData.findOne({
+      "user.fbId": profile.id
+    });
+    query.exec(function (err, oldUser) {
+      if (oldUser) {
+        console.log('Existing user: ' + oldUser.name + ' found and logged in!');
+        done(null, oldUser);
+      } else {
+        var newUser = new QuestionsData(); 
+        newUser.user.fbId = profile.id;
+        newUser.user.name = profile.displayName;
+
+        newUser.save(function (err) {
+          if (err) {
+            return done(err);
+          }
+          console.log('New user: ' + newUser.name + ' created and logged in!');
+          done(null, newUser);
+        });
+      }
+    });
   });
-}
-));
+})); 
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function(user, cb) {
@@ -37,14 +58,6 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
-
-// blueprint user 
-var UserSchema = new mongoose.Schema({
-  name: String,
-  email: String, 
-  picture: String
-});
-
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
