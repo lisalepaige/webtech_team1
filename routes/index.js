@@ -9,7 +9,7 @@ var currentUser;
 
 var Schema = mongoose.Schema;
 //configure to fb strategy for use by passport
-passport.use(new Strategy({
+/*passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
@@ -45,15 +45,17 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
       }
     });
   });
-})); 
+})); */
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function(user, cb) {
+  // save to session req.session.passport.user 
   cb(null, user);
 });
 
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
+  // user object attaches to the request as req.user
 });
 
 // blueprint (define layout)
