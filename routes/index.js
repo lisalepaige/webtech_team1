@@ -32,7 +32,7 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
         newUser.user.img = profile.picture.url;
         console.log(newUser); 
 
-        currentUser = newUser.user.name; 
+        currentUser = profile.displayName; 
 
         newUser.save(function (err) {
           if (err) {
