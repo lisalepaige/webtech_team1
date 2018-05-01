@@ -4,7 +4,7 @@ var passport = require('passport');
 var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
-var currentUser; 
+var currentUser = "lisa"; 
 
 
 var Schema = mongoose.Schema;
@@ -38,7 +38,6 @@ function (accessToken, refreshToken, profile, cb) { // access, refresh, profile,
           }
           console.log('New user: ' + newUser.name + ' created and logged in!');
           cb(null, newUser);
-          currentUser = newUser; 
         });
       }
     });
@@ -178,7 +177,7 @@ router.get('/kweeni', function (req, res) {
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
-        questionslist: result
+        questionslist: result,
         user: currentUser
       });
     });
