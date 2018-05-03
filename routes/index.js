@@ -214,10 +214,24 @@ router.post('/kweeni/:id', function (req, res) {
     console.log("New Id", newId);
 
     QuestionsData.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
+      var searchname;
       if (err) {
         res.send(err);
       } else {
-        res.redirect('/kweeni/:id');
+        var id = req.params.id;
+        QuestionsData.findOne({
+          search_name: id
+        })
+          .then(function (result) {
+            if (result == null) {
+              res.render('error', {
+                message: 'id not found'
+              });
+            } else {
+              searchname = result.search_name;
+            }
+          });
+        res.redirect('/kweeni/' + searchname);
       }
 
       console.log(raw);
