@@ -10,7 +10,7 @@ primus = Primus.connect(url, {
 
   document.querySelector(".react__a").addEventListener("click", function(e) {
     var reactie = document.querySelector(".react__input").innerHTML;
-    primus.write("reactie");
+    primus.write(reactie);
     console.log("clicked");
     
 });
@@ -46,11 +46,9 @@ function addReaction(data){
 
 primus.on("data", function message(data) {
     //alert("data received");
-    if( data == "reactie" ) {
-        addReaction(data);
-        console.log("Adding reaction");
-        //title.innerHTML = optie;
-    }
+    addReaction(data);
+    console.log("Adding reaction");
+    
     
 });
 
