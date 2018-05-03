@@ -266,8 +266,5 @@ router.post('/kweeni', function (req, res, next) {
 });
 
 /* UPDATE likes */
-router.post('/kweeni', function (req, res, next) {
-  // find by id? 
-});
 
 module.exports = router;
