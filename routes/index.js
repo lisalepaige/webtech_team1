@@ -214,7 +214,7 @@ router.post('/kweeni/:id', function (req, res) {
     console.log("New Id", newId);
 
     QuestionsData.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
-      var searchname;
+      /*var searchname;
       if (err) {
         res.send(err);
       } else {
@@ -230,9 +230,15 @@ router.post('/kweeni/:id', function (req, res) {
             } else {
               searchname = result.search_name;
             }
-          });
-        res.redirect('/kweeni/' + searchname);
-      }
+          });*/
+          if (err) {
+            res.send(err);
+          } else {
+            var id = req.params.id;
+            res.redirect('/kweeni/' + id);
+          }
+        
+      
 
       console.log(raw);
     });
