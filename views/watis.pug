@@ -48,11 +48,15 @@ block content
               img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
               a.comments__a(href="#") #{question.answers[i].comments[j].user.name} 
       .placeComment
-        input(type="text" placeholder="Plaats commentaar...")
+        form.react__form(action="" method="post")
+          input(type="text" name="comment" placeholder="Plaats commentaar...")
+          input(type="submit" style="display:none")
       .react
         form.react__form(action="" method="post")
           img.user-avatar.test(src="../img/user8.png" alt="user")
-          input.react__input(type="text" name="new-comment" placeholder="Reageer hier op deze vraag")
+          input.react__input(type="text" name="answer" placeholder="Reageer hier op deze 
+
+vraag")
           input.react__a(type="submit" value="Reageren")
 
 
