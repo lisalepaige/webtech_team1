@@ -235,7 +235,7 @@ router.post('/kweeni/:id', function (req, res) {
             res.send(err);
           } else {
             var id = req.params.id;
-            res.redirect('/kweeni/' + id);
+            res.end();
           }
         
       
@@ -250,7 +250,7 @@ router.post('/kweeni/:id', function (req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.redirect('/kweeni/:id');
+        res.end();
       }
 
       console.log(raw);
