@@ -4,16 +4,9 @@ var passport = require('passport');
 var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
-var local = "mongodb://localhost:27017";
-
 var MongoClient = require('mongodb').MongoClient;
 
-//connection
-var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
-
-mongoose.connect(uri);
 var Schema = mongoose.Schema;
-
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({

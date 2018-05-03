@@ -8,23 +8,21 @@ primus = Primus.connect(url, {
     }
   });
 
-
-
-document.querySelector(".react__a").addEventListener("click", function(e) {
-    var reactie = document.querySelector(".react__input").innerHTML;
-    primus.write("reactie");
+  document.querySelector(".react__a").addEventListener("click", function(e) {
+    var reactie = document.querySelector(".react__input").value;
+    primus.write(reactie);
     console.log("clicked");
     
 });
 
-function addReaction(){
+function addReaction(data){
     // create new article / give class 'comments'
     var article = document.createElement("article");
     article.classList.add('comments');
 
     //create new paragraph / insert value from textfield into paragraph / append paragraph to article
     var par = document.createElement("p"); 
-    par.innerHTML = document.querySelector(".react__input").value;
+    par.innerHTML = data;
     article.appendChild(par);
 
     //create profile image / give image source / add class / append image to article
@@ -47,19 +45,8 @@ function addReaction(){
 
 
 primus.on("data", function message(data) {
-    
-
-    //alert("data received");
-    
-    
-    
-    
-    if( data == "reactie" ) {
-        addReaction();
-        console.log("Adding reaction");
-        //title.innerHTML = optie;
-    }
-    
+    addReaction(data);
+    console.log("Adding reaction");
 });
 
 
