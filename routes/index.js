@@ -195,6 +195,31 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
+/* UPDATE likes */
+router.post('/kweeni/:id', function (req, res) {
+  console.log("pudding");
+
+  var id = req.params.id;
+  QuestionsData.findOne({
+      search_name: id
+    })
+    .then(function (result) {
+      if (result == null) {
+
+        console.log("error poop");
+
+        res.render('error', {
+          message: 'id not found'
+
+          
+        });
+      } else {
+        console.log("likes");
+      } 
+});
+
+
+/* comments */
 router.post('/kweeni/:id', function(req, res){
   
   QuestionsData.distinct('answers').exec(function(err, res){
@@ -267,9 +292,6 @@ router.post('/kweeni', function (req, res, next) {
   res.redirect('/kweeni');
 });
 
-/* UPDATE likes */
-router.post('/kweeni', function (req, res, next) {
-  // find by id? 
 });
 
 module.exports = router;
