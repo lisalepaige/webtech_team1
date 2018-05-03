@@ -3,12 +3,12 @@ const sass = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 const minifyCSS = require('gulp-minify-css');
 
-gulp.task('default', ['sass:watch', 'sass', 'startNodemon']);
+gulp.task('default', ['sass:watch', 'sass', 'startNodemon', 'minifyCss']);
  
 gulp.task('sass', function () {
   return gulp.src('./public/scss/app.scss')
     .pipe(sass({outputStyle: 'compress'}).on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('sass:watch', function () {
@@ -24,7 +24,7 @@ gulp.task('startNodemon', function () {
 });
 
 gulp.task('minifyCss', function() {
-    return gulp.src('./public/*.css')
+    return gulp.src('./public/app.css')
     .pipe(minifyCSS({keepBreaks:false}))
     .pipe(gulp.dest('./public/css/'))
 });

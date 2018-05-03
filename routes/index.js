@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 var passport = require('passport');
-var session = require('express-session');
+var session = require('express-session'); 
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var local = "mongodb://localhost:27017";
@@ -13,7 +13,7 @@ var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27
 
 mongoose.connect(uri);
 var Schema = mongoose.Schema;
-var Schema = mongoose.Schema;
+
 
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
@@ -121,21 +121,13 @@ passport.use(new Strategy({
   }
 ));
 
-// Lets user information be stored and retrieved from session
-passport.serializeUser(function (user, done) {
-  // save to session req.session.passport.user 
-  done(null, user.fbId);
+// Configure Passport authenticated session persistence.
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
 });
 
-// find user data by id 
-passport.deserializeUser(function (id, done) {
-  QuestionsData.findOne({
-    "user.fbId": profile.id
-  }, function (user, err) {
-    // user object attaches to the request as req.user
-    if (err) done(err);
-    done(user, err);
-  })
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
 });
 
 // create model of that blueprint
@@ -160,34 +152,8 @@ router.get('/facebook/return',
     failureRedirect: '/'
   }),
   function (req, res) {
-    alert('request: ' + req);
     res.redirect('/kweeni');
-    alert("kweeni!");
   });
-
-
-/* Verify user login. */
-router.post('/', function (req, res) {
-  alert("in post function");
-  passport.authenticate('facebook', function (err, user, info) {
-    if (err) {
-      console.log(err);
-    }
-    if (!user) {
-      var message = "Invalid credentials";
-      alert("message " + info.message);
-    }
-    request.logIn(user, function (err) {
-      if (err) {
-        console.log(err);
-      }
-      request.session.user = user;
-      alert('login gelukt :D');
-      //response.redirect('/kweeni');
-    });
-  })(req, res);
-});
-
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
@@ -199,7 +165,7 @@ router.get('/kweeni', function (req, res) {
       //console.log(result);
       res.render('kweeni', {
         questionslist: result,
-        user: currentUser
+        
       });
     });
 });
@@ -229,6 +195,9 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
+
+
+
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
   var item = {
@@ -238,8 +207,8 @@ router.post('/kweeni', function (req, res, next) {
     current_date: new Date(Date.now()).toLocaleString(),
     user: {
       _id: 1,
-      name: req.user,
-      img: ""
+      name: "Caroline",
+      img: "https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg"
     }
   };
 
