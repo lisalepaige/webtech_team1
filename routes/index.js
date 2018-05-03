@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 var passport = require('passport');
-var session = require('express-session'); 
+var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var MongoClient = require('mongodb').MongoClient;
@@ -76,17 +76,17 @@ var questionsDataSchema = new Schema({
     }]
   }]
 }, {
-  collection: 'questions'
-}); // stores data in collection
+    collection: 'questions'
+  }); // stores data in collection
 
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
-    clientID: 193031364810079,
-    clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-    callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
-  },
+  clientID: 193031364810079,
+  clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
+  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
+},
   function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
-    console.log("in fb function"); 
+    console.log("in fb function");
     process.nextTick(function () {
       console.log("found fb data ");
       var query = QuestionsData.findOne({
@@ -97,7 +97,7 @@ passport.use(new Strategy({
           console.log('Existing user: ' + oldUser.name + ' found and logged in!');
           done(null, oldUser);
         } else {
-          var newUser = new QuestionsData(); 
+          var newUser = new QuestionsData();
           newUser.user.fbId = profile.id;
           newUser.user.name = profile.displayName;
 
@@ -155,13 +155,13 @@ router.get('/facebook/return',
 router.get('/kweeni', function (req, res) {
   // sort by date
   QuestionsData.find().sort({
-      current_date: -1
-    })
+    current_date: -1
+  })
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
         questionslist: result,
-        
+
       });
     });
 });
@@ -170,8 +170,8 @@ router.get('/kweeni', function (req, res) {
 router.get('/kweeni/:id', function (req, res) {
   var id = req.params.id;
   QuestionsData.findOne({
-      search_name: id
-    })
+    search_name: id
+  })
     .then(function (result) {
       if (result == null) {
         res.render('error', {
@@ -190,6 +190,7 @@ router.get('/kweeni/:id', function (req, res) {
       }
     });
 });
+
 
 /* UPDATE likes 
 router.post('/kweeni/:id', function (req, res) {
@@ -216,52 +217,74 @@ router.post('/kweeni/:id', function (req, res) {
 */
 
 /* comments */
-router.post('/kweeni/:id', function(req, res){
-  
-  QuestionsData.distinct('answers').exec(function(err, res){
+
+router.post('/kweeni/:id', function (req, res) {
+
+  QuestionsData.distinct('answers').exec(function (err, res) {
+
     console.log("Lengte", res.length);
     console.log(res);
     var lengte = res.length;
-    
+
     let answer = req.body.answer;
     let comment = req.body.comment;
 
-    if(answer != undefined){
+    if (answer != undefined) {
       saveAnswer(lengte);
       console.log("Saving answer =", answer);
-    } else if(comment != undefined){
+    } else if (comment != undefined) {
       saveComment(lengte);
       console.log("Saving comment =", comment);
     }
 
   });
 
-  function saveAnswer(lengte){
+  function saveAnswer(lengte) {
     console.log("Aantal Antw", lengte);
     var newId = lengte + 1;
     console.log("New Id", newId);
 
-    QuestionsData.update({search_name: req.params.id}, {$push: {'answers': {_id: newId, 
-
-text:req.body.answer, count: null}}}, function(err, raw) {
+    QuestionsData.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
+      /*var searchname;
       if (err) {
         res.send(err);
-      }
+      } else {
+        var id = req.params.id;
+        QuestionsData.findOne({
+          search_name: id
+        })
+          .then(function (result) {
+            if (result == null) {
+              res.render('error', {
+                message: 'id not found'
+              });
+            } else {
+              searchname = result.search_name;
+            }
+          });*/
+          if (err) {
+            res.send(err);
+          } else {
+            var id = req.params.id;
+            res.end();
+          }
+        
+      
 
-      console.log(raw); 
+      console.log(raw);
     });
   }
 
-  function saveComment(lengte){
+  function saveComment(lengte) {
     console.log("Saving comment on ", lengte);
-    QuestionsData.update({search_name: req.params.id, 'answers._id': lengte}, {$push: 
-
-{'answers.$.comments': {text: req.body.comment }}}, function(err, raw) {
+    QuestionsData.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
       if (err) {
         res.send(err);
+      } else {
+        res.end();
       }
-      
-      console.log(raw); 
+
+      console.log(raw);
     });
 
   }
@@ -287,7 +310,6 @@ router.post('/kweeni', function (req, res, next) {
   data.save();
   res.redirect('/kweeni');
 });
-
 
 
 module.exports = router;
