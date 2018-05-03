@@ -15,6 +15,15 @@ primus = Primus.connect(url, {
     
 });
 
+document.querySelector(".likes__like--a").addEventListener("click", function(e) {
+    e.preventDefault();
+    var likes = document.querySelector(".likes__like--p").value;
+
+    primus.write(likes);
+    console.log("clicked likesss");
+});
+
+
 function addReaction(data){
     // create new article / give class 'comments'
     var article = document.createElement("article");

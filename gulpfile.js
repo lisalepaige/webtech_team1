@@ -3,7 +3,7 @@ const sass = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 const minifyCSS = require('gulp-minify-css');
 
-gulp.task('default', ['sass:watch', 'sass', 'startNodemon', 'minifyCss']);
+gulp.task('default', ['sass:watch', 'sass', 'startNodemon']);
  
 gulp.task('sass', function () {
   return gulp.src('./public/scss/app.scss')
@@ -23,8 +23,3 @@ gulp.task('startNodemon', function () {
     })
 });
 
-gulp.task('minifyCss', function() {
-    return gulp.src('./public/*.css')
-    .pipe(minifyCSS({keepBreaks:false}))
-    .pipe(gulp.dest('./public/css/'));
-});

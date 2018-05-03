@@ -116,11 +116,14 @@ passport.use(new Strategy({
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function (user, cb) {
-  cb(null, user);
+  cb(null, user.id);
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
+//query for user id 
+passport.deserializeUser(function (id, cb) {
+  User.findOne({"id": id}, function(err, user){
+    cb(null, user);
+  });
 });
 
 // create model of that blueprint
@@ -188,9 +191,9 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
-/* UPDATE likes */
+/* UPDATE likes 
 router.post('/kweeni/:id', function (req, res) {
-  console.log("pudding");
+  console.log("update likes");
 
   var id = req.params.id;
   QuestionsData.findOne({
@@ -210,7 +213,7 @@ router.post('/kweeni/:id', function (req, res) {
         console.log("likes");
       } 
 });
-
+*/
 
 /* comments */
 router.post('/kweeni/:id', function(req, res){
@@ -285,6 +288,6 @@ router.post('/kweeni', function (req, res, next) {
   res.redirect('/kweeni');
 });
 
-});
+
 
 module.exports = router;
