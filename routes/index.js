@@ -195,7 +195,56 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
+router.post('/kweeni/:id', function(req, res){
+  
+  QuestionsData.distinct('answers').exec(function(err, res){
+    console.log("Lengte", res.length);
+    console.log(res);
+    var lengte = res.length;
+    
+    let answer = req.body.answer;
+    let comment = req.body.comment;
 
+    if(answer != undefined){
+      saveAnswer(lengte);
+      console.log("Saving answer =", answer);
+    } else if(comment != undefined){
+      saveComment(lengte);
+      console.log("Saving comment =", comment);
+    }
+
+  });
+
+  function saveAnswer(lengte){
+    console.log("Aantal Antw", lengte);
+    var newId = lengte + 1;
+    console.log("New Id", newId);
+
+    QuestionsData.update({search_name: req.params.id}, {$push: {'answers': {_id: newId, 
+
+text:req.body.answer, count: null}}}, function(err, raw) {
+      if (err) {
+        res.send(err);
+      }
+
+      console.log(raw); 
+    });
+  }
+
+  function saveComment(lengte){
+    console.log("Saving comment on ", lengte);
+    QuestionsData.update({search_name: req.params.id, 'answers._id': lengte}, {$push: 
+
+{'answers.$.comments': {text: req.body.comment }}}, function(err, raw) {
+      if (err) {
+        res.send(err);
+      }
+      
+      console.log(raw); 
+    });
+
+  }
+});
 
 
 /* POST kweeni + save data  */
