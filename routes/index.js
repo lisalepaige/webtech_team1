@@ -13,49 +13,6 @@ var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27
 
 mongoose.connect(uri);
 var Schema = mongoose.Schema;
-
-
-//configure to fb strategy for use by passport
-passport.use(new Strategy({
-    clientID: 193031364810079,
-    clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-    callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
-  },
-  /*function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
-    console.log("in fb function"); 
-    process.nextTick(function () {
-      var query = QuestionsData.findOne({
-        "user.fbId": profile.id
-      });
-      alert(query); 
-    });*/
-
-  function (accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({
-      facebookId: profile.id
-    }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-// Lets user information be stored and retrieved from session
-passport.serializeUser(function (user, done) {
-  // save to session req.session.passport.user 
-  done(null, user.fbId);
-});
-
-// find user data by id 
-passport.deserializeUser(function (id, done) {
-  QuestionsData.findOne({
-    "user.fbId": profile.id
-  }, function (user, err) {
-    // user object attaches to the request as req.user
-    if (err) done(err);
-    done(user, err);
-  })
-});
-
 var Schema = mongoose.Schema;
 
 // blueprint (define layout)
@@ -164,13 +121,21 @@ passport.use(new Strategy({
   }
 ));
 
-// Configure Passport authenticated session persistence.
-passport.serializeUser(function (user, cb) {
-  cb(null, user);
+// Lets user information be stored and retrieved from session
+passport.serializeUser(function (user, done) {
+  // save to session req.session.passport.user 
+  done(null, user.fbId);
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
+// find user data by id 
+passport.deserializeUser(function (id, done) {
+  QuestionsData.findOne({
+    "user.fbId": profile.id
+  }, function (user, err) {
+    // user object attaches to the request as req.user
+    if (err) done(err);
+    done(user, err);
+  })
 });
 
 // create model of that blueprint
