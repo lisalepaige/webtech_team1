@@ -5,7 +5,13 @@ block content
       .logo
         img.logo__img(src='/img/logo.svg', alt='kweeni')
       .account
+<<<<<<< HEAD
         p.account__p #{question.user.name}
+||||||| merged common ancestors
+        p.account__p Anneke Kodeur
+=======
+        p.account__p #{user}
+>>>>>>> vorigeversie
         img.profile(src='/img/user8.png', alt='profile pic')
         a.account__a(href='/logout') Uitloggen
     section.question
@@ -25,14 +31,7 @@ block content
               span x #{question.likes} 
             a(href="/kweeni/"+question.search_name).topics__question--p #{question.text} 
             p.topics__question--author #{question.user.name}
-            img.topics__question--img(src='#{question.user.img}', alt='Yves')
+            img.topics__question--img(src=question.user.img, alt='Yves')
           hr
           
         a.topics__a(href='#') Toon 10 extra topics
-
-        
-
-
-
-    
-    
