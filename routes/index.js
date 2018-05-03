@@ -188,9 +188,40 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
+<<<<<<< HEAD
 router.post('/kweeni/:id', function (req, res) {
 
   QuestionsData.distinct('answers').exec(function (err, res) {
+=======
+/* UPDATE likes */
+router.post('/kweeni/:id', function (req, res) {
+  console.log("pudding");
+
+  var id = req.params.id;
+  QuestionsData.findOne({
+      search_name: id
+    })
+    .then(function (result) {
+      if (result == null) {
+
+        console.log("error poop");
+
+        res.render('error', {
+          message: 'id not found'
+
+          
+        });
+      } else {
+        console.log("likes");
+      } 
+});
+
+
+/* comments */
+router.post('/kweeni/:id', function(req, res){
+  
+  QuestionsData.distinct('answers').exec(function(err, res){
+>>>>>>> 11bd8d142124a4a1ffcf668655371d8e3fac9dc8
     console.log("Lengte", res.length);
     console.log(res);
     var lengte = res.length;

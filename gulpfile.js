@@ -24,7 +24,7 @@ gulp.task('startNodemon', function () {
 });
 
 gulp.task('minifyCss', function() {
-    return gulp.src('./public/app.css')
+    return gulp.src('./public/*.css')
     .pipe(minifyCSS({keepBreaks:false}))
-    .pipe(gulp.dest('./public/css/'))
+    .pipe(gulp.dest('./public/css/'));
 });
