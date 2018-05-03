@@ -4,7 +4,6 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
-<<<<<<< HEAD
 var local = "mongodb://localhost:27017";
 
 var MongoClient = require('mongodb').MongoClient;
@@ -15,55 +14,7 @@ var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27
 mongoose.connect(uri);
 var Schema = mongoose.Schema;
 
-||||||| merged common ancestors
 
-var local = "mongodb://localhost:27017";
-
-var MongoClient = require('mongodb').MongoClient;
-
-//connection
-var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
-
-mongoose.connect(uri);
-var Schema = mongoose.Schema;
-
-=======
-var currentUser;
->>>>>>> vorigeversie
-
-<<<<<<< HEAD
-||||||| merged common ancestors
-//configure to fb strategy for use by passport
-passport.use(new Strategy({
-  clientID: 193031364810079,
-  clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
-
-// Configure Passport authenticated session persistence.
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
-
-// blueprint user 
-var UserSchema = new mongoose.Schema({
-  name: String,
-  email: String, 
-  picture: String
-});
-
-
-=======
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
     clientID: 193031364810079,
@@ -107,7 +58,6 @@ passport.deserializeUser(function (id, done) {
 
 var Schema = mongoose.Schema;
 
->>>>>>> vorigeversie
 // blueprint (define layout)
 var questionsDataSchema = new Schema({
   text: {
@@ -240,24 +190,12 @@ router.get('/', function (req, res) {
 router.get('/facebook',
   passport.authenticate('facebook'));
 
-<<<<<<< HEAD
-router.get('/facebook/return',
-  passport.authenticate('facebook', {
-    failureRedirect: '/'
-  }),
-  function (req, res) {
-||||||| merged common ancestors
-router.get('/facebook/return', 
-  passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-=======
 router.get('/facebook/return',
   passport.authenticate('facebook', {
     failureRedirect: '/'
   }),
   function (req, res) {
     alert('request: ' + req);
->>>>>>> vorigeversie
     res.redirect('/kweeni');
     alert("kweeni!");
   });
@@ -295,15 +233,8 @@ router.get('/kweeni', function (req, res) {
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
-<<<<<<< HEAD
-        questionslist: result,
-        
-||||||| merged common ancestors
-        questionslist: result
-=======
         questionslist: result,
         user: currentUser
->>>>>>> vorigeversie
       });
     });
 });
