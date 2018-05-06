@@ -15,13 +15,13 @@ router.get('/logout', (req, res) => {
 
 //auth with facebook
 router.get('/facebook',passport.authenticate('facebook', {
-    scope: ['email']
+    scope: ['profile']
 }));
 
 //callback route for fb to redirect to
 //comes back with code where the info is in
 router.get('/facebook/redirect',passport.authenticate('facebook'),
-    (req, res) => {
+    function(req, res){
         res.send('you reached the callback uri');
 });
 
