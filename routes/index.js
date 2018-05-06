@@ -241,7 +241,7 @@ router.post('/kweeni/:id', function (req, res) {
 
   });
 
-  function saveAnswer(lengte) {
+  /*function saveAnswer(lengte) {
     console.log("Aantal Antw", lengte);
     var newId = lengte + 1;
     console.log("New Id", newId);
@@ -264,7 +264,7 @@ router.post('/kweeni/:id', function (req, res) {
               searchname = result.search_name;
             }
           });*/
-          if (err) {
+         /* if (err) {
             res.send(err);
           } else {
             var id = req.params.id;
@@ -275,9 +275,9 @@ router.post('/kweeni/:id', function (req, res) {
 
       console.log(raw);
     });
-  }
+  }*/
 
-  function saveComment(lengte) {
+  /*function saveComment(lengte) {
     console.log("Saving comment on ", lengte);
     QuestionsData.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
       if (err) {
@@ -289,7 +289,7 @@ router.post('/kweeni/:id', function (req, res) {
       console.log(raw);
     });
 
-  }
+  }*/
 });
 
 
