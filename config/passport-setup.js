@@ -10,6 +10,6 @@ passport.use(new facebookStrategy ({
 
 }, (accessToken, refreshToken, email, done ) => {
         //passport callback function
-        //console.log(email);
+        console.log(email);
 })
 );
