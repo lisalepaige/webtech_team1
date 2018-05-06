@@ -20,8 +20,7 @@ router.get('/facebook',passport.authenticate('facebook', {
 
 //callback route for fb to redirect to
 //comes back with code where the info is in
-router.get('/facebook/redirect', 
-    passport.authenticate('facebook'),
+router.get('/facebook/redirect',
     (req, res) => {
         res.send('you reached the callback uri');
 });
