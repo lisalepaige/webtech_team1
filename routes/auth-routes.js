@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
-//auth login
+/*auth login
 router.get('/', (req, res) => {
     res.render('./home');
 });
+*/
 
 //auth logout
 router.get('/logout', (req, res) => {
