@@ -24,4 +24,4 @@ which
 which.cmd
 is-ci
 is-ci.cmd
-keys.js
+config/keys.js
