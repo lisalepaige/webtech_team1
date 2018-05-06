@@ -12,4 +12,4 @@ passport.use(new facebookStrategy ({
         //passport callback function
         console.log(email);
 })
-)
+);
