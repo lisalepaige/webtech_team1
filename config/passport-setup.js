@@ -6,7 +6,7 @@ passport.use(new facebookStrategy ({
     //options for the fb strategy
     clientID: keys.facebook.clientID,
     clientSecret: keys.facebook.clientSecret,
-    callbackURL: "/auth/facebook/redirect"
+    callbackURL: "https://kweeni2018.herokuapp.com/auth/facebook/redirect"
 
 }, (accesToken, refreshToken, email, done ) => {
         //passport callback function
