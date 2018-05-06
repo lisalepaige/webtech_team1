@@ -15,7 +15,7 @@ router.get('/logout', (req, res) => {
 
 //auth with facebook
 router.get('/facebook',passport.authenticate('facebook', {
-    scope: 'email,name,name,picture'
+    scope: ['user-id']
 }));
 
 module.exports = router;
