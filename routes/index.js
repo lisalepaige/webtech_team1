@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
-var passport = require('passport');
+//var passport = require('passport');
 var session = require('express-session');
 var mongoose = require('mongoose');
-var Strategy = require('passport-facebook').Strategy;
+//var Strategy = require('passport-facebook').Strategy;
 var MongoClient = require('mongodb').MongoClient;
 
 var Schema = mongoose.Schema;
