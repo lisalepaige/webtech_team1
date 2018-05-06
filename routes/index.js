@@ -79,7 +79,7 @@ var questionsDataSchema = new Schema({
     collection: 'questions'
   }); // stores data in collection
 
-//configure to fb strategy for use by passport
+/*configure to fb strategy for use by passport
 passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
@@ -113,8 +113,9 @@ passport.use(new Strategy({
     });
   }
 ));
+*/
 
-// Configure Passport authenticated session persistence.
+/* Configure Passport authenticated session persistence.
 passport.serializeUser(function (user, cb) {
   cb(null, user.id);
 });
@@ -124,7 +125,7 @@ passport.deserializeUser(function (id, cb) {
   User.findOne({"id": id}, function(err, user){
     cb(null, user);
   });
-});
+});*/
 
 // create model of that blueprint
 var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
@@ -137,7 +138,7 @@ router.get('/', function (req, res) {
   });
 });
 
-/* get facebook */
+/* get facebook
 
 //facebook
 router.get('/facebook',
@@ -150,6 +151,7 @@ router.get('/facebook/return',
   function (req, res) {
     res.redirect('/kweeni');
   });
+  */
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {

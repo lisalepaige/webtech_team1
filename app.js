@@ -7,6 +7,8 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var Strategy = require('passport-facebook').Strategy;
+var authRoutes = require('.routes/auth-routes');
+const passportSetup = require('./config/passport-setup');
 
 var app = express();
 
@@ -33,8 +35,8 @@ var usersRouter = require('./routes/users');
 
 // Initialize Passport and restore authentication state, if any, from the session.
 // passport init
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,6 +52,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//set up routes
+app.use('/auth', authRoutes);
 
 
 // catch 404 and forward to error handler
