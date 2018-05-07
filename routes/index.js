@@ -133,8 +133,7 @@ var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
 /* GET home */
 router.get('/', function (req, res) {
   res.render('./home', {
-    title: 'Home',
-    user: req.user
+    title: 'Home'
   });
 });
 
