@@ -18,32 +18,8 @@ passport.use(new Strategy({
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
-  function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
-    /*console.log("in fb function");
-    process.nextTick(function () {
-      console.log("found fb data ");
-      var query = Question.findOne({
-        "user.fbId": profile.id
-      });
-      query.exec(function (err, oldUser) {
-        if (oldUser) {
-          console.log('Existing user: ' + oldUser.name + ' found and logged in!');
-          done(null, oldUser);
-        } else {
-          var newUser = new Question();
-          newUser.user.fbId = profile.id;
-          newUser.user.name = profile.displayName;
-
-          newUser.save(function (err) {
-            if (err) {
-              return done(err);
-            }
-            console.log('New user: ' + newUser.name + ' created and logged in!');
-            done(null, newUser);
-          });
-        }
-      });
-    });*/
+  function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done
+    alert(profile); 
   }
 ));
 
