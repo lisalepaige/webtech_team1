@@ -8,6 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var Schema = mongoose.Schema;
 
+// require models
 const Question = require('../models/questionmodel'); 
 const User = require('../models/usermodel'); 
 
@@ -66,19 +67,15 @@ router.get('/', function (req, res) {
   });
 });
 
-/* get facebook */
-
-//facebook
-/*router.get('/facebook',
-  passport.authenticate('facebook'));
-
-router.get('/facebook/return',
-  passport.authenticate('facebook', {
-    failureRedirect: '/'
-  }),
-  function (req, res) {
-    res.redirect('/kweeni');
-  });*/
+// start authentication process 
+router.get('/facebook', passport.authenticate('facebook', { 
+  scope: ['profile']
+}));
+  
+// callback route for facebook to redirect to
+router.get('/auth/facebook/redirect', passport.authenticate('facebook'), function(req, res){
+  res.redirect('kweeni'); 
+});
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
