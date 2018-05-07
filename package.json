@@ -23,6 +23,7 @@
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "find-or-create": "^1.1.0",
@@ -39,7 +40,8 @@
     "recovery": "^0.2.6",
     "tick-tock": "^1.0.0",
     "url-parse": "^1.3.0",
-    "ws": "^5.1.0"
+    "ws": "^5.1.0",
+    "cookie-session": "^1.3.2"
   },
   "devDependencies": {
     "gulp-nodemon": "^2.2.1",
