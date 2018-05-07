@@ -72,6 +72,6 @@ var questionSchema = new Schema({
     collection: 'questions'
   }); // stores data in collection
 
-const Question = mongoose.model('question', questionSchema);
+var Question = mongoose.model('question', questionSchema);
 
 module.exports = Question;

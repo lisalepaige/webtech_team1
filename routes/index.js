@@ -8,88 +8,20 @@ var MongoClient = require('mongodb').MongoClient;
 
 var Schema = mongoose.Schema;
 
-// blueprint (define layout)
-var questionsDataSchema = new Schema({
-  text: {
-    type: String,
-    required: true
-  },
-  likes: {
-    type: Number
-  },
-  search_name: {
-    type: String
-  },
-  current_date: {
-    type: Date
-  },
-  user: {
-    _id: {
-      type: Number
-    },
-    _fbId: {
-      type: Number
-    },
-    name: {
-      type: String
-    },
-    img: {
-      type: String
-    }
-  },
-  answers: [{
-    _id: {
-      type: Number
-    },
-    text: {
-      type: String
-    },
-    user: {
-      _id: {
-        type: Number
-      },
-      name: {
-        type: String
-      },
-      img: {
-        type: String
-      }
-    },
-    comments: [{
-      _id: {
-        type: Number
-      },
-      text: {
-        type: String
-      },
-      user: {
-        _id: {
-          type: Number
-        },
-        name: {
-          type: String
-        },
-        img: {
-          type: String
-        }
-      }
-    }]
-  }]
-}, {
-    collection: 'questions'
-  }); // stores data in collection
+const Question = require('../models/questionmodel'); 
+const User = require('../models/usermodel'); 
 
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
+  callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
   function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
-    console.log("in fb function");
+    /*console.log("in fb function");
     process.nextTick(function () {
       console.log("found fb data ");
-      var query = QuestionsData.findOne({
+      var query = Question.findOne({
         "user.fbId": profile.id
       });
       query.exec(function (err, oldUser) {
@@ -97,7 +29,7 @@ passport.use(new Strategy({
           console.log('Existing user: ' + oldUser.name + ' found and logged in!');
           done(null, oldUser);
         } else {
-          var newUser = new QuestionsData();
+          var newUser = new Question();
           newUser.user.fbId = profile.id;
           newUser.user.name = profile.displayName;
 
@@ -110,12 +42,12 @@ passport.use(new Strategy({
           });
         }
       });
-    });
+    });*/
   }
 ));
 
 // Configure Passport authenticated session persistence.
-passport.serializeUser(function (user, cb) {
+/*passport.serializeUser(function (user, cb) {
   cb(null, user.id);
 });
 
@@ -124,23 +56,20 @@ passport.deserializeUser(function (id, cb) {
   User.findOne({"id": id}, function(err, user){
     cb(null, user);
   });
-});
+});*/
 
-// create model of that blueprint
-var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema)
 
 /* GET home */
 router.get('/', function (req, res) {
   res.render('./home', {
-    title: 'Home',
-    user: req.user
+    title: 'Home'
   });
 });
 
 /* get facebook */
 
 //facebook
-router.get('/facebook',
+/*router.get('/facebook',
   passport.authenticate('facebook'));
 
 router.get('/facebook/return',
@@ -149,12 +78,12 @@ router.get('/facebook/return',
   }),
   function (req, res) {
     res.redirect('/kweeni');
-  });
+  });*/
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
   // sort by date
-  QuestionsData.find().sort({
+  Question.find().sort({
     current_date: -1
   })
     .then(function (result) {
@@ -169,7 +98,7 @@ router.get('/kweeni', function (req, res) {
 /* GET wat is + id */
 router.get('/kweeni/:id', function (req, res) {
   var id = req.params.id;
-  QuestionsData.findOne({
+  Question.findOne({
     search_name: id
   })
     .then(function (result) {
@@ -220,7 +149,7 @@ router.post('/kweeni/:id', function (req, res) {
 
 router.post('/kweeni/:id', function (req, res) {
 
-  QuestionsData.distinct('answers').exec(function (err, res) {
+  Question.distinct('answers').exec(function (err, res) {
 
     console.log("Lengte", res.length);
     console.log(res);
@@ -244,7 +173,7 @@ router.post('/kweeni/:id', function (req, res) {
     var newId = lengte + 1;
     console.log("New Id", newId);
 
-    QuestionsData.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
+    Question.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
       /*var searchname;
       if (err) {
         res.send(err);
@@ -277,7 +206,7 @@ router.post('/kweeni/:id', function (req, res) {
 
   function saveComment(lengte) {
     console.log("Saving comment on ", lengte);
-    QuestionsData.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
+    Question.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
       if (err) {
         res.send(err);
       } else {
@@ -306,7 +235,7 @@ router.post('/kweeni', function (req, res, next) {
   };
 
   // create instance of model 
-  var data = new QuestionsData(item);
+  var data = new Question(item);
   data.save();
   res.redirect('/kweeni');
 });
