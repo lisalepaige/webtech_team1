@@ -4,6 +4,7 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
+var MongoClient = require('mongodb').MongoClient;
 
 var Schema = mongoose.Schema;
 
@@ -47,7 +48,7 @@ router.get('/kweeni', function (req, res) {
 });
 
 /* GET wat is + id */
-router.get('/kweeni/:id', /*passport.authenticate('facebook'), */ function (req, res) {
+router.get('/kweeni/:id', passport.authenticate('facebook'), function (req, res) {
   var id = req.params.id;
   Question.findOne({
     search_name: id
