@@ -20,8 +20,25 @@ passport.use(new Strategy({
 },
   function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done
     alert(profile); 
-  }
-));
+    User.findOne({
+      facebookId: profile.id
+    }).then (function(currentUser){
+      if (currentUser){
+        // user already exists
+        alert(currentUser); 
+        done(null, currentUser); // save to db 
+      } else {
+        // create new user
+        new User({
+          username: profile.displayName,
+          facebookId: profile.id
+        }).save().then(function(newUser){
+            done(null, newUser); // save to db
+        });
+      }
+    });
+  })
+);
 
 // Configure Passport authenticated session persistence.
 /*passport.serializeUser(function (user, cb) {
