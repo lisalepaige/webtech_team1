@@ -1,6 +1,14 @@
 
+const express = require('express')
+const router = express.Router();
+var passport = require('passport');
+var session = require('express-session');
+var mongoose = require('mongoose');
+var Strategy = require('passport-facebook').Strategy;
+var MongoClient = require('mongodb').MongoClient;
+
 //configure to fb strategy for use by passport
-/*passport.use(new Strategy({
+passport.use(new Strategy({
     clientID: 193031364810079,
     clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
     callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
@@ -31,8 +39,8 @@
           }
         });
       });*/
-   /* }
-  ));*/
+    }
+  ));
   
   // Configure Passport authenticated session persistence.
   /*passport.serializeUser(function (user, cb) {
