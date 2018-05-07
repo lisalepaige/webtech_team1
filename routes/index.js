@@ -69,7 +69,7 @@ router.get('/', function (req, res) {
 
 // start authentication process 
 router.get('/facebook', passport.authenticate('facebook', { 
-  scope: ['profile']
+  scope: ['email']
 }));
   
 // callback route for facebook to redirect to
