@@ -24,13 +24,13 @@ passport.use(new Strategy({
     }).then (function(currentUser){
       if (currentUser){
         // user already exists
-        alert(currentUser); 
         done(null, currentUser); // save to db 
       } else {
         // create new user
         new User({
           username: profile.displayName,
-          facebookId: profile.id
+          facebookId: profile.id,
+          picture: picture
         }).save().then(function(newUser){
             done(null, newUser); // save to db
         });
@@ -82,7 +82,8 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       //console.log(result);
       res.render('kweeni', {
         questionslist: result,
-        user: req.user
+        user: req.user,
+        picture: req.picture
       });
     });
 }); 
