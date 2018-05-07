@@ -74,7 +74,8 @@ router.get('/facebook', passport.authenticate('facebook', {
   
 // callback route for facebook to redirect to
 router.get('/auth/facebook/redirect', passport.authenticate('facebook'), function(req, res){
-  res.redirect('kweeni'); 
+  //res.redirect('kweeni'); 
+  res.send('you are logged in'); 
 });
 
 /* GET kweeni + data */
