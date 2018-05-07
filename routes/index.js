@@ -5,6 +5,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var MongoClient = require('mongodb').MongoClient;
+require('setup-passport.js')(passport); 
 
 var Schema = mongoose.Schema;
 
