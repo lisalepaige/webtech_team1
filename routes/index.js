@@ -84,7 +84,7 @@ router.get('/kweeni', passport.authenticate('facebook'), function (req, res) {
       //console.log(result);
       res.render('kweeni', {
         questionslist: result,
-        user: req.user.username
+        user: req.user
       });
     });
 }); 
