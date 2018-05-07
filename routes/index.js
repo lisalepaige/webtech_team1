@@ -45,13 +45,21 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-//query for user id 
+// query for user id 
 passport.deserializeUser(function (id, done) {
-  User.findOne({"id": id}, function(err, user){
+  User.findById(id).then(function(err, user){
     done(null, user);
   });
 });
 
+// check if user is not logged in
+function checkLogin(req, res, next){
+  if (!req.user){
+    res.redirect('/login'); 
+  } else {
+    next();  
+  }
+}
 
 /* GET home */
 router.get('/', function (req, res) {
@@ -64,28 +72,22 @@ router.get('/', function (req, res) {
 router.get('/facebook', passport.authenticate('facebook', { 
   scope: ['email']
 }));
-  
-// callback route for facebook to redirect to
-/*router.get('/auth/facebook/redirect', passport.authenticate('facebook'), function(req, res){
-  //res.redirect('kweeni'); 
-  res.send('you are logged in'); 
-});*/
 
 /* GET kweeni + data */
 router.get('/kweeni', /*passport.authenticate('facebook'),*/ function (req, res) {
   
-  res.send('you are logged in'); 
+  //res.send('you are logged in'); 
   // sort by date
-  /*Question.find().sort({
+  Question.find().sort({
     current_date: -1
   })
     .then(function (result) {
       //console.log(result);
       res.render('kweeni', {
         questionslist: result,
-
+        user: req.user
       });
-    });*/
+    });
 }); 
 
 /* GET wat is + id */
