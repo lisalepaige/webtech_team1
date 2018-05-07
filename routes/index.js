@@ -55,7 +55,7 @@ passport.deserializeUser(function (id, done) {
 // check if user is not logged in
 function checkLogin(req, res, next){
   if (!req.user){
-    res.redirect('/home'); 
+    res.redirect('/'); 
   } else {
     next();  
   }
@@ -74,7 +74,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 /* GET kweeni + data */
-router.get('/kweeni', checkLogin, function (req, res) {
+router.get('/kweeni', passport.authenticate('facebook'), function (req, res) {
   
   //res.send('you are logged in'); 
   // sort by date
