@@ -74,7 +74,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 /* GET kweeni + data */
-router.get('/kweeni', /*passport.authenticate('facebook'),*/ function (req, res) {
+router.get('/kweeni', checkLogin, function (req, res) {
   
   //res.send('you are logged in'); 
   // sort by date
