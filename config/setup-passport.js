@@ -1,6 +1,6 @@
 
 //configure to fb strategy for use by passport
-passport.use(new Strategy({
+/*passport.use(new Strategy({
     clientID: 193031364810079,
     clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
     callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
@@ -31,8 +31,8 @@ passport.use(new Strategy({
           }
         });
       });*/
-    }
-  ));
+   /* }
+  ));*/
   
   // Configure Passport authenticated session persistence.
   /*passport.serializeUser(function (user, cb) {
