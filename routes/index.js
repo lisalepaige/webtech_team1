@@ -73,15 +73,17 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
   
 // callback route for facebook to redirect to
-router.get('/auth/facebook/redirect', passport.authenticate('facebook'), function(req, res){
+/*router.get('/auth/facebook/redirect', passport.authenticate('facebook'), function(req, res){
   //res.redirect('kweeni'); 
   res.send('you are logged in'); 
-});
+});*/
 
 /* GET kweeni + data */
 router.get('/kweeni', function (req, res) {
+  
+  res.send('you are logged in'); 
   // sort by date
-  Question.find().sort({
+  /*Question.find().sort({
     current_date: -1
   })
     .then(function (result) {
@@ -90,7 +92,7 @@ router.get('/kweeni', function (req, res) {
         questionslist: result,
 
       });
-    });
+    });*/
 });
 
 /* GET wat is + id */
