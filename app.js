@@ -15,33 +15,33 @@ var keys = require('./config/keys');
 
 var app = express();
 
+var cookieSession = require('cookie-session'); 
+
+var MongoClient = require('mongodb').MongoClient;
+var local = "mongodb://localhost:27017";
 
 
 // require session and set secret
-var session = (require('express-session')({
+/*var session = (require('express-session')({
   secret: 'sparkle',
   cookie: {
     maxAge: 40 * 24 * 60 * 60 * 1000
   },
   resave: true,
   saveUninitialized: true
+}));*/
+
+app.use(cookieSession({
+  maxAge: 24*60*60*1000,
+  keys: "ditismijntekst"
 }));
 
-var MongoClient = require('mongodb').MongoClient;
-var local = "mongodb://localhost:27017";
-
-//connection
-var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
-mongoose.connect(uri);
+// passport init
+app.use(passport.initialize());
+app.use(passport.session());
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-
-// Initialize Passport and restore authentication state, if any, from the session.
-// passport init
-//app.use(passport.initialize());
-//app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
