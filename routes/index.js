@@ -55,7 +55,7 @@ passport.deserializeUser(function (id, done) {
 // check if user is not logged in
 function checkLogin(req, res, next){
   if (!req.user){
-    res.redirect('/login'); 
+    res.redirect('/home'); 
   } else {
     next();  
   }
