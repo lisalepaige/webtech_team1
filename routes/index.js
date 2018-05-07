@@ -79,7 +79,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 });*/
 
 /* GET kweeni + data */
-router.get('/kweeni', function (req, res) {
+router.get('/kweeni', passport.authenticate('facebook'),function (req, res) {
   
   res.send('you are logged in'); 
   // sort by date
@@ -96,7 +96,7 @@ router.get('/kweeni', function (req, res) {
 }); 
 
 /* GET wat is + id */
-router.get('/kweeni/:id', /*passport.authenticate('facebook'), */ function (req, res) {
+router.get('/kweeni/:id', function (req, res) {
   var id = req.params.id;
   Question.findOne({
     search_name: id
