@@ -7,16 +7,12 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var session = require('express-session');
 //var Strategy = require('passport-facebook').Strategy;
-var authRoutes = require('./routes/auth-routes');
-const passportSetup = require('./config/passport-setup');
 
 // keys
 var keys = require('./config/keys'); 
 
 var app = express();
-
 var cookieSession = require('cookie-session'); 
-
 var MongoClient = require('mongodb').MongoClient;
 var local = "mongodb://localhost:27017";
 
@@ -57,10 +53,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-//set up routes
-app.use('/auth', authRoutes);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
