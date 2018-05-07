@@ -83,7 +83,7 @@ var questionsDataSchema = new Schema({
 passport.use(new Strategy({
   clientID: 193031364810079,
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
-  callbackURL: "https://kweeni-team1.herokuapp.com/kweeni"
+  callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
   function (accessToken, refreshToken, profile, cb) { // access, refresh, profile, done
     console.log("in fb function");
