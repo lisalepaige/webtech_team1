@@ -41,16 +41,16 @@ passport.use(new Strategy({
 );
 
 // Configure Passport authenticated session persistence.
-/*passport.serializeUser(function (user, cb) {
-  cb(null, user.id);
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
 });
 
 //query for user id 
-passport.deserializeUser(function (id, cb) {
+passport.deserializeUser(function (id, done) {
   User.findOne({"id": id}, function(err, user){
-    cb(null, user);
+    done(null, user);
   });
-});*/
+});
 
 
 /* GET home */
