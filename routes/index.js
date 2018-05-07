@@ -30,7 +30,7 @@ passport.use(new Strategy({
         new User({
           username: profile.displayName,
           facebookId: profile.id,
-          picture: profile.picture
+          picture: profile.picture.data.url
         }).save().then(function(newUser){
             done(null, newUser); // save to db
         });
