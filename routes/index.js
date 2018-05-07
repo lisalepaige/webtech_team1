@@ -18,8 +18,7 @@ passport.use(new Strategy({
   clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
   callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
-  function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done
-    alert(profile); 
+  function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done 
     User.findOne({
       facebookId: profile.id
     }).then (function(currentUser){
