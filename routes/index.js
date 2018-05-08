@@ -15,9 +15,9 @@ const User = require('../models/usermodel');
 
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
-  clientID: 193031364810079,
+  clientID: keys.facebook.clientID,
   clientSecret: keys.facebook.clientSecret,
-  callbackURL: keys.facebook.clientID
+  callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
   function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done 
     User.findOne({
