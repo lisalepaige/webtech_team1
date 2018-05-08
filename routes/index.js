@@ -5,7 +5,6 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var MongoClient = require('mongodb').MongoClient;
-var keys = require('../config/keys'); 
 
 var Schema = mongoose.Schema;
 
@@ -16,8 +15,8 @@ const User = require('../models/usermodel');
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
   clientID: 193031364810079,
-  clientSecret: keys.facebook.clientSecret,
-  callbackURL: keys.facebook.clientID
+  clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
+  callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
 },
   function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done 
     User.findOne({
