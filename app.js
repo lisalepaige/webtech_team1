@@ -6,16 +6,18 @@ var logger = require('morgan');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var session = require('express-session');
-//var Strategy = require('passport-facebook').Strategy;
-
-// keys
-var keys = require('./config/keys'); 
+var Strategy = require('passport-facebook').Strategy;
 
 var app = express();
+
 var cookieSession = require('cookie-session'); 
+
 var MongoClient = require('mongodb').MongoClient;
 var local = "mongodb://localhost:27017";
 
+//connection
+var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
+mongoose.connect(uri);
 
 // require session and set secret
 /*var session = (require('express-session')({
@@ -53,6 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
