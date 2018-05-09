@@ -16,19 +16,8 @@ var questionSchema = new Schema({
   current_date: {
     type: Date
   },
-  user: {
-    _id: {
-      type: Number
-    },
-    _fbId: {
-      type: Number
-    },
-    name: {
-      type: String
-    },
-    img: {
-      type: String
-    }
+  user_id: {
+    type: Number
   },
   answers: [{
     _id: {
