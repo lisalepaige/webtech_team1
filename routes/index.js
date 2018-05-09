@@ -31,7 +31,7 @@ passport.use(new Strategy({
         new User({
           username: profile.displayName,
           facebookId: profile.id,
-          picture: profile.picture.data.url
+          picture: "https://graph.facebook.com/"+profile.id+"/picture"
         }).save().then(function(newUser){
             done(null, newUser); // save to db
         });
@@ -84,7 +84,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
-        picture: "https://graph.facebook.com/"+req.user.facebook+"/picture"
+        picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
       });
     });
 }); 
