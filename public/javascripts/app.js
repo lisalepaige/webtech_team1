@@ -1,5 +1,7 @@
 var url = "/";
 
+
+
 primus = Primus.connect(url, {
     reconnect: {
         max: Infinity // Number: The max delay before we try to reconnect.
@@ -8,20 +10,18 @@ primus = Primus.connect(url, {
     }
   });
 
-  document.querySelector(".react__a").addEventListener("click", function(e) {
+document.querySelector(".react__a").addEventListener("click", function(e) {
+    e.preventDefault();
     var reactie = document.querySelector(".react__input").value;
-    primus.write(reactie);
-    console.log("clicked");
+    //lees laatste deel van pagina URL
+    var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
+    
+    primus.write({type : "answer", content : reactie, search_name: search_name});
     
 });
 
-document.querySelector(".likes__like--a").addEventListener("click", function(e) {
-    e.preventDefault();
-    var likes = document.querySelector(".likes__like--p").value;
 
-    primus.write(likes);
-    console.log("clicked likesss");
-});
+
 
 
 function addReaction(data){
@@ -54,8 +54,15 @@ function addReaction(data){
 
 
 primus.on("data", function message(data) {
-    addReaction(data);
-    console.log("Adding reaction");
+    
+    //lees laatste deel van pagina URL
+    var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
+    
+    //kijk of de pagina die je ziet de pagina is waarop gepost wordt
+    if(data.page == search_name){
+        addReaction(data.content);
+    }
+    
 });
 
 

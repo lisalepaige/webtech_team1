@@ -74,7 +74,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 /* GET kweeni + data */
-router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), function (req, res) {
+router.get('/kweeni', /*checkLogin, */ /*passport.authenticate('facebook'), */function (req, res) {
   // sort by date
   Question.find().sort({
     current_date: -1
@@ -84,7 +84,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
-        picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
+        //picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
       });
     });
 }); 
@@ -143,74 +143,7 @@ router.post('/kweeni/:id', function (req, res) {
 
 router.post('/kweeni/:id', function (req, res) {
 
-  Question.distinct('answers').exec(function (err, res) {
-
-    console.log("Lengte", res.length);
-    console.log(res);
-    var lengte = res.length;
-
-    let answer = req.body.answer;
-    let comment = req.body.comment;
-
-    if (answer != undefined) {
-      saveAnswer(lengte);
-      console.log("Saving answer =", answer);
-    } else if (comment != undefined) {
-      saveComment(lengte);
-      console.log("Saving comment =", comment);
-    }
-
-  });
-
-  function saveAnswer(lengte) {
-    console.log("Aantal Antw", lengte);
-    var newId = lengte + 1;
-    console.log("New Id", newId);
-
-    Question.update({ search_name: req.params.id }, { $push: { 'answers': { _id: newId, text: req.body.answer, count: null } } }, function (err, raw) {
-      /*var searchname;
-      if (err) {
-        res.send(err);
-      } else {
-        var id = req.params.id;
-        QuestionsData.findOne({
-          search_name: id
-        })
-          .then(function (result) {
-            if (result == null) {
-              res.render('error', {
-                message: 'id not found'
-              });
-            } else {
-              searchname = result.search_name;
-            }
-          });*/
-          if (err) {
-            res.send(err);
-          } else {
-            var id = req.params.id;
-            res.end();
-          }
-        
-      
-
-      console.log(raw);
-    });
-  }
-
-  function saveComment(lengte) {
-    console.log("Saving comment on ", lengte);
-    Question.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.end();
-      }
-
-      console.log(raw);
-    });
-
-  }
+  
 });
 
 
