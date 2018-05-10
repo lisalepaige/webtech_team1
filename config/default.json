@@ -1,0 +1,15 @@
+{
+    "Connection": {
+        "dbConfig": {
+          "host": "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin"
+          
+          
+        },
+        "credit": {
+          "initialLimit": 100,
+          "initialDays": 1
+        }
+      }
+
+    
+  }
