@@ -7,52 +7,32 @@ var questionsDataSchema = Schema.questionsDataSchema;
 
 var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema);
 
-function saveAnswer(lengte, content, search_name) {
-    console.log("Aantal Antw", lengte);
-    var newId = lengte + 1;
-    console.log("New Id", newId);
+function saveAnswer(content, search_name, last_answer) {
+    
+  QuestionsData.update({ search_name: search_name }, { $push: { 'answers': { _id: last_answer, text: content, count: null } } }, function (err, raw) {
+    console.log(raw);
+  });
+}
 
-    QuestionsData.update({ search_name: search_name }, { $push: { 'answers': { _id: newId, text: content, count: null } } }, function (err, raw) {
-      /*var searchname;
-      if (err) {
-        res.send(err);
-      } else {
-        var id = req.params.id;
-        QuestionsData.findOne({
-          search_name: id
-        })
-          .then(function (result) {
-            if (result == null) {
-              res.render('error', {
-                message: 'id not found'
-              });
-            } else {
-              searchname = result.search_name;
-            }
-          });*/
-          if (err) {
-            res.send(err);
-          } else {
-            var id = search_name;
-            
-          }
-        console.log(raw);
-    });
-  }
+function saveComment(content, search_name, last_answer) {
+    
+  QuestionsData.update({ search_name: search_name, 'answers._id': last_answer }, { $push: { 'answers.$.comments': { text: content } } }, function (err, raw) {
+    console.log(raw);
+  });
+}
 
-  function saveComment(lengte) {
-    console.log("Saving comment on ", lengte);
-    QuestionsData.update({ search_name: req.params.id, 'answers._id': lengte }, { $push: { 'answers.$.comments': { text: req.body.comment } } }, function (err, raw) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.end();
-      }
-
+function updateLike(search_name, callback){
+  QuestionsData.findOne({ 'search_name': search_name }).select('likes -_id').then(function(likes){
+    callback(null, likes.likes);
+    var newLikes = likes.likes +1;
+    QuestionsData.update({search_name: search_name}, {$set: {likes: newLikes}}, function(err, raw){
       console.log(raw);
+      
     });
-
-  }
+  });
+  
+  
+}
 
 
 exports.kickstart = function(server) {
@@ -68,24 +48,30 @@ exports.kickstart = function(server) {
         
 
         spark.on("data", function(data) {
-            QuestionsData.distinct('answers').exec(function (err, res) {
-                console.log("Lengte", res.length);
-                var lengte = res.length;
-            
-                if (data.type == "answer") {
-                  saveAnswer(lengte, data.content, data.search_name);
-                  //console.log("Saving answer =", answer);
-                }
+            if (data.type == "answer") {
+              last_answer = parseInt(data.last_answer)+1;
+              console.log("Last answer ="+last_answer);
+              saveAnswer(data.content, data.search_name, last_answer);
+              primus.write({page : data.search_name, content : data.content, type: data.type, id: last_answer});    
+            }
                 
-                if (data.type == "comment") {
-                  saveComment(lengte);
-                  console.log("Saving comment =", comment);
+            if (data.type == "comment") {
+              saveComment(data.content, data.search_name, data.last_answer);
+              last_answer = data.last_answer
+              primus.write({page : data.search_name, content : data.content, type: data.type, id: last_answer});    
+            }
+
+            if(data.type =="like"){
+              //primus.write({page : data.search_name, type: data.type});
+              updateLike(data.search_name, function(err, likes) {
+                if (err) {
+                  console.log("error "+err);
                 }
-            
-            });
-            
-            
-            primus.write({page : data.search_name, content : data.content});
+                var updatedLikes = likes +1;
+                primus.write({page : data.search_name, type: data.type, likes: updatedLikes});
+                
+              });
+            }
         });
-    } );
+    });
 }

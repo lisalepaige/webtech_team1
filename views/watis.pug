@@ -37,7 +37,7 @@ block content
     .container
       section#listcomments
         each answer, i in answerlist
-          article.comments
+          article.comments.answer(data-id= i)
             p #{question.answers[i].text} 
             img.comments__pic(src="../img/user1.png" alt="user10")
             a.comments__a(href="#") #{question.answers[i].user.name} 
@@ -49,7 +49,7 @@ block content
               a.comments__a(href="#") #{question.answers[i].comments[j].user.name} 
       .placeComment
         form.react__form(action="" method="post")
-          input(type="text" name="comment" placeholder="Plaats commentaar...")
+          input.react__c(type="text" name="comment" placeholder="Plaats commentaar...")
           input(type="submit" style="display:none")
       .react
         form.react__form(action="" method="post")
