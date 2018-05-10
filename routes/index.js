@@ -74,7 +74,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 /* GET kweeni + data */
-router.get('/kweeni', /*checkLogin, */ /*passport.authenticate('facebook'), */function (req, res) {
+router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), function (req, res) {
   // sort by date
   Question.find().sort({
     current_date: -1
@@ -84,7 +84,7 @@ router.get('/kweeni', /*checkLogin, */ /*passport.authenticate('facebook'), */fu
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
-        //picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
+        picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
       });
     });
 }); 
