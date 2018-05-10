@@ -1,31 +1,27 @@
 var mongoose = require('mongoose');
+const Question = require('../models/questionmodel'); 
 
-var Schema = mongoose.Schema;
 
-// blueprint (define layout)
-var questionsDataSchema = Schema.questionsDataSchema;
-
-var QuestionsData = mongoose.model('QuestionsData', questionsDataSchema);
 
 function saveAnswer(content, search_name, last_answer) {
     
-  QuestionsData.update({ search_name: search_name }, { $push: { 'answers': { _id: last_answer, text: content, count: null } } }, function (err, raw) {
+  Question.update({ search_name: search_name }, { $push: { 'answers': { _id: last_answer, text: content, count: null } } }, function (err, raw) {
     console.log(raw);
   });
 }
 
 function saveComment(content, search_name, last_answer) {
     
-  QuestionsData.update({ search_name: search_name, 'answers._id': last_answer }, { $push: { 'answers.$.comments': { text: content } } }, function (err, raw) {
+  Question.update({ search_name: search_name, 'answers._id': last_answer }, { $push: { 'answers.$.comments': { text: content } } }, function (err, raw) {
     console.log(raw);
   });
 }
 
 function updateLike(search_name, callback){
-  QuestionsData.findOne({ 'search_name': search_name }).select('likes -_id').then(function(likes){
+  Question.findOne({ 'search_name': search_name }).select('likes -_id').then(function(likes){
     callback(null, likes.likes);
     var newLikes = likes.likes +1;
-    QuestionsData.update({search_name: search_name}, {$set: {likes: newLikes}}, function(err, raw){
+    Question.update({search_name: search_name}, {$set: {likes: newLikes}}, function(err, raw){
       console.log(raw);
       
     });
