@@ -20,12 +20,12 @@ block content
         h2.topics__h2 Hot topics!
         each question, i in questionslist
           .topics__question
-            .topics__question--likes
+            .topics__question--likes+
               img.topics__question--img(src='img/icon-cool.svg', alt='icon')
               span x #{question.likes} 
             a(href="/kweeni/"+question.search_name).topics__question--p #{question.text} 
-          //-  p.topics__question--author #{question.user.username}
-            img.topics__question--img(src=question.user.img, alt='Yves')
+            p.topics__question--author #{question.user.username}
+            img.topics__question--img(src=question.user.picture, alt=question.user.username)
           hr
           
         a.topics__a(href='#') Toon 10 extra topics
