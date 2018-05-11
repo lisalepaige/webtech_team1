@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 const Question = require('../models/questionmodel');
+var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
 // logged in user
-var loggedInUser;
+var loggedInUser = keys.globals.loggedInUser;
 
 // search which user is asking the question
 User.findOne({
