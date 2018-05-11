@@ -9,7 +9,7 @@ var keys = require('../config/keys');
 
 var Schema = mongoose.Schema;
 
-var loggedInUser; 
+var loggedInUser;
 
 // require models
 const Question = require('../models/questionmodel');
@@ -54,14 +54,7 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-// check if user is not logged in
-/*function checkLogin(req, res, next){
-  if (!req.user){
-    res.redirect('/'); 
-  } else {
-    next();  
-  }
-}*/
+
 
 /* GET home */
 router.get('/', function (req, res) {
@@ -71,22 +64,10 @@ router.get('/', function (req, res) {
 });
 
 /* GET logout */
-router.get('/logout', function (req, res) {
+router.get('/logout', (req, res) => {
   // logout
-  // update question
-  User.update({
-    username: loggedInUser
-  }, {
-    $push: {
-      'user': {
-          loggedIn: false
-      }
-    }
-  }, function (err, raw) {
-    console.log(raw);
-    res.redirect('/'); 
-    res.render('home');
-  });
+  req.logout(); 
+  res.redirect('/'); 
 
 });
 
@@ -131,9 +112,8 @@ router.get('/kweeni/:id', function (req, res) {
           question: result,
           question_min: minutes,
           answerlist: result.answers,
-          commentlist: result.answers.comments,
-          user: loggedInUser
-         });
+          commentlist: result.answers.comments
+        });
       }
     });
 });
