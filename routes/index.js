@@ -9,7 +9,7 @@ var keys = require('../config/keys');
 
 var Schema = mongoose.Schema;
 
-var loggedInUser = keys.globals.loggedInUser; 
+var loggedInUser; 
 
 // require models
 const Question = require('../models/questionmodel');

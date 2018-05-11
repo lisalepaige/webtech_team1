@@ -21,21 +21,13 @@ var local = "mongodb://localhost:27017";
 //connection
 var uri = "mongodb://Admin:4dm!n@gettingstarted-shard-00-00-jbvu6.mongodb.net:27017,gettingstarted-shard-00-01-jbvu6.mongodb.net:27017,gettingstarted-shard-00-02-jbvu6.mongodb.net:27017/dbkweeni?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin";
 mongoose.connect(uri);
+
+
 if (config.has('optionalFeature.detail')) {
   var detail = config.get('optionalFeature.detail');
-  
 }
 
-// require session and set secret
-/*var session = (require('express-session')({
-  secret: 'sparkle',
-  cookie: {
-    maxAge: 40 * 24 * 60 * 60 * 1000
-  },
-  resave: true,
-  saveUninitialized: true
-}));*/
-
+// cookie session 
 app.use(cookieSession({
   maxAge: 24*60*60*1000,
   keys: "ditismijntekst"

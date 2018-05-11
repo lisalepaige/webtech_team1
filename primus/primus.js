@@ -3,11 +3,10 @@ const Question = require('../models/questionmodel');
 var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
-// logged in user
-var loggedInUser = keys.globals.loggedInUser;
+
+var loggedInUser = "Caroline Van Gossum"; 
 
 function saveAnswer(content, search_name, last_answer) {
-
   // search for the user 
   User.findOne({
     username: loggedInUser
