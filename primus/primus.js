@@ -4,12 +4,14 @@ var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
 
-var loggedInUser = "Caroline Van Gossum"; 
+// get the user 
+var loggedInUser = document.getElementsByClassName('.userid').value; 
+
 
 function saveAnswer(content, search_name, last_answer) {
   // search for the user 
   User.findOne({
-    username: loggedInUser
+    facebookId: loggedInUser
   }).then(function (result) {
 
     // update question
@@ -39,7 +41,7 @@ function saveComment(content, search_name, last_answer) {
   
   // search for the user 
   User.findOne({
-    username: loggedInUser
+    facebookId: loggedInUser
   }).then(function (result) {
 
     // update answer
