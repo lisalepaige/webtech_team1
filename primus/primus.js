@@ -5,7 +5,7 @@ const User = require('../models/usermodel');
 // logged in user
 var loggedInUser;
 
-// search which user is logged in
+// search which user is asking the question
 User.findOne({
   loggedIn: "true"
 }).then(function (res) {
