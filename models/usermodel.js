@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: String,
     facebookId: String,
-    picture: String
+    picture: String,
+    loggedIn: Boolean
 },{
     collection: 'users'
   }); // stores data in users

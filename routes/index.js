@@ -1,3 +1,5 @@
+import { assertNullLiteral } from 'babel-types';
+
 const express = require('express')
 const router = express.Router();
 var passport = require('passport');
@@ -33,7 +35,8 @@ passport.use(new Strategy({
         new User({
           username: profile.displayName,
           facebookId: profile.id,
-          picture: "https://graph.facebook.com/" + profile.id + "/picture"
+          picture: "https://graph.facebook.com/" + profile.id + "/picture",
+          loggedIn: true
         }).save().then(function (newUser) {
           done(null, newUser); // save to db
         });
@@ -67,6 +70,23 @@ router.get('/', function (req, res) {
   res.render('./home', {
     title: 'Home'
   });
+});
+
+/* GET logout */
+router.get('/logout', function (req, res) {
+  // logout
+  // update question
+  User.update({
+    username: loggedInUser
+  }, {
+    $push: {
+          loggedIn: false
+    }
+  }, function (err, raw) {
+    console.log(raw);
+    redirect('/');
+  });
+
 });
 
 // start authentication process 
