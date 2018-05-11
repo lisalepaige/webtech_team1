@@ -3,13 +3,13 @@ const Question = require('../models/questionmodel');
 var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
+// voorlopig om application error te voorkomen 
+userid = "1523146284463221";
 
-var loggedInUser = "Caroline Van Gossum"; 
-
-function saveAnswer(content, search_name, last_answer) {
+function saveAnswer(content, search_name, last_answer/*, userid*/) {
   // search for the user 
   User.findOne({
-    username: loggedInUser
+    facebookId: userid
   }).then(function (result) {
 
     // update question
@@ -35,11 +35,11 @@ function saveAnswer(content, search_name, last_answer) {
   })
 };
 
-function saveComment(content, search_name, last_answer) {
+function saveComment(content, search_name, last_answer/*, userid*/) {
   
   // search for the user 
   User.findOne({
-    username: loggedInUser
+    facebookId: userid
   }).then(function (result) {
 
     // update answer
@@ -101,7 +101,7 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer);
+        saveAnswer(data.content, data.search_name, last_answer/*, userid*/);
         primus.write({
           page: data.search_name,
           content: data.content,
@@ -111,7 +111,7 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer);
+        saveComment(data.content, data.search_name, data.last_answer/*, userid*/);
         last_answer = data.last_answer
         primus.write({
           page: data.search_name,

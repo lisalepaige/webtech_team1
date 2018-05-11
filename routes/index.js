@@ -9,7 +9,8 @@ var keys = require('../config/keys');
 
 var Schema = mongoose.Schema;
 
-var loggedInUser;
+var loggedInUser; 
+var loggedInId; 
 
 // require models
 const Question = require('../models/questionmodel');
@@ -85,6 +86,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
     .then(function (result) {
       //console.log(result);
       loggedInUser = req.user.username;
+      loggedInId = req.user.facebookId;
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
@@ -112,8 +114,10 @@ router.get('/kweeni/:id', function (req, res) {
           question: result,
           question_min: minutes,
           answerlist: result.answers,
-          commentlist: result.answers.comments
-        });
+          commentlist: result.answers.comments,
+          user: loggedInUser,
+          userid: loggedInId
+         });
       }
     });
 });
