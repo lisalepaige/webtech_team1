@@ -7,7 +7,7 @@ var loggedInUser;
 
 // search which user is logged in
 User.findOne({
-  loggedIn: true
+  loggedIn: "true"
 }).then(function (res) {
   loggedInUser = res.username; 
 });
