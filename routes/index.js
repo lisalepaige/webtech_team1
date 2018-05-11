@@ -154,7 +154,7 @@ router.post('/kweeni', function (req, res, next) {
     likes: 0,
     search_name: req.body.question__input.split(" ").join("-"),
     current_date: new Date(Date.now()).toLocaleString(),
-    user: new MongoId(req.user.id)
+    //user: new MongoId(req.user.id)
   };
 
   // create instance of model 
