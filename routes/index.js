@@ -5,27 +5,27 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var Strategy = require('passport-facebook').Strategy;
 var MongoClient = require('mongodb').MongoClient;
-var keys = require('../config/keys'); 
+var keys = require('../config/keys');
 
 var Schema = mongoose.Schema;
 
-var loggedInUser; 
+var loggedInUser;
 
 // require models
-const Question = require('../models/questionmodel'); 
-const User = require('../models/usermodel'); 
+const Question = require('../models/questionmodel');
+const User = require('../models/usermodel');
 
 //configure to fb strategy for use by passport
 passport.use(new Strategy({
-  clientID: keys.facebook.clientID,
-  clientSecret: keys.facebook.clientSecret,
-  callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
-},
+    clientID: keys.facebook.clientID,
+    clientSecret: keys.facebook.clientSecret,
+    callbackURL: "https://kweeni2018.herokuapp.com/kweeni"
+  },
   function (accessToken, refreshToken, profile, done) { // access, refresh, profile, done 
     User.findOne({
       facebookId: profile.id
-    }).then (function(currentUser){
-      if (currentUser){
+    }).then(function (currentUser) {
+      if (currentUser) {
         // user already exists
         done(null, currentUser); // save to db 
       } else {
@@ -33,14 +33,13 @@ passport.use(new Strategy({
         new User({
           username: profile.displayName,
           facebookId: profile.id,
-          picture: "https://graph.facebook.com/"+profile.id+"/picture"
-        }).save().then(function(newUser){
-            done(null, newUser); // save to db
+          picture: "https://graph.facebook.com/" + profile.id + "/picture"
+        }).save().then(function (newUser) {
+          done(null, newUser); // save to db
         });
       }
     });
-  })
-);
+  }));
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function (user, done) {
@@ -49,7 +48,7 @@ passport.serializeUser(function (user, done) {
 
 // query for user id 
 passport.deserializeUser(function (id, done) {
-  User.findById(id).then(function(err, user){
+  User.findById(id).then(function (err, user) {
     done(null, user);
   });
 });
@@ -71,7 +70,7 @@ router.get('/', function (req, res) {
 });
 
 // start authentication process 
-router.get('/facebook', passport.authenticate('facebook', { 
+router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
 
@@ -79,25 +78,25 @@ router.get('/facebook', passport.authenticate('facebook', {
 router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), function (req, res) {
   // sort by date
   Question.find().sort({
-    current_date: -1
-  })
+      current_date: -1
+    })
     .then(function (result) {
       //console.log(result);
-      loggedInUser = req.user.username; 
+      loggedInUser = req.user.username;
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
-        picture: "https://graph.facebook.com/"+req.user.facebookId+"/picture"
+        picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
       });
     });
-}); 
+});
 
 /* GET wat is + id */
 router.get('/kweeni/:id', function (req, res) {
   var id = req.params.id;
   Question.findOne({
-    search_name: id
-  })
+      search_name: id
+    })
     .then(function (result) {
       if (result == null) {
         res.render('error', {
@@ -146,26 +145,37 @@ router.post('/kweeni/:id', function (req, res) {
 
 router.post('/kweeni/:id', function (req, res) {
 
-  
+
 });
 
 
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
-  var item = {
-    text: req.body.question__input,
-    likes: 0,
-    search_name: req.body.question__input.split(" ").join("-"),
-    current_date: new Date(Date.now()).toLocaleString(),
-    user: {
+  // search for the user information 
+  User.findOne({
       username: loggedInUser
-    }
-  };
+    })
+    .then(function (result) {
+      // create item
+      var item = {
+        text: req.body.question__input,
+        likes: 0,
+        search_name: req.body.question__input.split(" ").join("-"),
+        current_date: new Date(Date.now()).toLocaleString(),
+        user: {
+          username: result.username,
+          facebookId: result.facebookId,
+          picture: result.picture
+        }
+      };
 
-  // create instance of model 
-  var data = new Question(item);
-  data.save();
-  res.redirect('/kweeni');
+      // create instance of model 
+      var data = new Question(item);
+      data.save();
+      res.redirect('/kweeni');
+    })
+
+
 });
 
 
