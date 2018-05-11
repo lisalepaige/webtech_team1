@@ -76,8 +76,17 @@ router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
 
+// check if user is not logged in
+function checkLogin(req, res, next){
+  if (!req.user){
+    res.redirect('/'); 
+  } else {
+    next();  
+  }
+}
+
 /* GET kweeni + data */
-router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), function (req, res) {
+router.get('/kweeni', checkLogin, passport.authenticate('facebook'), function (req, res) {
   // sort by date
   Question.find().sort({
       current_date: -1
