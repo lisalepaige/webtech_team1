@@ -9,6 +9,8 @@ var keys = require('../config/keys');
 
 var Schema = mongoose.Schema;
 
+var loggedInUser; 
+
 // require models
 const Question = require('../models/questionmodel'); 
 const User = require('../models/usermodel'); 
@@ -81,6 +83,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
   })
     .then(function (result) {
       //console.log(result);
+      loggedInUser = req.user.username; 
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
@@ -154,7 +157,9 @@ router.post('/kweeni', function (req, res, next) {
     likes: 0,
     search_name: req.body.question__input.split(" ").join("-"),
     current_date: new Date(Date.now()).toLocaleString(),
-    //user: new MongoId(req.user.id)
+    user: {
+      username: loggedInUser
+    }
   };
 
   // create instance of model 

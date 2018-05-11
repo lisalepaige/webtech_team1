@@ -16,8 +16,19 @@ var questionSchema = new Schema({
   current_date: {
     type: Date
   },
-  user_id: {
-    type: Number
+  user: {
+    _id: {
+      type: Number
+    },
+    username: {
+      type: String
+    },
+    facebookId: {
+      type: String
+    },
+    picture: {
+      type: String
+    }
   },
   answers: [{
     _id: {
@@ -30,10 +41,13 @@ var questionSchema = new Schema({
       _id: {
         type: Number
       },
-      name: {
+      username: {
         type: String
       },
-      img: {
+      facebookId: {
+        type: String
+      },
+      picture: {
         type: String
       }
     },
@@ -48,18 +62,21 @@ var questionSchema = new Schema({
         _id: {
           type: Number
         },
-        name: {
+        username: {
           type: String
         },
-        img: {
+        facebookId: {
+          type: String
+        },
+        picture: {
           type: String
         }
-      }
+      },
     }]
   }]
 }, {
-    collection: 'questions'
-  }); // stores data in collection
+  collection: 'questions'
+}); // stores data in collection
 
 var Question = mongoose.model('question', questionSchema);
 
