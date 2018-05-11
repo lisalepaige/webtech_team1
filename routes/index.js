@@ -71,20 +71,21 @@ router.get('/logout', (req, res) => {
 
 });
 
+// check if user is not logged in
+function checkLogin(req, res, next){
+  if (!req.user){
+    res.redirect('/'); 
+  } else {
+    return next();  
+  }
+}
+
 // start authentication process 
 router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
 
-// check if user is not logged in
-function checkLogin(req, res, next){
-  if (req.isAuthenticated()){
-    return next();
-    
-  } else {
-    res.redirect('/'); 
-  }
-}
+
 
 /* GET kweeni + data */
 router.get('/kweeni', checkLogin, passport.authenticate('facebook'), function (req, res) {
