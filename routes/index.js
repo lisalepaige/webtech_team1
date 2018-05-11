@@ -87,20 +87,29 @@ function checkLogin(req, res, next){
 
 /* GET kweeni + data */
 router.get('/kweeni', checkLogin, passport.authenticate('facebook'), function (req, res) {
-  // sort by date
-  Question.find().sort({
-      current_date: -1
-    })
-    .then(function (result) {
-      //console.log(result);
-      loggedInUser = req.user.username;
-      res.render('kweeni', {
-        questionslist: result,
-        user: req.user.username,
-        picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
-      });
-    });
+
+  function checkLogin(req, res, next){
+    if (!req.user){
+      res.redirect('/'); 
+    } else {
+     
+        // sort by date
+        Question.find().sort({
+            current_date: -1
+          })
+          .then(function (result) {
+            //console.log(result);
+            loggedInUser = req.user.username;
+            res.render('kweeni', {
+              questionslist: result,
+              user: req.user.username,
+              picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
+            });
+          });
+        }
+    }
 });
+
 
 /* GET wat is + id */
 router.get('/kweeni/:id', function (req, res) {
