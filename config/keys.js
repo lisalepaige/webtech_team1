@@ -6,6 +6,6 @@ module.exports = {
         clientSecret: '882ca5f6cf0395e9c3050ef71341fcc9',
     },
     globals: {
-        loggedInUser: ''
+        loggedInUser: 'Caroline Van Gossum'
     }
 };
