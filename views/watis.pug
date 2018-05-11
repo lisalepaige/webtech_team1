@@ -6,8 +6,8 @@ block content
         a(href='/kweeni')
           img.logo__img(src='../img/logo.svg', alt='kweenilogo')
       .account
-        p.account__p Anneke Kodeur
-        img.profile(src='../img/user8.png', alt='profile pic')
+        p.account__p=user
+        img.profile(src=picture, alt=picture)
         a.account__a(href='/logout') Uitloggen
     main.main
       .head
@@ -15,7 +15,7 @@ block content
       .auteur
         p.auteur__p #{question_min}  minuten geleden gevraagd door
         img.auteur__img(src="../img/user8.png" alt="active_user")
-        span.auteur__span #{question.user.name} 
+        span.auteur__span #{question.user.username} 
       .likes
         .likes__like
           img.likes__like--img(src="../img/icon-cool.svg" alt="smiley_cool")
@@ -39,14 +39,14 @@ block content
         each answer, i in answerlist
           article.comments.answer(data-id= i)
             p #{question.answers[i].text} 
-            img.comments__pic(src="../img/user1.png" alt="user10")
-            a.comments__a(href="#") #{question.answers[i].user.name} 
+            img.comments__pic(src=question.answers[i].user.picture alt=question.answers[i].user.username)
+            a.comments__a(href="#") #{question.answers[i].user.username} 
           .right
           each comment, j in answer.comments
             article.comments.right
               p #{question.answers[i].comments[j].text} 
-              img.comments__pic.right_pic(src="../img/user8.png" alt="user8")
-              a.comments__a(href="#") #{question.answers[i].comments[j].user.name} 
+              img.comments__pic.right_pic(src=question.answers[i].comments[j].user.picture alt=question.answers[i].comments[j].user.username)
+              a.comments__a(href="#") #{question.answers[i].comments[j].user.username} 
       .placeComment
         form.react__form(action="" method="post")
           input.react__c(type="text" name="comment" placeholder="Plaats commentaar...")

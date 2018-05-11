@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 const Question = require('../models/questionmodel');
+var mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
 
 const User = require('../models/usermodel');
 // logged in user
