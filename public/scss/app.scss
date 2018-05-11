@@ -85,7 +85,7 @@ header {
 }
 
 .homeheader{
-    background-color:#DBDBDB;
+    background-color: $background_gray;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -247,7 +247,7 @@ header {
 
 .question {
     display: block; 
-    background-color: #ffeef0;
+    background-color: $background_pink;
     text-align: center; 
 }
 
@@ -258,7 +258,7 @@ header {
 }
 
 .topics__question--likes {
-    background-color: #eeeeee;
+    background-color: $light-gray;
     width: 60px; 
     height: 40px; 
     align-items: center;
@@ -278,7 +278,7 @@ header {
 }
 
 .topics__question--author {
-    color: #e09583; 
+    color: $dark-pink; 
     justify-self: end;
     margin-right: 3px;
 }
