@@ -82,6 +82,7 @@ router.get('/logout', function (req, res) {
     }
   }, function (err, raw) {
     console.log(raw);
+    res.redirect('/'); 
     res.render('home');
   });
 
