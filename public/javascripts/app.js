@@ -33,8 +33,8 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
         type: "answer",
         content: reactie,
         search_name: search_name,
-        last_answer: last_answer,
-        userid: userid
+        last_answer: last_answer/*,
+        userid: userid*/
     });
 
 });
@@ -58,8 +58,8 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
             type: "comment",
             content: comment,
             search_name: search_name,
-            last_answer: last_answer,
-            userid: userid
+            last_answer: last_answer/*,
+            userid: userid*/
         });
     }
 });
