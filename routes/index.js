@@ -82,7 +82,7 @@ router.get('/logout', function (req, res) {
     }
   }, function (err, raw) {
     console.log(raw);
-    redirect('/');
+    res.render('/home');
   });
 
 });
