@@ -4,6 +4,7 @@
 @import 'components/buttons';
 @import 'components/images';
 
+
 body{
     margin:0;
 }
@@ -14,7 +15,7 @@ body{
 }
 
 header {
-    background-color: #494e61; 
+    background-color: $blue-gray; 
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
