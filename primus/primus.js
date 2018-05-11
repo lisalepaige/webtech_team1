@@ -4,7 +4,7 @@ var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
 // voorlopig om application error te voorkomen 
-userid = "1";
+userid = "1523146284463221";
 
 function saveAnswer(content, search_name, last_answer/*, userid*/) {
   // search for the user 
