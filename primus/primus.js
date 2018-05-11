@@ -6,13 +6,6 @@ const User = require('../models/usermodel');
 // logged in user
 var loggedInUser = keys.globals.loggedInUser;
 
-// search which user is asking the question
-User.findOne({
-  loggedIn: "true"
-}).then(function (res) {
-  loggedInUser = res.username; 
-});
-
 function saveAnswer(content, search_name, last_answer) {
 
   // search for the user 
