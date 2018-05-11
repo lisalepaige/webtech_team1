@@ -8,8 +8,6 @@ block content
       .account
         p.account__p=user
         img.profile(src=picture, alt=picture)
-        //- hide this!
-        button.userid(value=userid)
         a.account__a(href='/logout') Uitloggen
     main.main
       .head
@@ -52,6 +50,8 @@ block content
       .placeComment
         form.react__form(action="" method="post")
           input.react__c(type="text" name="comment" placeholder="Plaats commentaar...")
+          //- hide this!
+          input.react__c(type="text" name="comment" value=userid)
           input(type="submit" style="display:none")
       .react
         form.react__form(action="" method="post")

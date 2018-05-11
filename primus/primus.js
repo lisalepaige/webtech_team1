@@ -5,7 +5,7 @@ var keys = require('../config/keys');
 const User = require('../models/usermodel');
 
 // get the user 
-var loggedInUser = document.getElementsByClassName('.userid').value; 
+//var loggedInUser = document.getElementsByClassName('.userid').value; 
 
 
 function saveAnswer(content, search_name, last_answer) {
