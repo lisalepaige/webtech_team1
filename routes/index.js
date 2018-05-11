@@ -131,9 +131,9 @@ router.get('/kweeni/:id', function (req, res) {
           question: result,
           question_min: minutes,
           answerlist: result.answers,
-          commentlist: result.answers.comments,user: req.user.username,
-          picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
-        });
+          commentlist: result.answers.comments,
+          user: loggedInUser
+         });
       }
     });
 });
