@@ -79,9 +79,6 @@ router.get('/logout', function (req, res) {
   }, {
     $push: {
       'user': {
-          username: result.username,
-          facebookId: result.facebookId,
-          picture: result.picture,
           loggedIn: false
       }
     }
