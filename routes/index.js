@@ -78,7 +78,12 @@ router.get('/logout', function (req, res) {
     username: loggedInUser
   }, {
     $push: {
+      'user': {
+          username: result.username,
+          facebookId: result.facebookId,
+          picture: result.picture,
           loggedIn: false
+      }
     }
   }, function (err, raw) {
     console.log(raw);
