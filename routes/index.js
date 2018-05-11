@@ -116,39 +116,6 @@ router.get('/kweeni/:id', function (req, res) {
     });
 });
 
-
-/* UPDATE likes 
-router.post('/kweeni/:id', function (req, res) {
-  console.log("update likes");
-
-  var id = req.params.id;
-  QuestionsData.findOne({
-      search_name: id
-    })
-    .then(function (result) {
-      if (result == null) {
-
-        console.log("error poop");
-
-        res.render('error', {
-          message: 'id not found'
-
-          
-        });
-      } else {
-        console.log("likes");
-      } 
-});
-*/
-
-/* comments */
-
-router.post('/kweeni/:id', function (req, res) {
-
-
-});
-
-
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
   // search for the user information 
@@ -168,15 +135,11 @@ router.post('/kweeni', function (req, res, next) {
           picture: result.picture
         }
       };
-
       // create instance of model 
       var data = new Question(item);
       data.save();
       res.redirect('/kweeni');
     })
-
-
 });
-
 
 module.exports = router;
