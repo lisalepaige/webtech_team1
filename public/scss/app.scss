@@ -48,7 +48,7 @@ header {
 
 
 .account__p {
-    color: #fff;
+    color: $white;
     opacity: 0.7; 
     width: 120px;
     margin: 0px;
@@ -56,7 +56,7 @@ header {
 }
 
 .account__a {
-    color: #ee9d9d; 
+    color: $lighter-pink; 
     justify-self: end;
     padding-right: 10px; 
 }
@@ -274,7 +274,7 @@ header {
 
 .topics__question--a {
     justify-self: start;
-    color: black;
+    color: $black;
 }
 
 .topics__question--author {
@@ -328,7 +328,7 @@ header {
 }
 
 .head {
-    background-color: #FFF6F7;
+    background-color: $light-pink;
     text-align: center; 
     padding: 20px; 
     display: grid; 
@@ -339,8 +339,8 @@ header {
 
 .likes
 {
-    background-color:#F6E5E7;
-    color: blue;
+    background-color: $dark-pink;
+    color: $blue;
     font-weight: bold;
     display: grid;
     grid-template-columns: 1;
@@ -376,7 +376,7 @@ header {
 
 .users
 {
-    background-color: #FFEEF0;
+    background-color: $background_pink;
     padding: 25px;
 }
 
@@ -389,9 +389,9 @@ header {
 
 .auteur
 {
-    color: #fa5b33;
+    color: $orange;
     font-style: italic;
-    background-color: #FFF6F7;
+    background-color: $light-pink;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 50px;
@@ -446,7 +446,7 @@ header {
     
     .auteur {
 
-        background-color: #FFEEF0;
+        background-color: $background_pink;
         display: grid;
         order: 3;
     }
@@ -466,12 +466,12 @@ header {
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
-    color: grey;
+    color: $grey;
 }
 
 .comments__a {
     text-decoration: none;
-    color: gray;
+    color: $grey;
     font-family: 'Patua One', serif;
 }
 
@@ -483,7 +483,7 @@ header {
 
 .placeComment
 {
-    border: 15px solid #DCDCDC;
+    border: 15px solid $medium-grey;
     margin-left: auto;
     width: 300px;
     margin-bottom: 5px;
