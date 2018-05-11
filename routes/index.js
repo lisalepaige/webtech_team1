@@ -79,9 +79,9 @@ router.get('/facebook', passport.authenticate('facebook', {
 // check if user is not logged in
 function checkLogin(req, res, next){
   if (!req.user){
-    res.redirect('/login'); 
+    res.redirect('/'); 
   } else {
-    return next();  
+    res.direct('/kweeni'); 
   }
 }
 
