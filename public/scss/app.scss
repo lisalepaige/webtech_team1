@@ -371,7 +371,7 @@ header {
         padding-top: 5px;
         text-align: center;
         grid-column-start: span 3;
-        font-family: 'Patua One', serif;
+        font-family: $font-primary
     }
 
 .users
@@ -472,7 +472,7 @@ header {
 .comments__a {
     text-decoration: none;
     color: $grey;
-    font-family: 'Patua One', serif;
+    font-family: $font-primary
 }
 
 .right {
@@ -503,8 +503,8 @@ header {
 
 .react
 {
-    border: 15px solid #494e61;
-    background-color: #494e61;
+    border: 15px solid $blue-gray;
+    background-color: $blue-gray;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -525,8 +525,8 @@ header {
 {
     width: 300px;
     height: 40px;
-    font-family: 'Patua One', serif;
-    background-color: #DCDCDC;
+    font-family: $font-primary;
+    background-color: $medium-grey;
     padding: 10px;
 }
 
