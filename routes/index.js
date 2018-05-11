@@ -76,7 +76,14 @@ router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
 
-
+// check if user is not logged in
+function checkLogin(req, res, next){
+  if (!req.user){
+    res.redirect('/'); 
+  } else {
+    return next();  
+  }
+}
 
 /* GET kweeni + data */
 router.get('/kweeni', checkLogin, passport.authenticate('facebook'), function (req, res) {
@@ -94,15 +101,6 @@ router.get('/kweeni', checkLogin, passport.authenticate('facebook'), function (r
       });
     });
 });
-
-// check if user is not logged in
-function checkLogin(req, res, next){
-  if (!req.user){
-    res.redirect('/'); 
-  } else {
-    next();  
-  }
-}
 
 /* GET wat is + id */
 router.get('/kweeni/:id', function (req, res) {
