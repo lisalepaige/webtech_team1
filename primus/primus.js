@@ -3,7 +3,14 @@ const Question = require('../models/questionmodel');
 
 const User = require('../models/usermodel');
 // logged in user
-var loggedInUser = require('../routes/index');
+var loggedInUser;
+
+// search which user is logged in
+User.findOne({
+  loggedIn: true
+}).then(function (res) {
+  loggedInUser = res.username; 
+});
 
 function saveAnswer(content, search_name, last_answer) {
 
