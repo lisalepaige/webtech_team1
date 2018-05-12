@@ -7,8 +7,8 @@ const User = require('../models/usermodel');
 //userid = "1523146284463221";
 
 
-function saveAnswer(content, search_name, last_answer, loggedInUser) {
-  alert(loggedInUser); 
+function saveAnswer(content, search_name, last_answer/*, loggedInUser*/) {
+  //alert(loggedInUser); 
   // search for the user 
   /*User.findOne({
     username: loggedInUser
