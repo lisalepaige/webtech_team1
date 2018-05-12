@@ -43,26 +43,27 @@ function saveComment(content, search_name, last_answer, loggedInUser) {
   User.findOne({
     facebookId: loggedInUser
   }).then(function (result) {
+      alert(result); 
+  })
 
-    // update answer
-    Question.update({
-      search_name: search_name,
-      'answers._id': last_answer
-    }, {
-      $push: {
-        'answers.$.comments': {
-          text: content,
-            user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          }
+  // update comment
+  Question.update({
+    search_name: search_name,
+    'answers._id': last_answer
+  }, {
+    $push: {
+      'answers.$.comments': {
+        text: content,
+          user: {
+          facebookId: loggedInUser/*,
+          facebookId: result.facebookId,
+          picture: result.picture*/
         }
       }
-    }, function (err, raw) {
-      console.log(raw);
-    });
-  })
+    }
+  }, function (err, raw) {
+    console.log(raw);
+  });
 };
 
 function updateLike(search_name, callback) {
