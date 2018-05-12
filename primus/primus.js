@@ -6,10 +6,11 @@ const User = require('../models/usermodel');
 // voorlopig om application error te voorkomen 
 //userid = "1523146284463221";
 
-function saveAnswer(content, search_name, last_answer, userid) {
+
+function saveAnswer(content, search_name, last_answer, loggedInUser) {
   // search for the user 
   User.findOne({
-    facebookId: userid
+    username: loggedInUser
   }).then(function (result) {
 
     // update question
@@ -35,7 +36,7 @@ function saveAnswer(content, search_name, last_answer, userid) {
   })
 };
 
-function saveComment(content, search_name, last_answer, userid) {
+function saveComment(content, search_name, last_answer/*, userid*/) {
   
   // search for the user 
   User.findOne({
@@ -101,17 +102,18 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer, data.userid);
+        saveAnswer(data.content, data.search_name, last_answer, loggedInUser);
         primus.write({
           page: data.search_name,
           content: data.content,
           type: data.type,
-          id: last_answer
+          id: last_answer,
+          loggedInUser: loggedInUser
         });
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer, data.userid);
+        saveComment(data.content, data.search_name, data.last_answer/*, userid*/);
         last_answer = data.last_answer
         primus.write({
           page: data.search_name,
