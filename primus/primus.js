@@ -52,8 +52,10 @@ function saveComment(content, search_name, last_answer, loggedInUser) {
       $push: {
         'answers.$.comments': {
           text: content,
-          user: {
-            username: loggedInUser
+            user: {
+            username: loggedInUser/*,
+            facebookId: result.facebookId,
+            picture: result.picture*/
           }
         }
       }
@@ -112,7 +114,7 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer, loggedInUser);
+        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser);
         last_answer = data.last_answer
         primus.write({
           page: data.search_name,
