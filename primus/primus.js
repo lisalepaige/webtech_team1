@@ -4,45 +4,45 @@ var keys = require('../config/keys');
 
 const User = require('../models/usermodel');
 // voorlopig om application error te voorkomen 
-userid = "1523146284463221";
+//userid = "1523146284463221";
 
-function saveAnswer(content, search_name, last_answer/*, userid*/) {
+
+function saveAnswer(content, search_name, last_answer, loggedInUser) {
   // search for the user 
   User.findOne({
-    facebookId: userid
+    facebookId: loggedInUser
   }).then(function (result) {
-
-    // update question
-    Question.update({
-      search_name: search_name
-    }, {
-      $push: {
-        'answers': {
-          _id: last_answer,
-          text: content,
-          user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          },
-          count: null
-        }
+    console.log(result); 
+  // update question
+  Question.update({
+    search_name: search_name
+  }, {
+    $push: {
+      'answers': {
+        _id: last_answer,
+        text: content,
+        user: {
+          username: result.username,
+          facebookId: result.facebookId,
+          picture: result.picture
+        },
+        count: null
       }
-    }, function (err, raw) {
-      console.log(raw);
-    });
+    }
+  }, function (err, raw) {
+    console.log(raw);
+  });
 
   })
 };
 
-function saveComment(content, search_name, last_answer/*, userid*/) {
-  
+function saveComment(content, search_name, last_answer, loggedInUser) {
+
   // search for the user 
   User.findOne({
-    facebookId: userid
+    facebookId: loggedInUser
   }).then(function (result) {
-
-    // update answer
+    // update comment
     Question.update({
       search_name: search_name,
       'answers._id': last_answer
@@ -101,7 +101,7 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer/*, userid*/);
+        saveAnswer(data.content, data.search_name, last_answer, data.loggedInUser);
         primus.write({
           page: data.search_name,
           content: data.content,
@@ -111,7 +111,7 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer/*, userid*/);
+        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser);
         last_answer = data.last_answer
         primus.write({
           page: data.search_name,

@@ -11,6 +11,7 @@ var Schema = mongoose.Schema;
 
 var loggedInUser; 
 var loggedInId; 
+var loggedInPic;
 
 // require models
 const Question = require('../models/questionmodel');
@@ -87,6 +88,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       //console.log(result);
       loggedInUser = req.user.username;
       loggedInId = req.user.facebookId;
+      loggedInPic = req.user.picture; 
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
@@ -116,7 +118,8 @@ router.get('/kweeni/:id', function (req, res) {
           answerlist: result.answers,
           commentlist: result.answers.comments,
           user: loggedInUser,
-          userid: loggedInId
+          userid: loggedInId,
+          userpic: loggedInPic
          });
       }
     });
