@@ -46,7 +46,7 @@ block content
           each comment, j in answer.comments
             article.comments.right
               p #{question.answers[i].comments[j].text} 
-              img.comments__pic.right_pic(src=question.answers[i].comments[j].user.picture, alt=question.answers[i].comments[j].user.username)
+              img.comments__pic.right_pic(src=question.answers[i].comments[j].user.picture alt=question.answers[i].comments[j].user.username)
               a.comments__a(href="#") #{question.answers[i].comments[j].user.username} 
       .placeComment
         form.react__form(action="" method="post")

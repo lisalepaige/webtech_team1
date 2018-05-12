@@ -26,8 +26,9 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
         var last_answer = answers[answers.length - 1].getAttribute('data-id');
     }
 
-    // id
-    //var userid = document.querySelector(".userid").value;
+    // get user
+    var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+    console.log("user: " + loggedInUser);
     
     primus.write({
         type: "answer",
@@ -51,6 +52,7 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         var last_answer = answers[answers.length - 1].getAttribute('data-id');
         console.log("This is last answer " + last_answer);
 
+        // get user
         var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
         console.log("user: " + loggedInUser);
 

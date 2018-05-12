@@ -7,12 +7,11 @@ const User = require('../models/usermodel');
 //userid = "1523146284463221";
 
 
-function saveAnswer(content, search_name, last_answer /*, loggedInUser*/ ) {
-  //alert(loggedInUser); 
+function saveAnswer(content, search_name, last_answer, loggedInUser) {
   // search for the user 
-  /*User.findOne({
-    username: loggedInUser
-  }).then(function (result) {*/
+  User.findOne({
+    facebookId: loggedInUser
+  }).then(function (result) {
 
   // update question
   Question.update({
@@ -22,11 +21,11 @@ function saveAnswer(content, search_name, last_answer /*, loggedInUser*/ ) {
       'answers': {
         _id: last_answer,
         text: content,
-        /*user: {
+        user: {
           username: result.username,
           facebookId: result.facebookId,
           picture: result.picture
-        },*/
+        },
         count: null
       }
     }
@@ -34,7 +33,7 @@ function saveAnswer(content, search_name, last_answer /*, loggedInUser*/ ) {
     console.log(raw);
   });
 
-  /*})*/
+  })
 };
 
 function saveComment(content, search_name, last_answer, loggedInUser) {
@@ -62,8 +61,6 @@ function saveComment(content, search_name, last_answer, loggedInUser) {
       console.log(raw);
     });
   })
-
-
 };
 
 function updateLike(search_name, callback) {
@@ -104,14 +101,12 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer /*, loggedInUser*/ );
+        saveAnswer(data.content, data.search_name, last_answer, loggedInUser);
         primus.write({
           page: data.search_name,
           content: data.content,
           type: data.type,
           id: last_answer
-          /*,
-                    loggedInUser: loggedInUser*/
         });
       }
 
