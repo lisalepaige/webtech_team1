@@ -103,13 +103,13 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer, loggedInUser);
+        saveAnswer(data.content, data.search_name, last_answer/*, loggedInUser*/);
         primus.write({
           page: data.search_name,
           content: data.content,
           type: data.type,
-          id: last_answer,
-          loggedInUser: loggedInUser
+          id: last_answer/*,
+          loggedInUser: loggedInUser*/
         });
       }
 
