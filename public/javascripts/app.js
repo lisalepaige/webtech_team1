@@ -26,15 +26,15 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
         var last_answer = answers[answers.length - 1].getAttribute('data-id');
     }
 
-    // id
-    var userid = document.querySelector(".userid").value;
+     // id
+     var userid = document.getElementById(userid).getAttribute(data-user); 
 
     primus.write({
         type: "answer",
         content: reactie,
         search_name: search_name,
-        last_answer: last_answer/*,
-        userid: userid*/
+        last_answer: last_answer,
+        userid: userid
     });
 
 });
@@ -52,14 +52,14 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         console.log("This is last answer " + last_answer);
 
         // id
-        var userid = document.querySelector(".userid").value;
+        var userid = document.getElementById(userid).getAttribute(data-user); 
 
         primus.write({
             type: "comment",
             content: comment,
             search_name: search_name,
-            last_answer: last_answer/*,
-            userid: userid*/
+            last_answer: last_answer,
+            userid: userid
         });
     }
 });
