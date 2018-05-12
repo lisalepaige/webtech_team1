@@ -40,11 +40,11 @@ function saveAnswer(content, search_name, last_answer/*, loggedInUser*/) {
 function saveComment(content, search_name, last_answer, loggedInUser) {
   
   // search for the user 
-  /*User.findOne({
+  User.findOne({
     facebookId: loggedInUser
   }).then(function (result) {
-      alert(result); 
-  })*/
+    console.log(result); 
+  })
 
   // update comment
   Question.update({
@@ -55,9 +55,9 @@ function saveComment(content, search_name, last_answer, loggedInUser) {
       'answers.$.comments': {
         text: content,
           user: {
-          facebookId: loggedInUser/*,
+          username: result.username, 
           facebookId: result.facebookId,
-          picture: result.picture*/
+          picture: result.picture
         }
       }
     }
