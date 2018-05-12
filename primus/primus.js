@@ -8,10 +8,11 @@ const User = require('../models/usermodel');
 
 
 function saveAnswer(content, search_name, last_answer, loggedInUser) {
+  alert(loggedInUser); 
   // search for the user 
-  User.findOne({
+  /*User.findOne({
     username: loggedInUser
-  }).then(function (result) {
+  }).then(function (result) {*/
 
     // update question
     Question.update({
@@ -21,11 +22,11 @@ function saveAnswer(content, search_name, last_answer, loggedInUser) {
         'answers': {
           _id: last_answer,
           text: content,
-          user: {
+          /*user: {
             username: result.username,
             facebookId: result.facebookId,
             picture: result.picture
-          },
+          },*/
           count: null
         }
       }
@@ -33,15 +34,15 @@ function saveAnswer(content, search_name, last_answer, loggedInUser) {
       console.log(raw);
     });
 
-  })
+  /*})*/
 };
 
 function saveComment(content, search_name, last_answer/*, userid*/) {
   
   // search for the user 
-  User.findOne({
+  /*User.findOne({
     facebookId: userid
-  }).then(function (result) {
+  }).then(function (result) {*/
 
     // update answer
     Question.update({
@@ -50,18 +51,18 @@ function saveComment(content, search_name, last_answer/*, userid*/) {
     }, {
       $push: {
         'answers.$.comments': {
-          text: content,
-          user: {
+          text: content/*,
+            user: {
             username: result.username,
             facebookId: result.facebookId,
             picture: result.picture
-          }
+          }*/
         }
       }
     }, function (err, raw) {
       console.log(raw);
     });
-  })
+  /*})*/
 };
 
 function updateLike(search_name, callback) {
