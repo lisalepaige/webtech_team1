@@ -40,9 +40,9 @@ function saveAnswer(content, search_name, last_answer/*, loggedInUser*/) {
 function saveComment(content, search_name, last_answer, loggedInUser) {
   
   // search for the user 
-  /*User.findOne({
-    facebookId: userid
-  }).then(function (result) {*/
+  User.findOne({
+    facebookId: loggedInUser
+  }).then(function (result) {
 
     // update answer
     Question.update({
@@ -53,16 +53,16 @@ function saveComment(content, search_name, last_answer, loggedInUser) {
         'answers.$.comments': {
           text: content,
             user: {
-            username: loggedInUser/*,
+            username: result.username,
             facebookId: result.facebookId,
-            picture: result.picture*/
+            picture: result.picture
           }
         }
       }
     }, function (err, raw) {
       console.log(raw);
     });
-  /*})*/
+  })
 };
 
 function updateLike(search_name, callback) {
