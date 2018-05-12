@@ -7,63 +7,63 @@ const User = require('../models/usermodel');
 //userid = "1523146284463221";
 
 
-function saveAnswer(content, search_name, last_answer/*, loggedInUser*/) {
+function saveAnswer(content, search_name, last_answer /*, loggedInUser*/ ) {
   //alert(loggedInUser); 
   // search for the user 
   /*User.findOne({
     username: loggedInUser
   }).then(function (result) {*/
 
-    // update question
-    Question.update({
-      search_name: search_name
-    }, {
-      $push: {
-        'answers': {
-          _id: last_answer,
-          text: content,
-          /*user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          },*/
-          count: null
-        }
-      }
-    }, function (err, raw) {
-      console.log(raw);
-    });
-
-  /*})*/
-};
-
-function saveComment(content, search_name, last_answer, loggedInUser) {
-  
-  // search for the user 
-  User.findOne({
-    facebookId: loggedInUser
-  }).then(function (result) {
-    console.log(result); 
-  })
-
-  // update comment
+  // update question
   Question.update({
-    search_name: search_name,
-    'answers._id': last_answer
+    search_name: search_name
   }, {
     $push: {
-      'answers.$.comments': {
+      'answers': {
+        _id: last_answer,
         text: content,
-          user: {
-          username: result.username, 
+        /*user: {
+          username: result.username,
           facebookId: result.facebookId,
           picture: result.picture
-        }
+        },*/
+        count: null
       }
     }
   }, function (err, raw) {
     console.log(raw);
   });
+
+  /*})*/
+};
+
+function saveComment(content, search_name, last_answer, loggedInUser) {
+
+  // search for the user 
+  User.findOne({
+    facebookId: loggedInUser
+  }).then(function (result) {
+    // update comment
+    Question.update({
+      search_name: search_name,
+      'answers._id': last_answer
+    }, {
+      $push: {
+        'answers.$.comments': {
+          text: content,
+          user: {
+            username: result.username,
+            facebookId: result.facebookId,
+            picture: result.picture
+          }
+        }
+      }
+    }, function (err, raw) {
+      console.log(raw);
+    });
+  })
+
+
 };
 
 function updateLike(search_name, callback) {
@@ -104,13 +104,14 @@ exports.kickstart = function (server) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
         console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer/*, loggedInUser*/);
+        saveAnswer(data.content, data.search_name, last_answer /*, loggedInUser*/ );
         primus.write({
           page: data.search_name,
           content: data.content,
           type: data.type,
-          id: last_answer/*,
-          loggedInUser: loggedInUser*/
+          id: last_answer
+          /*,
+                    loggedInUser: loggedInUser*/
         });
       }
 
