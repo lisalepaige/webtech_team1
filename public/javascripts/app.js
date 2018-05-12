@@ -29,6 +29,7 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
     // id
     //var userid = document.querySelector(".userid").value;
     var loggedInUser = document.getElementsByClassName(".account__p").innerHTML; 
+    console.log(loggedInUser); 
     primus.write({
         type: "answer",
         content: reactie,
