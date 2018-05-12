@@ -37,7 +37,7 @@ function saveAnswer(content, search_name, last_answer/*, loggedInUser*/) {
   /*})*/
 };
 
-function saveComment(content, search_name, last_answer/*, userid*/) {
+function saveComment(content, search_name, last_answer, loggedInUser) {
   
   // search for the user 
   /*User.findOne({
@@ -51,12 +51,10 @@ function saveComment(content, search_name, last_answer/*, userid*/) {
     }, {
       $push: {
         'answers.$.comments': {
-          text: content/*,
-            user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          }*/
+          text: content,
+          user: {
+            username: loggedInUser
+          }
         }
       }
     }, function (err, raw) {
@@ -114,7 +112,7 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer/*, userid*/);
+        saveComment(data.content, data.search_name, data.last_answer, loggedInUser);
         last_answer = data.last_answer
         primus.write({
           page: data.search_name,

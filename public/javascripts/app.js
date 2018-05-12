@@ -28,8 +28,7 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
 
     // id
     //var userid = document.querySelector(".userid").value;
-    var loggedInUser = document.getElementsByClassName(".account__p").innerHTML; 
-    console.log(loggedInUser); 
+    
     primus.write({
         type: "answer",
         content: reactie,
@@ -52,15 +51,15 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         var last_answer = answers[answers.length - 1].getAttribute('data-id');
         console.log("This is last answer " + last_answer);
 
-        // id
-        //var userid = document.querySelector(".userid").value;
+        var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+        console.log("user: " + loggedInUser);
 
         primus.write({
             type: "comment",
             content: comment,
             search_name: search_name,
-            last_answer: last_answer/*,
-            userid: userid*/
+            last_answer: last_answer,
+            loggedInUser: loggedInUser
         });
     }
 });
