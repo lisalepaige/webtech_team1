@@ -140,7 +140,7 @@ router.post('/kweeni', function (req, res, next) {
         text: req.body.question__input,
         likes: 0,
         search_name: req.body.question__input.split(" ").join("-"),
-        current_date: new Date(Date.now()).toLocaleString(),
+        current_date: new Date(Date.now().toLocaleString()),
         user: {
           username: result.username,
           facebookId: result.facebookId,
