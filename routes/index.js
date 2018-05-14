@@ -110,13 +110,13 @@ router.get('/kweeni/:id', function (req, res) {
         });
       } else {
         var minutes = result.current_date.getMinutes();
-        var count = Question.distinct('likes').count();
-        console.log("Dit is count "+count);
+        
         res.render('watis', {
           title: id,
           question: result,
           question_min: minutes,
           answerlist: result.answers,
+          likelist: result.likes,
           commentlist: result.answers.comments,
           user: loggedInUser,
           userid: loggedInId,
