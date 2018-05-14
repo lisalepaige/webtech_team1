@@ -60,14 +60,14 @@ passport.deserializeUser(function (id, done) {
 
 /* GET home */
 router.get('/', function (req, res) {
-  res.render('./home', {
+  /*res.render('./home', {
     title: 'Home'
-  });
+  });*/
   User.find()
   .then(function (result) {
     console.log(result);
     res.render('./home', {
-      picture: result
+      pictures: result
     });
   });
 });
