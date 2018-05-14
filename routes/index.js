@@ -64,7 +64,7 @@ router.get('/', function (req, res) {
     title: 'Home'
   });*/
   User.find().sort({
-    _id: 1}).limit(11)
+    _id: 1}).limit(12)
   .then(function (result) {
     console.log(result);
     res.render('./home', {
