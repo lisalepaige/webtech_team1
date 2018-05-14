@@ -63,13 +63,11 @@ router.get('/', function (req, res) {
   res.render('./home', {
     title: 'Home'
   });
-  Question.find({
-    picture = req.user.picture
-  })
+  User.find()
   .then(function (result) {
-    loggedInPic = req.user.picture;
-    res.render('/', {
-      picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
+    console.log(result);
+    res.render('./home', {
+      picture: result
     });
   });
 });
