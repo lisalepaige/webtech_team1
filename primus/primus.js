@@ -72,23 +72,26 @@ function updateLike(search_name, loggedInUser, callback) {
   }).then(function (result) {
     callback(null, result);
 
+    // update question
     Question.update({
-      'search_name': search_name
+      search_name: search_name
     }, {
         $push: {
           'likes': {
+            
             user: {
               username: result.username,
               facebookId: result.facebookId,
               picture: result.picture
-            }
+            },
+            count: null
           }
         }
       }, function (err, raw) {
         console.log(raw);
-
       });
-  });
+
+  })
 };
 
 
@@ -166,7 +169,6 @@ exports.kickstart = function (server) {
             page: data.search_name,
             type: data.type,
             user: userName,
-            //likes: updatedLikes,
             img: userPicture
           });
 
