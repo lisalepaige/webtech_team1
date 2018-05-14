@@ -164,10 +164,11 @@ exports.kickstart = function (server) {
           }
           var updatedLikes = result.likes + 1;
           var userPicture = result.picture;
+          var userName = result.username;
           primus.write({
             page: data.search_name,
             type: data.type,
-            user: data.loggedInUser,
+            user: userName,
             likes: updatedLikes,
             img: userPicture
           });

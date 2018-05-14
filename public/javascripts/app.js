@@ -171,6 +171,7 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
+            console.log(data);
             updateLikes(data.likes, data.user, data.img);
 
         }
