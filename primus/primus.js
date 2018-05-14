@@ -100,15 +100,25 @@ exports.kickstart = function (server) {
     spark.on("data", function (data) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
-        console.log("Last answer =" + last_answer);
-        saveAnswer(data.content, data.search_name, last_answer, data.loggedInUser);
-        primus.write({
-          page: data.search_name,
-          content: data.content,
-          type: data.type,
-          user: data.loggedInUser,
-          id: last_answer
+        
+        saveAnswer(data.content, data.search_name, last_answer, data.loggedInUser, function(err, result){
+          if(err){
+            console.log("error "+err);
+          }
+          var userPicture = result.picture;
+          var userName = result.username;
+
+          primus.write({
+            page: data.search_name,
+            content: data.content,
+            type: data.type,
+            user: userName,
+            id: last_answer,
+            img: userPicture
+          });
+
         });
+        
       }
 
       if (data.type == "comment") {
