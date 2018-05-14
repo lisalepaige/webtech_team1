@@ -7,12 +7,13 @@ const User = require('../models/usermodel');
 //userid = "1523146284463221";
 
 
-function saveAnswer(content, search_name, last_answer, loggedInUser) {
+function saveAnswer(content, search_name, last_answer, loggedInUser, callback) {
   // search for the user 
   User.findOne({
     facebookId: loggedInUser
   }).then(function (result) {
-    console.log(result); 
+    callback(null, result);
+    
     // update question
     Question.update({
       search_name: search_name
