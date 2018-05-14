@@ -71,19 +71,20 @@ function updateLike(search_name, loggedInUser, callback) {
     facebookId: loggedInUser
   }).then( function(result){
     callback(null, result);
+    
     Question.findOne({
       'search_name': search_name
-    }).select('likes -_id').then(function (reply) {
+    }).select('likes').then(function (reply) {
       
-      var newLikes = reply.likes + 1;
+      //var newLikes = reply.like + 1;
       Question.update({
-        search_name: search_name
+        'search_name': search_name
       }, {
-        $set: {
-          likes: newLikes
-        }, 
+        /*$set: {
+          'likes.$.like': newLikes
+        }, */
         $push: {
-          'likes': {
+          'likes.$.users': {
             user: {
               username: result.username,
               facebookId: result.facebookId,

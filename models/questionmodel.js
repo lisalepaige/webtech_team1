@@ -7,23 +7,28 @@ var questionSchema = new Schema({
     type: String,
     required: true
   },
-  likes: {
-    type: Number,
-    user: {
-      _id: {
-        type: Number
-      },
-      username: {
-        type: String
-      },
-      facebookId: {
-        type: String
-      },
-      picture: {
-        type: String
-      }
+  likes: [{
+    like: {
+      type: Number
     },
-  },
+    
+    users: [{
+        user: {
+          _id: {
+            type: Number
+          },
+          username: {
+            type: String
+          },
+          facebookId: {
+            type: String
+          },
+          picture: {
+            type: String
+          }
+        }
+    }],
+  }],
   search_name: {
     type: String
   },
