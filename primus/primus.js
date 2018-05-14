@@ -152,8 +152,8 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "like") {
-        //primus.write({page : data.search_name, type: data.type});
-        updateLike(data.search_name, data.loggedInUser, function (err, likes) {
+        
+        updateLike(data.search_name, data.loggedInUser, function (err, result) {
           if (err) {
             console.log("error " + err);
           }

@@ -68,16 +68,16 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
 
 document.querySelector(".likes__like--a").addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("like clicked");
+    
     var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
 
     var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
-        
+    console.log("user: " + loggedInUser);   
 
     primus.write({
         type: "like",
         search_name: search_name,
-            loggedInUser: loggedInUser
+        loggedInUser: loggedInUser
     });
 });
 
@@ -166,7 +166,8 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
-            console.log("Dit is data..."+data);
+            console.log("Dit is data...");
+            console.log(data);
             //updateLikes(data.likes, data.user);
 
         }
