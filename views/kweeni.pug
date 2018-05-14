@@ -22,7 +22,8 @@ block content
           .topics__question
             .topics__question--likes
               img.topics__question--img(src='img/icon-cool.svg', alt='icon')
-              span x #{question.likes} 
+              span x 
+              //#{question.likes} 
             a(href="/kweeni/"+question.search_name).topics__question--p #{question.text} 
             p.topics__question--author #{question.user.username}
             img.topics__question--img(src=question.user.picture, alt=question.user.username)
