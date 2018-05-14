@@ -8,25 +8,9 @@ block content
         a.homeheader__inloggen(href='/facebook')
 
       .homeheader__userpictures
-        #key1.userpicture(src=picture.picture)
-        #key2.userpicture(src=picture.picture)
-        #key3.userpicture(src=picture.picture)
-        #key4.userpicture(src=picture.picture)
-        #key5.userpicture(src=picture.picture)
-        #key6.userpicture(src=picture.picture)
-        #key7.userpicture(src=picture.picture)
-        #key8.userpicture(src=picture.picture)
-        #key9.userpicture(src=picture.picture)
-        #key10.userpicture(src=picture.picture)
-        #key11.userpicture(src=picture.picture)
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
+        each picture, i in pictures
+          img#key0.userpictures(src=picture.picture, alt='')
+          .filler
         
     main.homemain
       article.homemain__firstarticle
