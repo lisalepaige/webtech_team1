@@ -8,18 +8,9 @@ block content
         a.homeheader__inloggen(href='/facebook')
 
       .homeheader__userpictures
-        #key0.userpicture(src=picture)
-        #key1.userpicture(src=picture)
-        #key2.userpicture(src=picture)
-        #key3.userpicture(src=picture)
-        #key4.userpicture(src=picture)
-        #key5.userpicture(src=picture)
-        #key6.userpicture(src=picture)
-        #key7.userpicture(src=picture)
-        #key8.userpicture(src=picture)
-        #key9.userpicture(src=picture)
-        #key10.userpicture(src=picture)
-        #key11.userpicture(src=picture)
+        each picture, i in pictures
+          #key0.userpicture(src=picture)
+        
         .filler
         .filler
         .filler
