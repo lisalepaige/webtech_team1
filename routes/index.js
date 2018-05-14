@@ -67,6 +67,7 @@ router.get('/', function (req, res) {
     picture = req.user.picture
   })
   .then(function (result) {
+    loggedInPic = req.user.picture;
     res.render('/', {
       picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
     });
