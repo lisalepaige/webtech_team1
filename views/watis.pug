@@ -20,21 +20,14 @@ block content
       .likes
         .likes__like
           img.likes__like--img(src="../img/icon-cool.svg" alt="smiley_cool")
-          p.likes__like--p x #{question.likes} 
+          p.likes__like--p x 
+            span.likes__count #{likes}
           a.likes__like--a(href="#") like deze vraag
       .users
-        img.users__pic(src="../img/user1.png")
-        img.users__pic(src="../img/user2.png")
-        img.users__pic(src="../img/user3.png")
-        img.users__pic(src="../img/user4.png")
-        img.users__pic(src="../img/user5.png")
-        img.users__pic(src="../img/user6.png")
-        img.users__pic(src="../img/user7.png")
-        img.users__pic(src="../img/user8.png")
-        img.users__pic(src="../img/user9.png")
-        img.users__pic(src="../img/user10.png")
-        img.users__pic(src="../img/user11.png")
-        img.users__pic(src="../img/user12.png")
+        each like, l in likelist
+          if question.likes[l] != 0
+            img.users__pic(src=question.likes[l].user.picture)
+        
     .container
       section#listcomments
         each answer, i in answerlist

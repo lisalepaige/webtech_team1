@@ -22,7 +22,10 @@ var questionSchema = new Schema({
         type: String
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> testbranch
   }],
   search_name: {
     type: String

@@ -38,6 +38,8 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
         loggedInUser: loggedInUser
     });
 
+    document.querySelector(".react__input").value = "";
+
 });
 
 document.querySelector(".react__c").addEventListener("keydown", function (e) {
@@ -55,7 +57,7 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         // get user
         var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
         console.log("user: " + loggedInUser);
-
+        
         primus.write({
             type: "comment",
             content: comment,
@@ -63,15 +65,25 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
             last_answer: last_answer,
             loggedInUser: loggedInUser
         });
+
+        this.value = "";
     }
 });
 
 document.querySelector(".likes__like--a").addEventListener("click", function (e) {
     e.preventDefault();
+<<<<<<< HEAD
     var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
     console.log("user: " + loggedInUser);
 
+=======
+    
+>>>>>>> testbranch
     var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
+
+    var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+    console.log("user: " + loggedInUser);   
+
     primus.write({
         type: "like",
         search_name: search_name,
@@ -140,6 +152,7 @@ function addComment(data, user, img) {
     container.appendChild(article);
 }
 
+<<<<<<< HEAD
 function updateLikes(newLikes, img) {
 
     var likesElem = document.querySelector(".likes__like--p");
@@ -151,6 +164,21 @@ function updateLikes(newLikes, img) {
 
     var usersElem = document.querySelector(".users");
     usersElem.appendChild(userImage);
+=======
+function updateLikes(img, user) {
+
+    var likesElem = document.querySelector(".likes__count");
+    var count = likesElem.innerHTML;
+    var newCount = parseInt(count)+1;
+    likesElem.innerHTML = newCount;
+
+    var userImage = document.createElement("img");
+    userImage.classList.add('users__pic');
+    userImage.src = img;
+
+    var imageBlock = document.querySelector('.users');
+    imageBlock.appendChild(userImage);
+>>>>>>> testbranch
 }
 
 
@@ -171,8 +199,14 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
+<<<<<<< HEAD
             console.log(data);
             //updateLikes(data.likes, data.user, data.img);
+=======
+            console.log("Dit is data...");
+            console.log(data);
+            updateLikes(data.img, data.user);
+>>>>>>> testbranch
 
         }
     }

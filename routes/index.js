@@ -110,16 +110,19 @@ router.get('/kweeni/:id', function (req, res) {
         });
       } else {
         var minutes = result.current_date.getMinutes();
-        console.log(minutes);
+        var countLikes = result.likes.length;
+        var finalCount = countLikes -1;
         res.render('watis', {
           title: id,
           question: result,
           question_min: minutes,
           answerlist: result.answers,
+          likelist: result.likes,
           commentlist: result.answers.comments,
           user: loggedInUser,
           userid: loggedInId,
-          userpic: loggedInPic
+          userpic: loggedInPic,
+          likes: finalCount
          });
       }
     });
