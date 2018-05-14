@@ -64,23 +64,37 @@ function saveComment(content, search_name, last_answer, loggedInUser, callback) 
   })
 };
 
-function updateLike(search_name, callback) {
-  Question.findOne({
-    'search_name': search_name
-  }).select('likes -_id').then(function (likes) {
-    callback(null, likes.likes);
-    var newLikes = likes.likes + 1;
-    Question.update({
-      search_name: search_name
-    }, {
-      $set: {
-        likes: newLikes
-      }
-    }, function (err, raw) {
-      console.log(raw);
-
+function updateLike(search_name, loggedInUser, callback) {
+  User.findOne({
+    facebookId: loggedInUser
+  }).then( function(result){
+    Question.findOne({
+      'search_name': search_name
+    }).select('likes -_id').then(function (result) {
+      callback(null, result);
+      var newLikes = result.likes + 1;
+      Question.update({
+        search_name: search_name
+      }, {
+        $set: {
+          likes: newLikes
+        }, 
+        $push: {
+          'likes': {
+            user: {
+              username: result.username,
+              facebookId: result.facebookId,
+              picture: result.picture
+            }
+          }
+        }
+      }, function (err, raw) {
+        console.log(raw);
+  
+      });
     });
   });
+  
 
 
 }
@@ -144,16 +158,18 @@ exports.kickstart = function (server) {
 
       if (data.type == "like") {
         //primus.write({page : data.search_name, type: data.type});
-        updateLike(data.search_name, function (err, likes) {
+        updateLike(data.search_name, data.loggedInUser, function (err, result) {
           if (err) {
             console.log("error " + err);
           }
-          var updatedLikes = likes + 1;
+          var updatedLikes = result.likes + 1;
+          var userPicture = result.picture;
           primus.write({
             page: data.search_name,
             type: data.type,
             user: data.loggedInUser,
-            likes: updatedLikes
+            likes: updatedLikes,
+            img: userPicture
           });
 
         });

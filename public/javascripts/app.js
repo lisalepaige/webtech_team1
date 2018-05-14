@@ -68,11 +68,14 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
 
 document.querySelector(".likes__like--a").addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("like clicked");
+    var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+    console.log("user: " + loggedInUser);
+
     var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
     primus.write({
         type: "like",
-        search_name: search_name
+        search_name: search_name,
+        loggedInUser: loggedInUser
     });
 });
 
@@ -137,10 +140,17 @@ function addComment(data, user, img) {
     container.appendChild(article);
 }
 
-function updateLikes(newLikes) {
+function updateLikes(newLikes, img) {
 
     var likesElem = document.querySelector(".likes__like--p");
     likesElem.innerHTML = "x " + newLikes;
+
+    var userImage = document.createElement("img");
+    userImage.classList.add(".users__pic");
+    userImage.src = img;
+
+    var usersElem = document.querySelector(".users");
+    usersElem.appendChild(userImage);
 }
 
 
@@ -161,7 +171,7 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
-            updateLikes(data.likes, data.user);
+            updateLikes(data.likes, data.user, data.img);
 
         }
     }

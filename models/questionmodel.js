@@ -8,7 +8,21 @@ var questionSchema = new Schema({
     required: true
   },
   likes: {
-    type: Number
+    type: Number,
+    user: {
+      _id: {
+        type: Number
+      },
+      username: {
+        type: String
+      },
+      facebookId: {
+        type: String
+      },
+      picture: {
+        type: String
+      }
+    },
   },
   search_name: {
     type: String
