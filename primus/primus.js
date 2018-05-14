@@ -69,37 +69,11 @@ function updateLike(search_name, loggedInUser, callback) {
     facebookId: loggedInUser
   }).then(function (result) {
     callback(null, result);
-<<<<<<< HEAD
-
-=======
     
->>>>>>> testbranch
     // update question
     Question.update({
       search_name: search_name
     }, {
-<<<<<<< HEAD
-        $push: {
-          'likes': {
-            
-            user: {
-              username: result.username,
-              facebookId: result.facebookId,
-              picture: result.picture
-            },
-            count: null
-          }
-        }
-      }, function (err, raw) {
-        console.log(raw);
-      });
-
-  })
-};
-
-
-
-=======
       $push: {
         'likes': {
           
@@ -116,7 +90,7 @@ function updateLike(search_name, loggedInUser, callback) {
     });
 
   })
->>>>>>> testbranch
+}
 
 
 
@@ -178,34 +152,21 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "like") {
-<<<<<<< HEAD
-        //primus.write({page : data.search_name, type: data.type});
-=======
         
->>>>>>> testbranch
         updateLike(data.search_name, data.loggedInUser, function (err, result) {
           if (err) {
             console.log("error " + err);
           }
-<<<<<<< HEAD
-          //var updatedLikes = result.likes + 1;
-          var userPicture = result.picture;
-          var userName = result.username;
-=======
 
           var userPicture = result.picture;
           var userName = result.username;
           
->>>>>>> testbranch
           primus.write({
             page: data.search_name,
             type: data.type,
             user: userName,
             img: userPicture
-<<<<<<< HEAD
-=======
             
->>>>>>> testbranch
           });
 
         });
