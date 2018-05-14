@@ -164,7 +164,7 @@ exports.kickstart = function (server) {
           primus.write({
             page: data.search_name,
             type: data.type,
-            user: data.userName,
+            user: userName,
             img: userPicture
             
           });

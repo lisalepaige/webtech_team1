@@ -142,10 +142,19 @@ function addComment(data, user, img) {
     container.appendChild(article);
 }
 
-function updateLikes(newLikes) {
+function updateLikes(img, user) {
 
     var likesElem = document.querySelector(".likes__like--p");
-    likesElem.innerHTML = "x " + newLikes;
+    var count = likesElem.innerHTML;
+    var newCount = parseInt(count)+1;
+    likesElem.innerHTML = newCount;
+
+    var userImage = document.createElement("img");
+    userImage.classList.add('users__pic');
+    userImage.src = img;
+
+    var imageBlock = document.querySelector('users');
+    imageBlock.appendChild(userImage);
 }
 
 
@@ -168,7 +177,7 @@ primus.on("data", function message(data) {
         } else if (data.type == "like") {
             console.log("Dit is data...");
             console.log(data);
-            //updateLikes(data.likes, data.user);
+            updateLikes(data.img, data.user);
 
         }
     }
