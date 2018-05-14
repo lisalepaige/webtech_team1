@@ -13,36 +13,36 @@ function saveAnswer(content, search_name, last_answer, loggedInUser) {
     facebookId: loggedInUser
   }).then(function (result) {
     console.log(result); 
-  // update question
-  Question.update({
-    search_name: search_name
-  }, {
-    $push: {
-      'answers': {
-        _id: last_answer,
-        text: content,
-        user: {
-          username: result.username,
-          facebookId: result.facebookId,
-          picture: result.picture
-        },
-        count: null
+    // update question
+    Question.update({
+      search_name: search_name
+    }, {
+      $push: {
+        'answers': {
+          _id: last_answer,
+          text: content,
+          user: {
+            username: result.username,
+            facebookId: result.facebookId,
+            picture: result.picture
+          },
+          count: null
+        }
       }
-    }
-  }, function (err, raw) {
-    console.log(raw);
-  });
+    }, function (err, raw) {
+      console.log(raw);
+    });
 
   })
 };
 
-function saveComment(content, search_name, last_answer, loggedInUser) {
+function saveComment(content, search_name, last_answer, loggedInUser, callback) {
 
   // search for the user 
   User.findOne({
     facebookId: loggedInUser
   }).then(function (result) {
-    // update comment
+    callback(null, result);
     Question.update({
       search_name: search_name,
       'answers._id': last_answer
@@ -112,16 +112,23 @@ exports.kickstart = function (server) {
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser);
-        last_answer = data.last_answer
-        primus.write({
-          page: data.search_name,
-          content: data.content,
-          type: data.type,
-          user: data.loggedInUser,
-          id: last_answer,
-          img: data.picture
+        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser, function(err, result){
+          if(err){
+            console.log("error "+err);
+          }
+          var userPicture = result.picture;
+          var userName = result.username;
+          last_answer = data.last_answer;
+          primus.write({
+            page: data.search_name,
+            content: data.content,
+            type: data.type,
+            user: userName,
+            id: last_answer,
+            img: userPicture
+          });
         });
+        
       }
 
       if (data.type == "like") {

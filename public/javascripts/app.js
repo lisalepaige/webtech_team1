@@ -41,10 +41,10 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
 });
 
 document.querySelector(".react__c").addEventListener("keydown", function (e) {
-    console.log("Any key...");
+    
     if (e.key === "Enter") {
         e.preventDefault();
-        console.log("Enter!");
+        
         var comment = this.value;
         var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
 
