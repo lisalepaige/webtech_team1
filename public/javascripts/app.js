@@ -153,7 +153,7 @@ function updateLikes(img, user) {
     userImage.classList.add('users__pic');
     userImage.src = img;
 
-    var imageBlock = document.querySelector('users');
+    var imageBlock = document.querySelector('.users');
     imageBlock.appendChild(userImage);
 }
 

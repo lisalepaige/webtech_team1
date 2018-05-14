@@ -110,6 +110,9 @@ router.get('/kweeni/:id', function (req, res) {
         });
       } else {
         var minutes = result.current_date.getMinutes();
+        Question.likes.count({}, function(err, c) {
+          console.log('Count is ' + c);
+        });
         console.log(minutes);
         res.render('watis', {
           title: id,
