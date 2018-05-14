@@ -132,16 +132,11 @@ router.post('/kweeni', function (req, res, next) {
       username: loggedInUser
     })
     .then(function (result) {
-      var inputtext = req.body.question__input;
-      var nextext; 
-      if (inputtext.search("?") > 0) {
-        newtext = inputtext.replace("?", "");
-      } else {
-        newtext = inputtext; 
-      }
+      var inputtext = req.body.question__input.replace("?", "");
+
       // create item
       var item = {
-        text: newtext, 
+        text: inputtext, 
         likes: 0,
         search_name: req.body.question__input.split(" ").join("-"),
         current_date: new Date(Date.now()).toLocaleString(),
