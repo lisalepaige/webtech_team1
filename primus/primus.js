@@ -1,5 +1,3 @@
-import { TSExportAssignment } from 'babel-types';
-
 var mongoose = require('mongoose');
 const Question = require('../models/questionmodel');
 var keys = require('../config/keys');
