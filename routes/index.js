@@ -111,7 +111,7 @@ router.get('/kweeni/:id', function (req, res) {
       } else {
         var timezoneDate = result.current_date.getTime() - 1000 * 60 * 18;
 
-        var minutes = result.current_date.getTime() - 1000 * 60 * 18;
+        var minutes = result.current_date.getTime();
         var countLikes = result.likes.length;
         var finalCount = countLikes -1;
         res.render('watis', {
