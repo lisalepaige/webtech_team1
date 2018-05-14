@@ -109,7 +109,7 @@ router.get('/kweeni/:id', function (req, res) {
           message: 'id not found'
         });
       } else {
-        var minutes = result.current_date.getHours()+2;
+        var minutes = result.current_date.getMinutes()-120;
         var countLikes = result.likes.length;
         var finalCount = countLikes -1;
         res.render('watis', {
