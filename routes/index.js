@@ -120,7 +120,8 @@ router.get('/kweeni/:id', function (req, res) {
           commentlist: result.answers.comments,
           user: loggedInUser,
           userid: loggedInId,
-          userpic: loggedInPic
+          userpic: loggedInPic,
+          likes: count
          });
       }
     });
