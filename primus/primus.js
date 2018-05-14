@@ -75,9 +75,8 @@ function updateLike(search_name, loggedInUser, callback) {
       search_name: search_name
     }, {
       $push: {
-        'answers': {
-          _id: last_answer,
-          text: content,
+        'likes': {
+          
           user: {
             username: result.username,
             facebookId: result.facebookId,

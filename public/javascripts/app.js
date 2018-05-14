@@ -166,7 +166,7 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
-            console.log(data);
+            console.log("Dit is data..."+data);
             //updateLikes(data.likes, data.user);
 
         }
