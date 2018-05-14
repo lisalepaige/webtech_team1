@@ -172,7 +172,7 @@ exports.kickstart = function (server) {
             page: data.search_name,
             type: data.type,
             user: userName,
-            likes: updatedLikes,
+            //likes: updatedLikes,
             img: userPicture
           });
 

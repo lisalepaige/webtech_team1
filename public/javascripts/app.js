@@ -172,7 +172,7 @@ primus.on("data", function message(data) {
             
         } else if (data.type == "like") {
             console.log(data);
-            updateLikes(data.likes, data.user, data.img);
+            //updateLikes(data.likes, data.user, data.img);
 
         }
     }
