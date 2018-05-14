@@ -9,7 +9,7 @@ block content
 
       .homeheader__userpictures
         each picture, i in pictures
-          img #{key.pictures[i].userpictures(src=picture.picture, alt=pictures[i])}
+          img.userpictures(src=picture.picture, alt=pictures[i]) #{key.pictures[i]}
           .filler
         
     main.homemain
