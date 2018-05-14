@@ -56,12 +56,16 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
         console.log("user: " + loggedInUser);
 
+        var userPicture = document.querySelector(".auteur__img").getAttribute("src");
+        console.log("user img: " + userPicture);
+
         primus.write({
             type: "comment",
             content: comment,
             search_name: search_name,
             last_answer: last_answer,
-            loggedInUser: loggedInUser
+            loggedInUser: loggedInUser,
+            picture: userPicture
         });
     }
 });
@@ -79,7 +83,7 @@ document.querySelector(".likes__like--a").addEventListener("click", function (e)
 
 
 
-function addReaction(data, id) {
+function addReaction(data, id, user) {
     // create new article / give class 'comments'
     var article = document.createElement("article");
     article.classList.add('comments');
@@ -100,7 +104,7 @@ function addReaction(data, id) {
     //create new link (name of user) / add class / insert name of user / append to article
     var usernameLink = document.createElement("a");
     usernameLink.classList.add('.comments__a');
-    usernameLink.innerHTML = "Som Wan";
+    usernameLink.innerHTML = user;
     article.appendChild(usernameLink);
 
     //add new article to comments
@@ -108,7 +112,7 @@ function addReaction(data, id) {
     container.appendChild(article);
 }
 
-function addComment(data) {
+function addComment(data, user, img) {
     // create new article / give class 'comments'
     var article = document.createElement("article");
     article.classList.add('comments');
@@ -121,11 +125,15 @@ function addComment(data) {
 
     //create profile image / give image source / add class / append image to article
     var profileimage = document.createElement("img");
-    profileimage.src = "img/user9.png";
+    profileimage.src = img;
     profileimage.classList.add('comments__pic');
     article.appendChild(profileimage);
 
     //create new link (name of user) / add class / insert name of user / append to article
+    var usernameLink = document.createElement("a");
+    usernameLink.classList.add('.comments__a');
+    usernameLink.innerHTML = user;
+    article.appendChild(usernameLink);
 
 
     //add new article to comments
@@ -151,11 +159,11 @@ primus.on("data", function message(data) {
     if (data.page == search_name) {
 
         if (data.type == "answer") {
-            addReaction(data.content, data.id);
+            addReaction(data.content, data.id, data.user);
         } else if (data.type == "comment") {
-            addComment(data.content);
+            addComment(data.content, data.user, data.img);
         } else if (data.type == "like") {
-            updateLikes(data.likes);
+            updateLikes(data.likes, data.user);
 
         }
     }

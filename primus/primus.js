@@ -106,6 +106,7 @@ exports.kickstart = function (server) {
           page: data.search_name,
           content: data.content,
           type: data.type,
+          user: data.loggedInUser,
           id: last_answer
         });
       }
@@ -117,7 +118,9 @@ exports.kickstart = function (server) {
           page: data.search_name,
           content: data.content,
           type: data.type,
-          id: last_answer
+          user: data.loggedInUser,
+          id: last_answer,
+          img: data.picture
         });
       }
 
@@ -131,6 +134,7 @@ exports.kickstart = function (server) {
           primus.write({
             page: data.search_name,
             type: data.type,
+            user: data.loggedInUser,
             likes: updatedLikes
           });
 
