@@ -1,3 +1,5 @@
+import { TSExportAssignment } from 'babel-types';
+
 var mongoose = require('mongoose');
 const Question = require('../models/questionmodel');
 var keys = require('../config/keys');
@@ -68,11 +70,12 @@ function updateLike(search_name, loggedInUser, callback) {
   User.findOne({
     facebookId: loggedInUser
   }).then( function(result){
+    callback(null, result);
     Question.findOne({
       'search_name': search_name
-    }).select('likes -_id').then(function (result) {
-      callback(null, result);
-      var newLikes = result.likes + 1;
+    }).select('likes -_id').then(function (reply) {
+      
+      var newLikes = reply.likes + 1;
       Question.update({
         search_name: search_name
       }, {
@@ -162,7 +165,7 @@ exports.kickstart = function (server) {
           if (err) {
             console.log("error " + err);
           }
-          var updatedLikes = result.likes + 1;
+          //var updatedLikes = result.likes + 1;
           var userPicture = result.picture;
           var userName = result.username;
           primus.write({
