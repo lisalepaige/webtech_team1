@@ -63,6 +63,14 @@ router.get('/', function (req, res) {
   res.render('./home', {
     title: 'Home'
   });
+  Question.find({
+    picture = req.user.picture
+  })
+  .then(function (result) {
+    res.render('/', {
+      picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
+    });
+  });
 });
 
 /* GET logout */
