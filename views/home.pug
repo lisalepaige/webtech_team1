@@ -9,16 +9,9 @@ block content
 
       .homeheader__userpictures
         each picture, i in pictures
-          img#key.userpicture(src=picture.picture, alt='')
+          img#{key.pictures[i]}.userpictures(src=picture.picture, alt=pictures[i])
           .filler
         
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
     main.homemain
       article.homemain__firstarticle
         .align
