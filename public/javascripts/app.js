@@ -70,9 +70,14 @@ document.querySelector(".likes__like--a").addEventListener("click", function (e)
     e.preventDefault();
     console.log("like clicked");
     var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
+
+    var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+        
+
     primus.write({
         type: "like",
-        search_name: search_name
+        search_name: search_name,
+            loggedInUser: loggedInUser
     });
 });
 
@@ -161,7 +166,8 @@ primus.on("data", function message(data) {
             addComment(data.content, data.user, data.img);
             
         } else if (data.type == "like") {
-            updateLikes(data.likes, data.user);
+            console.log(data);
+            //updateLikes(data.likes, data.user);
 
         }
     }
