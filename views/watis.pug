@@ -24,7 +24,8 @@ block content
           p.likes__like--p #{likes}
           a.likes__like--a(href="#") like deze vraag
       .users
-        
+        each like, l in likelist
+          img.users__pic(src=question.likes[l].user.picture)
         
     .container
       section#listcomments
