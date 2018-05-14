@@ -38,6 +38,8 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
         loggedInUser: loggedInUser
     });
 
+    document.querySelector(".react__input").value = "";
+
 });
 
 document.querySelector(".react__c").addEventListener("keydown", function (e) {
@@ -55,7 +57,7 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
         // get user
         var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
         console.log("user: " + loggedInUser);
-
+        
         primus.write({
             type: "comment",
             content: comment,
@@ -63,6 +65,8 @@ document.querySelector(".react__c").addEventListener("keydown", function (e) {
             last_answer: last_answer,
             loggedInUser: loggedInUser
         });
+
+        this.value = "";
     }
 });
 
@@ -144,7 +148,7 @@ function addComment(data, user, img) {
 
 function updateLikes(img, user) {
 
-    var likesElem = document.querySelector(".likes__like--p");
+    var likesElem = document.querySelector(".likes__count");
     var count = likesElem.innerHTML;
     var newCount = parseInt(count)+1;
     likesElem.innerHTML = newCount;
