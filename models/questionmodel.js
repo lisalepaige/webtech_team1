@@ -8,26 +8,21 @@ var questionSchema = new Schema({
     required: true
   },
   likes: [{
-    like: {
-      type: Number
-    },
-    
-    users: [{
-        user: {
-          _id: {
-            type: Number
-          },
-          username: {
-            type: String
-          },
-          facebookId: {
-            type: String
-          },
-          picture: {
-            type: String
-          }
-        }
-    }],
+    user: {
+      _id: {
+        type: Number
+      },
+      username: {
+        type: String
+      },
+      facebookId: {
+        type: String
+      },
+      picture: {
+        type: String
+      }
+    }
+
   }],
   search_name: {
     type: String
@@ -94,8 +89,8 @@ var questionSchema = new Schema({
     }]
   }]
 }, {
-  collection: 'questions'
-}); // stores data in collection
+    collection: 'questions'
+  }); // stores data in collection
 
 var Question = mongoose.model('question', questionSchema);
 

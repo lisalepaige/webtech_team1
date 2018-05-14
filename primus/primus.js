@@ -15,26 +15,26 @@ function saveAnswer(content, search_name, last_answer, loggedInUser, callback) {
     facebookId: loggedInUser
   }).then(function (result) {
     callback(null, result);
-    
+
     // update question
     Question.update({
       search_name: search_name
     }, {
-      $push: {
-        'answers': {
-          _id: last_answer,
-          text: content,
-          user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          },
-          count: null
+        $push: {
+          'answers': {
+            _id: last_answer,
+            text: content,
+            user: {
+              username: result.username,
+              facebookId: result.facebookId,
+              picture: result.picture
+            },
+            count: null
+          }
         }
-      }
-    }, function (err, raw) {
-      console.log(raw);
-    });
+      }, function (err, raw) {
+        console.log(raw);
+      });
 
   })
 };
@@ -50,41 +50,9 @@ function saveComment(content, search_name, last_answer, loggedInUser, callback) 
       search_name: search_name,
       'answers._id': last_answer
     }, {
-      $push: {
-        'answers.$.comments': {
-          text: content,
-          user: {
-            username: result.username,
-            facebookId: result.facebookId,
-            picture: result.picture
-          }
-        }
-      }
-    }, function (err, raw) {
-      console.log(raw);
-    });
-  })
-};
-
-function updateLike(search_name, loggedInUser, callback) {
-  User.findOne({
-    facebookId: loggedInUser
-  }).then( function(result){
-    callback(null, result);
-    
-    Question.findOne({
-      'search_name': search_name
-    }).select('likes').then(function (reply) {
-      
-      //var newLikes = reply.like + 1;
-      Question.update({
-        'search_name': search_name
-      }, {
-        /*$set: {
-          'likes.$.like': newLikes
-        }, */
         $push: {
-          'likes.$.users': {
+          'answers.$.comments': {
+            text: content,
             user: {
               username: result.username,
               facebookId: result.facebookId,
@@ -94,14 +62,39 @@ function updateLike(search_name, loggedInUser, callback) {
         }
       }, function (err, raw) {
         console.log(raw);
-  
       });
-    });
+  })
+};
+
+function updateLike(search_name, loggedInUser, callback) {
+  User.findOne({
+    facebookId: loggedInUser
+  }).then(function (result) {
+    callback(null, result);
+
+    Question.update({
+      'search_name': search_name
+    }, {
+        $push: {
+          'likes': {
+            user: {
+              username: result.username,
+              facebookId: result.facebookId,
+              picture: result.picture
+            }
+          }
+        }
+      }, function (err, raw) {
+        console.log(raw);
+
+      });
   });
-  
+};
 
 
-}
+
+
+
 
 
 exports.kickstart = function (server) {
@@ -119,10 +112,10 @@ exports.kickstart = function (server) {
     spark.on("data", function (data) {
       if (data.type == "answer") {
         last_answer = parseInt(data.last_answer) + 1;
-        
-        saveAnswer(data.content, data.search_name, last_answer, data.loggedInUser, function(err, result){
-          if(err){
-            console.log("error "+err);
+
+        saveAnswer(data.content, data.search_name, last_answer, data.loggedInUser, function (err, result) {
+          if (err) {
+            console.log("error " + err);
           }
           var userPicture = result.picture;
           var userName = result.username;
@@ -137,13 +130,13 @@ exports.kickstart = function (server) {
           });
 
         });
-        
+
       }
 
       if (data.type == "comment") {
-        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser, function(err, result){
-          if(err){
-            console.log("error "+err);
+        saveComment(data.content, data.search_name, data.last_answer, data.loggedInUser, function (err, result) {
+          if (err) {
+            console.log("error " + err);
           }
           var userPicture = result.picture;
           var userName = result.username;
@@ -157,7 +150,7 @@ exports.kickstart = function (server) {
             img: userPicture
           });
         });
-        
+
       }
 
       if (data.type == "like") {
