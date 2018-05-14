@@ -60,9 +60,16 @@ passport.deserializeUser(function (id, done) {
 
 /* GET home */
 router.get('/', function (req, res) {
-  res.render('./home', {
-    title: 'Home'
-  });
+  // sorteer nieuwste naar oudste 
+  // limit: 10, alleen 10 nieuwste laten zien
+  User.find().sort({
+    _id: 1}).limit(10)
+  .then(function(result){
+    res.render('./home', {
+      pictures: result
+    });
+  })
+
 });
 
 /* GET logout */
@@ -85,12 +92,15 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       current_date: -1
     })
     .then(function (result) {
+
+      var likes = result.likes.length -1;
       //console.log(result);
       loggedInUser = req.user.username;
       loggedInId = req.user.facebookId;
       loggedInPic = req.user.picture; 
       res.render('kweeni', {
         questionslist: result,
+        likes: likes,
         user: req.user.username,
         picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
       });
@@ -132,11 +142,9 @@ router.post('/kweeni', function (req, res, next) {
       username: loggedInUser
     })
     .then(function (result) {
-      var inputtext = req.body.question__input.replace("?", "");
-
       // create item
       var item = {
-        text: inputtext, 
+        text: req.body.question__input, 
         likes: 0,
         search_name: req.body.question__input.split(" ").join("-"),
         current_date: new Date(Date.now()).toLocaleString(),
