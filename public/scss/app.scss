@@ -165,8 +165,6 @@ header {
     
     .userpicture{
         flex:none;
-        height: 400px; 
-        width:400px;
         min-width:auto;
         /*min-height:auto;*/
         background-repeat: no-repeat;
@@ -184,6 +182,9 @@ header {
     
     #key2{
         grid-column: 1 / 2 ;
+        
+        height: 400px; 
+        width:400px;
     }
     
     #key3{
@@ -194,6 +195,8 @@ header {
         grid-column: 4 / 6;
         grid-row: 2 / span 2;
         
+        height: 400px; 
+        width:400px;
         
     }
     
@@ -207,6 +210,9 @@ header {
     
     #key8{
         grid-column: 2 / span 1 ;
+        
+        height: 400px; 
+        width:400px;
     }
     
     #key9{
