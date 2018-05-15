@@ -5,7 +5,7 @@ const userSchema = new Schema({
     username: String,
     facebookId: String,
     picture: String,
-    count: Number, 
+    counter: Number, 
     loggedIn: Boolean
 },{
     collection: 'users'
