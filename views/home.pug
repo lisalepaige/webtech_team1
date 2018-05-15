@@ -7,25 +7,10 @@ block content
         h1 Eerste hulp bij design & development hoofdpijn. Kweeni hoe handig.
         a.homeheader__inloggen(href='/facebook')
       .homeheader__userpictures
-        #key0.userpicture(style='background-image:url(/img/user1.png)')
-        #key1.userpicture(style='background-image:url(/img/user2.png)')
-        #key2.userpicture(style='background-image:url(/img/user3.png)')
-        #key3.userpicture(style='background-image:url(/img/user4.png)')
-        #key4.userpicture(style='background-image:url(/img/user5.png)')
-        #key5.userpicture(style='background-image:url(/img/user6.png)')
-        #key6.userpicture(style='background-image:url(/img/user7.png)')
-        #key7.userpicture(style='background-image:url(/img/user8.png)')
-        #key8.userpicture(style='background-image:url(/img/user9.png)')
-        #key9.userpicture(style='background-image:url(/img/user10.png)')
-        #key10.userpicture(style='background-image:url(/img/user11.png)')
-        #key11.userpicture(style='background-image:url(/img/user12.png)')
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
-        .filler
+        each picture, i in pictures
+          img.userpictures(src=picture.picture, alt='', id=pictures[i])
+          .filler
+        
     main.homemain
       article.homemain__firstarticle
         .align
