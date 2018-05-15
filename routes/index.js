@@ -13,7 +13,7 @@ var loggedInUser;
 var loggedInId; 
 var loggedInPic;
 
-var pictureCount = 0; 
+var pictureCount; 
 
 // require models
 const Question = require('../models/questionmodel');
