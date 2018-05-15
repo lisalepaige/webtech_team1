@@ -8,9 +8,8 @@ block content
         a.homeheader__inloggen(href='/facebook')
       .homeheader__userpictures
         each picture, i in pictures
-          img.userpictures(src=picture.picture, alt='', id=pictures[i])
-          .filler
-        
+            img.userpictures(src=picture.picture, alt='', id="key" + picture.count)
+            .filler
     main.homemain
       article.homemain__firstarticle
         .align

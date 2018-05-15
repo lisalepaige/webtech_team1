@@ -13,6 +13,8 @@ var loggedInUser;
 var loggedInId; 
 var loggedInPic;
 
+var pictureCount = 0; 
+
 // require models
 const Question = require('../models/questionmodel');
 const User = require('../models/usermodel');
@@ -36,10 +38,12 @@ passport.use(new Strategy({
           username: profile.displayName,
           facebookId: profile.id,
           picture: "https://graph.facebook.com/" + profile.id + "/picture",
+          count: pictureCount, 
           loggedIn: true
         }).save().then(function (newUser) {
           done(null, newUser); // save to db
         });
+        pictureCount++; 
       }
     });
   }));
@@ -66,7 +70,6 @@ router.get('/', function (req, res) {
   User.find().sort({
     _id: 1}).limit(12)
   .then(function (result) {
-    console.log(result);
     res.render('./home', {
       pictures: result
     });
@@ -93,7 +96,6 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       current_date: -1
     })
     .then(function (result) {
-      //console.log(result);
       loggedInUser = req.user.username;
       loggedInId = req.user.facebookId;
       loggedInPic = req.user.picture; 
