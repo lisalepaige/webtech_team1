@@ -60,8 +60,16 @@ passport.deserializeUser(function (id, done) {
 
 /* GET home */
 router.get('/', function (req, res) {
-  res.render('./home', {
+  /*res.render('./home', {
     title: 'Home'
+  });*/
+  User.find().sort({
+    _id: 1}).limit(12)
+  .then(function (result) {
+    console.log(result);
+    res.render('./home', {
+      pictures: result
+    });
   });
 });
 
