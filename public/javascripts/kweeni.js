@@ -42,6 +42,7 @@ function addQuestion(user, img, search_name, text){
     blockLikes.classList.add(".topics__question--likes");
 
     var likeImage = document.createElement("img");
+    likeImage.classList.add(".topics__question--img");
     likeImage.src = 'img/icon-cool.svg';
 
     var likes = document.createElement("span");
@@ -54,15 +55,16 @@ function addQuestion(user, img, search_name, text){
     link.href = "/kweeni/"+search_name;
     link.classList.add(".topics__question");
     var para = document.createElement("p");
+    para.classList.add(".topics__question--p");
     para.innerHTML = text;
     link.appendChild(para);
 
     var author = document.createElement("p");
-    author.classList.add(".topics__question");
+    author.classList.add(".topics__question--author");
     author.innerHTML = user;
 
     var userImage = document.createElement("img");
-    userImage.classList.add(".topics__question");
+    userImage.classList.add(".topics__question--img");
     userImage.src = img;
 
     container.appendChild(blockLikes);
@@ -70,7 +72,8 @@ function addQuestion(user, img, search_name, text){
     container.appendChild(author);
     container.appendChild(userImage);
     
-    document.querySelector(".topics").appendChild(container);
+    var allQuestions = document.querySelector(".topics");
+    allQuestions.insertBefore(container, allQuestions.firstChild);
     console.log("Added block");
 }
 
