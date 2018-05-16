@@ -140,9 +140,11 @@ router.post('/kweeni', function (req, res, next) {
     })
     .then(function (result) {
       // create item
+      var searchName = req.body.question__input.split(" ").join("-");
+      searchName = searchName.split("?").join("");
       var item = {
         text: req.body.question__input,
-        search_name: req.body.question__input.split(" ").join("-"),
+        search_name: searchName,
         current_date: new Date(Date.now()).toLocaleString(),
         user: {
           username: result.username,
