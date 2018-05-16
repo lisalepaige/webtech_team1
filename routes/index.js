@@ -97,6 +97,7 @@ router.get('/kweeni', /*checkLogin, */ passport.authenticate('facebook'), functi
       res.render('kweeni', {
         questionslist: result,
         user: req.user.username,
+        userid: loggedInId,
         picture: "https://graph.facebook.com/" + req.user.facebookId + "/picture"
       });
     });
