@@ -137,7 +137,7 @@ header {
 /* home.html */
 .homeheader__logoxl {
   margin-top: 50px;
-  display: block;
+  display: inline-block;
   width: 50%;
   height: 50px;
   background-size: contain;
