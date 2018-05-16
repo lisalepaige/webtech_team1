@@ -98,7 +98,7 @@ function addQuestion(search_name, loggedInUser, question, date, callback){
     // create item
     var item = {
       text: question,
-      search_name: searchName,
+      search_name: search_name,
       current_date: date,
       user: {
         username: result.username,
@@ -114,9 +114,6 @@ function addQuestion(search_name, loggedInUser, question, date, callback){
   })
 }
 
-
-
-
 exports.kickstart = function (server) {
 
   const Primus = require("primus");
@@ -126,8 +123,6 @@ exports.kickstart = function (server) {
 
   primus.on("connection", function (spark) { // spark = 1 connection
     console.log("spark connected");
-
-
 
     spark.on("data", function (data) {
       if (data.type == "answer") {
@@ -150,7 +145,6 @@ exports.kickstart = function (server) {
           });
 
         });
-
       }
 
       if (data.type == "comment") {
@@ -197,7 +191,7 @@ exports.kickstart = function (server) {
       if(data.type == "question"){
         addQuestion(data.search_name, data.loggedInUser, data.question, data.date, function (err, result){
           if (err){
-            console.log("error "+ err);
+            status: "No worky"
           }
 
           primus.write({
