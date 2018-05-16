@@ -116,7 +116,6 @@ router.get('/kweeni/:id', function (req, res) {
       } else {
         var minutes = result.current_date.getMinutes(); 
         var countLikes = result.likes.length;
-        var finalCount = countLikes -1;
         res.render('watis', {
           title: id,
           question: result,
@@ -127,7 +126,7 @@ router.get('/kweeni/:id', function (req, res) {
           user: loggedInUser,
           userid: loggedInId,
           userpic: loggedInPic,
-          likes: finalCount
+          likes: countLikes
          });
       }
     });
