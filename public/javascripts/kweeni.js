@@ -15,6 +15,7 @@ primus = Primus.connect(url, {
 
 document.querySelector(".question__btn--btn").addEventListener("click", function (e) {
     e.preventDefault();
+    console.log("Question posted ...");
     
     var QuestionName = document.querySelector(".question__input").value;
     var searchName = QuestionName.split(" ").join("-");
