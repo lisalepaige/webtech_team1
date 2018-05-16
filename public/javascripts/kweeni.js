@@ -51,10 +51,10 @@ function addQuestion(user, img, search_name, text){
     blockLikes.appendChild(likes);
 
     var link = document.createElement("a");
-    a.href = "/kweeni/"+search_name;
+    link.href = "/kweeni/"+search_name;
     link.classList.add(".topics__question");
     var para = document.createElement("p");
-    p.innerHTML = text;
+    para.innerHTML = text;
     link.appendChild(para);
 
     var author = document.createElement("p");
