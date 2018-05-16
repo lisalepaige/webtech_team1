@@ -81,8 +81,7 @@ function updateLike(search_name, loggedInUser, callback) {
             username: result.username,
             facebookId: result.facebookId,
             picture: result.picture
-          },
-          count: null
+          }
         }
       }
     }, function (err, raw) {
