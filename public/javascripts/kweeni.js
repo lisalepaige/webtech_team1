@@ -22,8 +22,11 @@ document.querySelector(".question__btn--btn").addEventListener("click", function
     searchName = searchName.split("?").join("");
 
     var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
-    console.log("user: " + loggedInUser);   
+    console.log("User: " + loggedInUser);   
     var date = new Date(Date.now()).toLocaleString();
+    console.log("Date: "+date);
+    console.log("Searchname: "+searchName);
+    console.log("Question: "+QuestionName);
 
     primus.write({
         type: "question",
@@ -41,26 +44,5 @@ document.querySelector(".question__btn--btn").addEventListener("click", function
 
 
 primus.on("data", function message(data) {
-
-
-    //lees laatste deel van pagina URL
-    var search_name = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1);
-
-    //kijk of de pagina die je ziet de pagina is waarop gepost wordt
-    if (data.page == search_name) {
-
-        if (data.type == "answer") {
-            addReaction(data.content, data.id, data.user, data.img);
-            
-        } else if (data.type == "comment") {
-            addComment(data.content, data.user, data.img);
-            
-        } else if (data.type == "like") {
-            console.log("Dit is data...");
-            console.log(data);
-            updateLikes(data.img, data.user);
-
-        }
-    }
-
+    console.log("Data received! "+data);
 });

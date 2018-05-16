@@ -93,9 +93,8 @@ function updateLike(search_name, loggedInUser, callback) {
 
 function addQuestion(search_name, loggedInUser, question, date, callback){
   User.findOne({
-    username: loggedInUser
-  })
-  .then(function (result) {
+    facebookId: loggedInUser
+  }).then(function (result) {
     // create item
     var item = {
       text: question,
