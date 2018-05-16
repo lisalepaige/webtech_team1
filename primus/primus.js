@@ -96,6 +96,7 @@ function addQuestion(search_name, loggedInUser, question, date, callback){
     facebookId: loggedInUser
   }).then(function (result) {
     // create item
+    callback(null, result);
     var item = {
       text: question,
       search_name: search_name,
@@ -195,7 +196,11 @@ exports.kickstart = function (server) {
           }
 
           primus.write({
-            status: "Sending data back"
+            type: data.type,
+            user: userName,
+            search_name: data.search_name,
+            img: userPicture,
+            text: data.question
           });
 
         });
