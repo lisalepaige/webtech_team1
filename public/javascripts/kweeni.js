@@ -71,6 +71,7 @@ function addQuestion(user, img, search_name, text){
     container.appendChild(userImage);
     
     document.querySelector(".topics").appendChild(container);
+    console.log("Added block");
 }
 
 
@@ -79,10 +80,8 @@ function addQuestion(user, img, search_name, text){
 
 
 primus.on("data", function message(data) {
-    console.log("TESTING");
-
     if(data.type == "question"){
-        console.log("Data received! "+data);
+        console.log("Data received! "+data.text);
         addQuestion(data.user, data.img, data.search_name, data.text);
     }
     
