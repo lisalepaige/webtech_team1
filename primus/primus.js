@@ -190,7 +190,6 @@ exports.kickstart = function (server) {
       }
 
       if(data.type == "question"){
-        console.log("user: " + data.loggedInUser); 
         addQuestion(data.search_name, data.loggedInUser, data.question, data.date, function (err, result){
           if (err){
             status: "No worky"
