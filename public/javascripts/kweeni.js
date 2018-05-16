@@ -53,12 +53,9 @@ function addQuestion(user, img, search_name, text){
 
     var link = document.createElement("a");
     link.href = "/kweeni/"+search_name;
-    link.classList.add(".topics__question");
-    var para = document.createElement("p");
-    para.classList.add(".topics__question--p");
-    para.innerHTML = text;
-    link.appendChild(para);
-
+    link.classList.add(".topics__question--p");
+    link.innerHTML = text;
+    
     var author = document.createElement("p");
     author.classList.add(".topics__question--author");
     author.innerHTML = user;
