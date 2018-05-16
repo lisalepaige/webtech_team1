@@ -72,6 +72,8 @@ function addQuestion(user, img, search_name, text){
     var allQuestions = document.querySelector(".topics");
     allQuestions.insertBefore(container, allQuestions.firstChild);
     console.log("Added block");
+
+    document.querySelector(".question__input").value = "";
 }
 
 
