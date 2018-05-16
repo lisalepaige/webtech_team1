@@ -200,6 +200,10 @@ exports.kickstart = function (server) {
             console.log("error "+ err);
           }
 
+          primus.write({
+            status: "Sending data back"
+          });
+
         });
       }
 
