@@ -5,7 +5,7 @@ block content
       .grid
         a.homeheader__logoxl(href='/')
         h1 Eerste hulp bij design & development hoofdpijn. Kweeni hoe handig.
-        a(href='/facebook')
+        a(href='/facebook').homeheader__inloggen
       .homeheader__userpictures
         each picture, i in pictures
             img.userpictures(src=picture.picture, id="key" + picture.counter)
