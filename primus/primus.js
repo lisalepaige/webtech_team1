@@ -91,6 +91,30 @@ function updateLike(search_name, loggedInUser, callback) {
   })
 }
 
+function addQuestion(search_name, loggedInUser, question, date, callback){
+  User.findOne({
+    username: loggedInUser
+  })
+  .then(function (result) {
+    // create item
+    var item = {
+      text: question,
+      search_name: searchName,
+      current_date: date,
+      user: {
+        username: result.username,
+        facebookId: result.facebookId,
+        picture: result.picture
+      }
+    };
+
+    // create instance of model 
+    var data = new Question(item);
+    data.save();
+    
+  })
+}
+
 
 
 
@@ -170,6 +194,16 @@ exports.kickstart = function (server) {
 
         });
       }
+
+      if(data.type == "question"){
+        addQuestion(data.search_name, data.loggedInUser, data.question, data.date, function (err, result){
+          if (err){
+            console.log("error "+ err);
+          }
+
+        });
+      }
+
     });
   });
 }

@@ -39,7 +39,6 @@ document.querySelector(".react__a").addEventListener("click", function (e) {
     });
 
     document.querySelector(".react__input").value = "";
-
 });
 
 document.querySelector(".react__c").addEventListener("keydown", function (e) {
@@ -85,6 +84,25 @@ document.querySelector(".likes__like--a").addEventListener("click", function (e)
     });
 });
 
+document.querySelector(".question__btn--btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    
+    var QuestionName = document.querySelector(".question__input").value;
+    var searchName = QuestionName.split(" ").join("-");
+    searchName = searchName.split("?").join("");
+
+    var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
+    console.log("user: " + loggedInUser);   
+    var date = new Date(Date.now()).toLocaleString();
+
+    primus.write({
+        type: "question",
+        search_name: searchName,
+        loggedInUser: loggedInUser,
+        date : date,
+        question : QuestionName
+    });
+});
 
 
 

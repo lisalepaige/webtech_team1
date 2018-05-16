@@ -135,28 +135,7 @@ router.get('/kweeni/:id', function (req, res) {
 /* POST kweeni + save data  */
 router.post('/kweeni', function (req, res, next) {
   // search for the user information 
-  User.findOne({
-      username: loggedInUser
-    })
-    .then(function (result) {
-      // create item
-      var searchName = req.body.question__input.split(" ").join("-");
-      searchName = searchName.split("?").join("");
-      var item = {
-        text: req.body.question__input,
-        search_name: searchName,
-        current_date: new Date(Date.now()).toLocaleString(),
-        user: {
-          username: result.username,
-          facebookId: result.facebookId,
-          picture: result.picture
-        }
-      };
-      // create instance of model 
-      var data = new Question(item);
-      data.save();
-      res.redirect('/kweeni');
-    })
+  
 });
 
 module.exports = router;
