@@ -195,6 +195,9 @@ exports.kickstart = function (server) {
             status: "No worky"
           }
 
+          var userPicture = result.picture;
+          var userName = result.username;
+
           primus.write({
             type: data.type,
             user: userName,
