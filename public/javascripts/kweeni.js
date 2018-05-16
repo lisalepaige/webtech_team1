@@ -81,9 +81,9 @@ function addQuestion(user, img, search_name, text){
 primus.on("data", function message(data) {
     console.log("TESTING");
 
-    /*if(data.type == "question"){
+    if(data.type == "question"){
         console.log("Data received! "+data);
         addQuestion(data.user, data.img, data.search_name, data.text);
-    }*/
+    }
     
 });
