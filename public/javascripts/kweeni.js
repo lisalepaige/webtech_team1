@@ -19,7 +19,7 @@ document.querySelector(".question__btn--btn").addEventListener("click", function
     
     var QuestionName = document.querySelector(".question__input").value;
     var searchName = QuestionName.split(" ").join("-");
-    searchName = searchName.split("?").join("");
+    //searchName = searchName.split("?").join("");
 
     var loggedInUser = document.getElementById("userid").getAttribute("data-user"); 
       
